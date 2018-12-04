@@ -1,5 +1,8 @@
 const assert = require('assert');
-const { apply } = require('../src/lib.js');
+const { 
+  apply,
+  filterNumOfLine
+} = require('../src/lib.js');
 const add = function(first,second){
   return first+ second;
 }
@@ -7,5 +10,43 @@ const add = function(first,second){
 describe('apply function',function(){
   it('should return the output of the function with the arguments',function(){
     assert.deepEqual(apply(add,2,3),5);
+  });
+});
+
+describe('filterNumOfLine',function(){
+  let file = 'node ./head.js -n5 file1\n';
+  file += 'node ./head.js -n 5 file1\n';
+  file += 'node ./head.js -5 file1\n';
+  file += 'node ./head.js file1 file2\n';
+  file += 'node ./head.js -n 5 file1 file2\n';
+  file += 'node ./head.js -n5 file1 file2\n';
+  file += 'node ./head.js -5 file1 file2\n';
+  file += 'node ./head.js -c5 file1\n';
+  file += 'node ./head.js -c 5 file1\n';
+  file += 'node ./head.js -c5 file1 file2\n';
+  file += 'node ./head.js -c 5 file1 file2\n';
+
+  let expected = 'node ./head.js -n5 file1';
+  expected += 'node ./head.js -n 5 file1';
+  expected += 'node ./head.js -5 file1';
+  expected += 'node ./head.js file1 file2';
+  expected += 'node ./head.js -n 5 file1 file2';
+  expected += 'node ./head.js -n5 file1 file2';
+  expected += 'node ./head.js -5 file1 file2';
+  expected += 'node ./head.js -c5 file1';
+  expected += 'node ./head.js -c 5 file1';
+  expected += 'node ./head.js -c5 file1 file2';
+
+  it('should return 10 lines of the file if num of line is not specified ',function(){
+    assert.deepEqual(filterNumOfLine(file),expected);
+  });
+  
+  let expectedOutput = 'node ./head.js -n5 file1';
+  expectedOutput += 'node ./head.js -n 5 file1';
+  expectedOutput += 'node ./head.js -5 file1';
+  expectedOutput += 'node ./head.js file1 file2';
+  expectedOutput += 'node ./head.js -n 5 file1 file2';
+  it('should return specified no of lines if num of lines is specified',function(){
+    assert.deepEqual(filterNumOfLine(file,5),expectedOutput);
   });
 });
