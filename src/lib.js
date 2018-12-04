@@ -3,7 +3,7 @@ const apply = function(func,arg1,arg2){
 }
 
 const filterNumOfLine = function(file,num=10){
-  return file.split('\n').slice(0,num).join('');
+  return file.split('\n').slice(0,num).join('\n');
 }
 
 const filterNumOfChar = function(file,num){
