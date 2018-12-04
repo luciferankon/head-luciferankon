@@ -9,7 +9,8 @@ const {
 
 const mapper = function(file){
   let fileData = apply(fs.readFileSync,file,'utf-8');
-  let result = selectOperationType(fileData,value[0],type[0]);
+  let range = +value.join('') || undefined;
+  let result = selectOperationType(fileData,range,type[0]);
   if(files.length - 1){
     result = '==> ' + file + ' <==\n\n' + result + '\n\n';
   }

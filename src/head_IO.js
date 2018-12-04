@@ -1,5 +1,5 @@
 const setSliceIndex = function(inputs){
-  if(inputs[0].length>3)
+  if(!inputs[0].match(/^-/))
     return 0;
   if(inputs[0] == '-n' || inputs[0] == '-c')
     return 2;

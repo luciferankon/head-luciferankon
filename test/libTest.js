@@ -28,25 +28,25 @@ describe('filterNumOfLine',function(){
   file += 'node ./head.js -c5 file1 file2\n';
   file += 'node ./head.js -c 5 file1 file2\n';
 
-  let expected = 'node ./head.js -n5 file1';
-  expected += 'node ./head.js -n 5 file1';
-  expected += 'node ./head.js -5 file1';
-  expected += 'node ./head.js file1 file2';
-  expected += 'node ./head.js -n 5 file1 file2';
-  expected += 'node ./head.js -n5 file1 file2';
-  expected += 'node ./head.js -5 file1 file2';
-  expected += 'node ./head.js -c5 file1';
-  expected += 'node ./head.js -c 5 file1';
+  let expected = 'node ./head.js -n5 file1\n';
+  expected += 'node ./head.js -n 5 file1\n';
+  expected += 'node ./head.js -5 file1\n';
+  expected += 'node ./head.js file1 file2\n';
+  expected += 'node ./head.js -n 5 file1 file2\n';
+  expected += 'node ./head.js -n5 file1 file2\n';
+  expected += 'node ./head.js -5 file1 file2\n';
+  expected += 'node ./head.js -c5 file1\n';
+  expected += 'node ./head.js -c 5 file1\n';
   expected += 'node ./head.js -c5 file1 file2';
 
   it('should return 10 lines of the file if num of line is not specified ',function(){
     assert.deepEqual(filterNumOfLine(file),expected);
   });
   
-  let expectedOutput = 'node ./head.js -n5 file1';
-  expectedOutput += 'node ./head.js -n 5 file1';
-  expectedOutput += 'node ./head.js -5 file1';
-  expectedOutput += 'node ./head.js file1 file2';
+  let expectedOutput = 'node ./head.js -n5 file1\n';
+  expectedOutput += 'node ./head.js -n 5 file1\n';
+  expectedOutput += 'node ./head.js -5 file1\n';
+  expectedOutput += 'node ./head.js file1 file2\n';
   expectedOutput += 'node ./head.js -n 5 file1 file2';
   it('should return specified no of lines if num of lines is specified',function(){
     assert.deepEqual(filterNumOfLine(file,5),expectedOutput);
@@ -77,10 +77,10 @@ describe('selectOperationType',function(){
   file += 'node ./head.js -c5 file1 file2\n';
   file += 'node ./head.js -c 5 file1 file2\n';
   it('should return specified number of lines if type is n',function(){
-    let expectedOutput = 'node ./head.js -n5 file1';
-    expectedOutput += 'node ./head.js -n 5 file1';
-    expectedOutput += 'node ./head.js -5 file1';
-    expectedOutput += 'node ./head.js file1 file2';
+    let expectedOutput = 'node ./head.js -n5 file1\n';
+    expectedOutput += 'node ./head.js -n 5 file1\n';
+    expectedOutput += 'node ./head.js -5 file1\n';
+    expectedOutput += 'node ./head.js file1 file2\n';
     expectedOutput += 'node ./head.js -n 5 file1 file2';
     assert.deepEqual(selectOperationType(file,5,'n'),expectedOutput);
   });
@@ -89,15 +89,15 @@ describe('selectOperationType',function(){
     assert.deepEqual(selectOperationType(file,5,'c'),expectedOutput);
   });
   it('should return 10 lines if type and number nothing is specified',function(){
-    let expected = 'node ./head.js -n5 file1';
-    expected += 'node ./head.js -n 5 file1';
-    expected += 'node ./head.js -5 file1';
-    expected += 'node ./head.js file1 file2';
-    expected += 'node ./head.js -n 5 file1 file2';
-    expected += 'node ./head.js -n5 file1 file2';
-    expected += 'node ./head.js -5 file1 file2';
-    expected += 'node ./head.js -c5 file1';
-    expected += 'node ./head.js -c 5 file1';
+    let expected = 'node ./head.js -n5 file1\n';
+    expected += 'node ./head.js -n 5 file1\n';
+    expected += 'node ./head.js -5 file1\n';
+    expected += 'node ./head.js file1 file2\n';
+    expected += 'node ./head.js -n 5 file1 file2\n';
+    expected += 'node ./head.js -n5 file1 file2\n';
+    expected += 'node ./head.js -5 file1 file2\n';
+    expected += 'node ./head.js -c5 file1\n';
+    expected += 'node ./head.js -c 5 file1\n';
     expected += 'node ./head.js -c5 file1 file2';
     assert.deepEqual(selectOperationType(file),expected);
   });
