@@ -6,4 +6,12 @@ const setSliceIndex = function(inputs){
   return 1;
 }
 
+const partition = function(inputs){
+  let sliceIndex = setSliceIndex(inputs);
+  let typeValue = inputs.slice(0,sliceIndex);
+  let files = inputs.slice(sliceIndex);
+  return {typeValue : typeValue, files: files};
+}
+
+exports.partition = partition;
 exports.setSliceIndex = setSliceIndex;
