@@ -1,7 +1,8 @@
 const assert = require('assert');
 const { 
   apply,
-  filterNumOfLine
+  filterNumOfLine,
+  filterNumOfChar
 } = require('../src/lib.js');
 const add = function(first,second){
   return first+ second;
@@ -48,5 +49,12 @@ describe('filterNumOfLine',function(){
   expectedOutput += 'node ./head.js -n 5 file1 file2';
   it('should return specified no of lines if num of lines is specified',function(){
     assert.deepEqual(filterNumOfLine(file,5),expectedOutput);
+  });
+});
+
+describe('filterNumOfChar',function(){
+  let file = 'node ./head.js -n5 file1\n';
+  it('should give specified no of chars',function(){
+    assert.deepEqual(filterNumOfChar(file,5),'node ');
   });
 });
