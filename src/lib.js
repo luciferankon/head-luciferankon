@@ -10,7 +10,7 @@ const filterNumOfChar = function(file,num){
   return file.slice(0,num);
 }
 
-const selectOperationType = function(file,num,type){
+const selectOperationType = function(file,num,type = 'n'){
   let opeartion = {
     'n' : filterNumOfLine,
     'c' : filterNumOfChar
