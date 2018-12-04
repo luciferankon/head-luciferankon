@@ -1,4 +1,4 @@
-const setSliceIndex = function(input){
+const setSliceIndex = function(inputs){
   if(inputs[0].length>3)
     return 0;
   if(inputs[0] == '-n' || inputs[0] == '-c')
