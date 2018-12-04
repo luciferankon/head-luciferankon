@@ -1,7 +1,8 @@
 const assert = require('assert');
 const {
   setSliceIndex,
-  partition
+  partition,
+  separateTypeValue
 } = require('../src/head_IO.js');
 
 describe('setSliceIndex',function(){
@@ -36,14 +37,36 @@ describe('setSliceIndex',function(){
 
 describe('partition',function(){
   it('should return typeValue in an array and an empty array for files if no files are supplied',function(){
-    assert.deepEqual(partition(['-n',5]),{typeValue : ['-n',5], files : []});
+    assert.deepEqual(partition(['-n',5]),{typeValue : '-n5', files : []});
   });
 
   it('should return an empty array in typeValue and filenames in an array if no type and value are specified',function(){
-    assert.deepEqual(partition(['ankon','boy']),{typeValue :[], files : ['ankon','boy']});
+    assert.deepEqual(partition(['ankon','boy']),{typeValue : '', files : ['ankon','boy']});
   });
 
   it('should return typeValue in typeValue and filenames in filenames if both type and value are supplied',function(){
-    assert.deepEqual(partition(['-n',5,'ankon','boy']),{typeValue : ['-n',5], files : ['ankon','boy']});
+    assert.deepEqual(partition(['-n',5,'ankon','boy']),{typeValue : '-n5', files : ['ankon','boy']});
+  });
+});
+
+describe('separateTypeValue',function(){
+  it('should return type in type and value in value if there both values are given together',function(){
+    let expectedOutput = {type: ['n'], value : [5] , files:['ankon']};
+    assert.deepEqual(separateTypeValue(['-n5','ankon']),expectedOutput);
+  });
+
+  it('should return type in type and value in value if there both values are given separate',function(){
+    let expectedOutput = {type : ['n'], value : [5], files: ['ankon']};
+    assert.deepEqual(separateTypeValue(['-n',5,'ankon']),expectedOutput);
+  });
+
+  it('should return empty array in type and value in value if there only value is supplied',function(){
+    let expectedOutput = {type : [], value : [5], files: ['ankon']};
+    assert.deepEqual(separateTypeValue([-5,'ankon']),expectedOutput);
+  });
+
+  it('should return empty array in type and value if neither type nor value is specified',function(){
+    let expectedOutput = {type: [], value: [], files: ['ankon']};
+    assert.deepEqual(separateTypeValue(['ankon']),expectedOutput);
   });
 });
