@@ -12,7 +12,8 @@ const filterNumOfChar = function(file,num){
 
 const selectOperationType = function(file,num,type = 'n'){
   if(type != 'n' || type != 'c'){
-    return 'head: illegal option -- '+ type +'\nusage: head [-n lines | -c bytes] [file ...]';
+    console.log('head: illegal option -- '+ type +'\nusage: head [-n lines | -c bytes] [file ...]');
+    process.exit(1);
   }
   let opeartion = {
     'n' : filterNumOfLine,
