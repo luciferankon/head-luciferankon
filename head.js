@@ -12,7 +12,7 @@ const {
 let inputs = process.argv.slice(2);
 let arrangedInputs = separateTypeValue(inputs);
 let fileData = arrangedInputs.files.map( x => apply(fs.readFileSync,x,'utf-8'));
-let error = errorCheck(arrangedInputs.value, arrangedInputs.type);
+let error = errorCheck(arrangedInputs.type,arrangedInputs.value);
 if(error){
   console.log(error);
   process.exit(1);
