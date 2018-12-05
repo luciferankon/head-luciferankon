@@ -12,6 +12,10 @@ const {
 let inputs = process.argv.slice(2);
 let arrangedInputs = separateTypeValue(inputs);
 let fileData = arrangedInputs.files.map( x => apply(fs.readFileSync,x,'utf-8'));
-errorCheck(arrangedInputs.value);
+let error = errorCheck(arrangedInputs.value, arrangedInputs.type);
+if(error){
+  console.log(error);
+  process.exit(1);
+}
 let result = fileData.map( x => generateResult(x,arrangedInputs));
 console.log(result.join(''));
