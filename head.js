@@ -14,5 +14,5 @@ const {
 } = require('./src/head_IO.js');
 
 let parsedInputs = parser(process.argv.slice(2));
-let result = generateResult(fs.readFileSync,fs.existsSync,parsedInputs);
+let result = generateResult(fs.readFileSync,fs.existsSync,fs.lstatSync,parsedInputs);
 console.log(result);
