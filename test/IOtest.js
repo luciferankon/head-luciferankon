@@ -66,7 +66,7 @@ describe('separateTypeValue',function(){
   });
 
   it('should return empty array in type and 0 in value if neither type nor value is specified',function(){
-    let expectedOutput = {type: [], value: 0, files: ['ankon']};
+    let expectedOutput = {type: [], value: '', files: ['ankon']};
     assert.deepEqual(separateTypeValue(['ankon']),expectedOutput);
   });
 });
