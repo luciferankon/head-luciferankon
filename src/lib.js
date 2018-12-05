@@ -19,12 +19,11 @@ const selectOperationType = function(file,num,type = 'n'){
 }
 
 const errorCheck = function(type, value){
-  if(value <! 0 || isNaN(+value)){
-    return 'head: illegal line count -- ' + value;
-  }
-
-  if(type != 'n' && type != 'c'){
+  if(type != 'n' && type != 'c' && type != ''){
     return 'head: illegal option -- '+ type +'\nusage: head [-n lines | -c bytes] [file ...]';
+  }
+  if((value != '' && value < 1) || isNaN(+value)){
+    return 'head: illegal line count -- ' + value;
   }
 }
 
