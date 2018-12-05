@@ -18,16 +18,14 @@ const partition = function(inputs){
 const separateTypeValue = function(inputs){
   let partitionedInput = partition(inputs);
   let typeValue = partitionedInput.typeValue.split('');
-  let type = typeValue.slice(1).filter(isNaN);
-  let value = typeValue.slice(1).filter( x => isFinite(x) || x == '-').join('');
+  let type = isNaN(typeValue[1]) && typeValue[1] || '';
+  let valueIndex = type.length + 1;
+  let value = typeValue.slice(valueIndex).join('');
   let files = partitionedInput.files;
   return {type, value, files};
 }
 
-const generateResult = function(file,{type, value, files}){
-  if(value === '0' || value < 0){
-    return 'head: illegal line count -- ' + value;
-  }
+const generateResult = function(file, {type, value, files}){
   let index = 0;
   let range = +value || undefined;
   let result = selectOperationType(file,range,type[0]);

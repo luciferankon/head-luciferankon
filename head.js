@@ -1,7 +1,8 @@
 const fs = require('fs');
 
 const { 
-  apply
+  apply,
+  errorCheck
 } = require('./src/lib.js');
 const {
   separateTypeValue,
@@ -11,5 +12,6 @@ const {
 let inputs = process.argv.slice(2);
 let arrangedInputs = separateTypeValue(inputs);
 let fileData = arrangedInputs.files.map( x => apply(fs.readFileSync,x,'utf-8'));
+errorCheck(arrangedInputs.value);
 let result = fileData.map( x => generateResult(x,arrangedInputs));
 console.log(result.join(''));

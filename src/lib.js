@@ -18,6 +18,14 @@ const selectOperationType = function(file,num,type = 'n'){
   return opeartion[type](file,num);
 }
 
+const errorCheck = function(value){
+  if(value <! 0 || isNaN(value)){
+    console.log('head: illegal line count -- ' + value);
+    process.exit(1);
+  }
+}
+
+exports.errorCheck = errorCheck;
 exports.apply = apply;
 exports.filterNumOfLine = filterNumOfLine;
 exports.filterNumOfChar = filterNumOfChar;

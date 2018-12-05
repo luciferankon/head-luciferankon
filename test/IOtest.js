@@ -51,22 +51,23 @@ describe('partition',function(){
 
 describe('separateTypeValue',function(){
   it('should return type in type and value in value if there both values are given together',function(){
-    let expectedOutput = {type: ['n'], value : 5 , files:['ankon']};
+    let expectedOutput = {type: 'n', value : 5 , files:['ankon']};
     assert.deepEqual(separateTypeValue(['-n5','ankon']),expectedOutput);
   });
 
   it('should return type in type and value in value if there both values are given separate',function(){
-    let expectedOutput = {type : ['n'], value : 5, files: ['ankon']};
+    let expectedOutput = {type : 'n', value : 5, files: ['ankon']};
     assert.deepEqual(separateTypeValue(['-n',5,'ankon']),expectedOutput);
   });
 
   it('should return empty array in type and value in value if there only value is supplied',function(){
-    let expectedOutput = {type : [], value : 5, files: ['ankon']};
+    let expectedOutput = {type : '' , value : 5, files: ['ankon']};
     assert.deepEqual(separateTypeValue(['-5','ankon']),expectedOutput);
   });
 
   it('should return empty array in type and 0 in value if neither type nor value is specified',function(){
-    let expectedOutput = {type: [], value: '', files: ['ankon']};
+    let expectedOutput = {type: '', value: '', files: ['ankon']};
     assert.deepEqual(separateTypeValue(['ankon']),expectedOutput);
   });
 });
+
