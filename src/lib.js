@@ -18,16 +18,6 @@ const selectOperationType = function(file,num,type = 'n'){
   return opeartion[type](file,num);
 }
 
-const errorCheck = function(type, value){
-  if(type != 'n' && type != 'c' && type != ''){
-    return 'head: illegal option -- '+ type +'\nusage: head [-n lines | -c bytes] [file ...]';
-  }
-  if((value != '' && value < 1) || isNaN(+value)){
-    return 'head: illegal line count -- ' + value;
-  }
-}
-
-exports.errorCheck = errorCheck;
 exports.apply = apply;
 exports.filterNumOfLine = filterNumOfLine;
 exports.filterNumOfChar = filterNumOfChar;

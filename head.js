@@ -1,9 +1,13 @@
 const fs = require('fs');
 
 const { 
-  apply,
-  errorCheck
+  apply
 } = require('./src/lib.js');
+
+const {
+  errorCheck
+} = require('./src/errorLib.js');
+
 const {
   separateTypeValue,
   generateResult
@@ -18,4 +22,4 @@ if(error){
   process.exit(1);
 }
 let result = fileData.map( x => generateResult(x,arrangedInputs));
-console.log(result.join(''));
+console.log(result.join('\n\n'));

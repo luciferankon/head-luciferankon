@@ -29,8 +29,9 @@ const generateResult = function(file, {type, value, files}){
   let index = 0;
   let range = +value || undefined;
   let result = selectOperationType(file,range,type[0]);
-  if(files.length - 1)
-    result = '==> ' + files[index++] + '<==\n\n' + result + '\n\n';
+  if(files.length - 1){
+    result = '==> ' + files[index++] + ' <==\n' + result;
+  }
   return result;
 }
 
