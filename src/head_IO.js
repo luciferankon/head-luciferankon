@@ -1,3 +1,5 @@
+const { selectOperationType } = require('./lib.js');
+
 const setSliceIndex = function(inputs){
   if(!inputs[0].match(/^-/))
     return 0;
@@ -17,11 +19,21 @@ const separateTypeValue = function(inputs){
   let partitionedInput = partition(inputs);
   let typeValue = partitionedInput.typeValue.split('');
   let type = typeValue.slice(1).filter(isNaN);
-  let value = typeValue.slice(1).filter(isFinite);
+  let value = +typeValue.slice(1).filter(isFinite).join('');
   let files = partitionedInput.files;
   return {type, value, files};
 }
 
+const generateResult = function(file,{type, value, files}){
+  let index = 0;
+  let range = value || undefined;
+  let result = selectOperationType(file,range,type[0]);
+  if(files.length - 1)
+    result = '==> ' + files[index++] + '<==\n\n' + result + '\n\n';
+  return result;
+}
+
+exports.generateResult = generateResult;
 exports.separateTypeValue = separateTypeValue;
 exports.partition = partition;
 exports.setSliceIndex = setSliceIndex;
