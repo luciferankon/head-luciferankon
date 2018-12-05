@@ -5,11 +5,11 @@ const generateResult = function(reader,validater,stateChecker,{type,range,files}
     return error;
   }
   return files.map( function(file){
-    if(!stateChecker(file).isFile()){
-      return 'head: Error reading '+file;
-    }
     if(!validater(file)){
       return 'head: '+file+': No such file or directory';
+    }
+    if(!stateChecker(file).isFile()){
+      return 'head: Error reading '+file;
     }
     let fileName = '==> ' + file + ' <==\n';
     let fileData = reader(file,'utf-8');

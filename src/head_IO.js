@@ -3,7 +3,7 @@ const parser = function(inputs){
                       range : 10,
                       files : inputs.slice(0)
                     };
-  if(inputs[0].length == 2 && isNaN(inputs[0][1])){
+  if(inputs[0].length == 2 && inputs[0][0] == '-' && isNaN(inputs[0][1])){
     parsedInput.type = inputs[0][1];
     parsedInput.range = inputs[1];
     parsedInput.files = inputs.slice(2);
