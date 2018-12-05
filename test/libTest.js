@@ -1,6 +1,5 @@
 const assert = require('assert');
 const { 
-  apply,
   filterNumOfLine,
   filterNumOfChar,
   selectOperationType
@@ -8,12 +7,6 @@ const {
 const add = function(first,second){
   return first+ second;
 }
-
-describe('apply function',function(){
-  it('should return the output of the function with the arguments',function(){
-    assert.deepEqual(apply(add,2,3),5);
-  });
-});
 
 describe('filterNumOfLine',function(){
   let file = 'node ./head.js -n5 file1\n';

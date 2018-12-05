@@ -1,6 +1,6 @@
 const { errorCheck } = require('./errorLib.js');
 const generateResult = function(reader,validater,{type,range,files}){
-  let error = errorCheck(type,range);
+  let error = errorCheck(type, range, files);
   if(error){
     return error;
   }
