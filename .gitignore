@@ -1,3 +1,5 @@
 *.swp
 .actual_out
 .state
+coverage/*
+.nyc_output/*
