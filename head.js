@@ -1,13 +1,8 @@
 const fs = require('fs');
 
 const { 
-  apply,
   generateResult
 } = require('./src/lib.js');
-
-const {
-  errorCheck
-} = require('./src/errorLib.js');
 
 const {
   parser
