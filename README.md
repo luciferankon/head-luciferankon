@@ -12,5 +12,7 @@
   node ./head.js -c 5 file1
   node ./head.js -c5 file1 file2
   node ./head.js -c 5 file1 file2
+  node head.js -n10 -n20 file1
+  node head.js -- file1
   ```
 
