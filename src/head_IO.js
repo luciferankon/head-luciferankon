@@ -6,7 +6,7 @@ const parser = function(inputs){
   if(inputs[0].length == 2 && inputs[0] == '--'){
     parsedInput.files = inputs.slice(1);
   }
-  if(inputs[0].length == 2 && (inputs[0] == '-n' || inputs[0] == 'c')){
+  if(inputs[0].length == 2 && (inputs[0] == '-n' || inputs[0] == '-c')){
     parsedInput.type = inputs[0][1];
     parsedInput.range = inputs[1];
     parsedInput.files = inputs.slice(2);
