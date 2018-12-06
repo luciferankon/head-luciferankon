@@ -13,7 +13,7 @@ const generateResult = function(readFile, exists , getStat , {type,range,files})
       return 'head: Error reading '+file;
     }
     let fileName = '==> ' + file + ' <==\n';
-    let fileData = reader(file,'utf-8');
+    let fileData = readFile(file,'utf-8');
     let result = selectOperationType(fileData,range,type);
     if(files.length > 1){
       return fileName + result;
