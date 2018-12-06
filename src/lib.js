@@ -1,14 +1,15 @@
 const { errorCheck } = require('./errorLib.js');
-const generateResult = function(reader,validater,stateChecker,{type,range,files}){
+
+const generateResult = function(readFile, exists , getStat , {type,range,files}){
   let error = errorCheck(type, range, files);
   if(error){
     return error;
   }
   return files.map( function(file){
-    if(!validater(file)){
+    if(!exists(file)){
       return 'head: '+file+': No such file or directory';
     }
-    if(!stateChecker(file).isFile()){
+    if(!getStat(file).isFile()){
       return 'head: Error reading '+file;
     }
     let fileName = '==> ' + file + ' <==\n';

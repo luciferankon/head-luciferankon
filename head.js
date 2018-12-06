@@ -1,4 +1,8 @@
-const fs = require('fs');
+const {
+  readFileSync,
+  existsSync,
+  lstatSync
+}= require('fs');
 
 const { 
   generateResult
@@ -9,5 +13,5 @@ const {
 } = require('./src/head_IO.js');
 
 let parsedInputs = parser(process.argv.slice(2));
-let result = generateResult(fs.readFileSync,fs.existsSync,fs.lstatSync,parsedInputs);
+let result = generateResult( readFileSync, existsSync, lstatSync, parsedInputs);
 console.log(result);

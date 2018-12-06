@@ -1,5 +1,6 @@
 const assert = require('assert');
 const { 
+  generateResult,
   filterNumOfLine,
   filterNumOfChar,
   selectOperationType
