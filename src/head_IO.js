@@ -4,10 +4,12 @@ const parser = function(inputs){
                       files : inputs.slice(0)
                     };
   let isTypeDash = inputs[0].length == 2 && inputs[0] == '--';
+  let isInputOnlyType = inputs[0].length == 2 && inputs[0].match(/^-[a-z]/);
+
   if(isTypeDash){
     parsedInput.files = inputs.slice(1);
   }
-  if(inputs[0].length == 2 && inputs[0].match(/^-[a-z]/)){
+  if(isInputOnlyType){
     parsedInput.type = inputs[0][1];
     parsedInput.range = inputs[1];
     parsedInput.files = inputs.slice(2);
