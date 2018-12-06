@@ -3,7 +3,8 @@ const parser = function(inputs){
                       range : 10,
                       files : inputs.slice(0)
                     };
-  if(inputs[0].length == 2 && inputs[0] == '--'){
+  let isTypeDash = inputs[0].length == 2 && inputs[0] == '--';
+  if(isTypeDash){
     parsedInput.files = inputs.slice(1);
   }
   if(inputs[0].length == 2 && inputs[0].match(/^-[a-z]/)){
