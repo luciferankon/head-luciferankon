@@ -6,6 +6,7 @@ const parser = function(inputs){
   let isTypeDash = inputs[0].length == 2 && inputs[0] == '--';
   let isInputOnlyType = inputs[0].length == 2 && inputs[0].match(/^-[a-z]/);
   let isInputOnlyValue = inputs[0].length >= 2 && (!isNaN(inputs[0][1]));
+  let isInputTypeAndValue = inputs[0].length >=3 && inputs[0][0] == '-' && isNaN(inputs[0][1]);
 
   if(isTypeDash){
     parsedInput.files = inputs.slice(1);
@@ -19,7 +20,7 @@ const parser = function(inputs){
     parsedInput.range = inputs[0].slice(1);
     parsedInput.files = inputs.slice(1);
   }
-  if(inputs[0].length >=3 && inputs[0][0] == '-' && isNaN(inputs[0][1])){
+  if(isInputTypeAndValue){
     parsedInput.type = inputs[0][1];
     parsedInput.range = inputs[0].slice(2);
     parsedInput.files = inputs.slice(1);
