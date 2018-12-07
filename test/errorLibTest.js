@@ -81,6 +81,10 @@ describe('errorCheck', function() {
     it('should return false if type is c',function(){
       assert.deepEqual(isTypeError('c'),false);
     });
+
+    it('should return true is type is a number',function(){
+      assert.deepEqual(isTypeError('1'),true);
+    });
   });
   describe('isValueInvalid',function(){
     it('should return true if value is negative',function(){
