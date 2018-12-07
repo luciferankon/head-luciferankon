@@ -82,5 +82,9 @@ describe('errorCheck', function() {
     it('should return true if value is invalid',function(){
       assert.deepEqual(isValueError('-1'),true);
     });
+
+    it('should return false if value is 0',function(){
+      assert.deepEqual(isValueError('2'),false);
+    });
   });
 });
