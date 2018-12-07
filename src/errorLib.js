@@ -3,23 +3,31 @@ const errorCheck = function(type, value, files) {
     n: 'line',
     c: 'byte'
   };
-  if (type != 'n' && type != 'c') {
-    return (
-      'head: illegal option -- ' +
-      type +
-      '\nusage: head [-n lines | -c bytes] [file ...]'
-    );
+  if (isTypeError(type)) {
+    return  'head: illegal option -- ' +
+              type +
+              '\nusage: head [-n lines | -c bytes] [file ...]';
   }
-  if (value < 1 || (isNaN(value) && value != undefined)) {
+  if (isValueError(value)) {
     return 'head: illegal ' + errorWord[type] + ' count -- ' + value;
   }
-  if (files.length == 0) {
-    return (
-      'head: option requires an argument -- ' +
-      type +
-      '\nusage: head [-n lines | -c bytes] [file ...]'
-    );
+  if (isFileError(files)) {
+    return  'head: option requires an argument -- ' +
+            type +
+            '\nusage: head [-n lines | -c bytes] [file ...]';
   }
+};
+
+const isTypeError = function(type) {
+  return type != 'n' && type != 'c';
+};
+
+const isValueError = function(value) {
+  return value < 1 || (isNaN(value) && value != undefined);
+};
+
+const isFileError = function(files) {
+  return files.length == 0;
 };
 
 exports.errorCheck = errorCheck;
