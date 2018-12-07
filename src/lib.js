@@ -6,11 +6,7 @@ const generateResult = function(fileSystem, arrangedInputs) {
   if (error) {
     return error;
   }
-  const validateFile = formatResult.bind(
-    null,
-    fileSystem,
-    arrangedInputs
-  );
+  const validateFile = formatResult.bind(null, fileSystem, arrangedInputs);
   return files.map(validateFile).join('\n\n');
 };
 
@@ -25,15 +21,15 @@ const formatResult = function(
   if (!lstatSync(file).isFile()) {
     return 'head: Error reading ' + file;
   }
-  let fileName = generateHeader(file); 
+  let fileName = generateHeader(file);
   let fileData = readFileSync(file, 'utf-8');
   let result = selectOperationType(fileData, range, type);
   return addHeader(files, fileName, result);
 };
 
-const generateHeader = function(file){
+const generateHeader = function(file) {
   return '==> ' + file + ' <==\n';
-}
+};
 
 const addHeader = function(files, fileName, result) {
   if (files.length > 1) {
