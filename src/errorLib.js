@@ -10,7 +10,7 @@ const errorCheck = function(type, value, files) {
     return 'head: illegal ' + errorWord[type] + ' count -- ' + value;
   }
   if (isFileError(files)) {
-    return 'head: option requires an argument -- ' + type + '\nusage: head [-n lines | -c bytes] [file ...];
+    return 'head: option requires an argument -- ' + type + '\nusage: head [-n lines | -c bytes] [file ...]';
   }
 };
 
