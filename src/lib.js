@@ -6,7 +6,7 @@ const generateResult = function(fileSystem, arrangedInputs) {
   if (error) {
     return error;
   }
-  const validateFile = formatOutputOfFile.bind(
+  const validateFile = formatResult.bind(
     null,
     fileSystem,
     arrangedInputs
@@ -14,7 +14,7 @@ const generateResult = function(fileSystem, arrangedInputs) {
   return files.map(validateFile).join('\n\n');
 };
 
-const formatOutputOfFile = function(
+const formatResult = function(
   { readFileSync, existsSync, lstatSync },
   { type, range, files },
   file
@@ -25,11 +25,15 @@ const formatOutputOfFile = function(
   if (!lstatSync(file).isFile()) {
     return 'head: Error reading ' + file;
   }
-  let fileName = '==> ' + file + ' <==\n';
+  let fileName = generateHeader(file); 
   let fileData = readFileSync(file, 'utf-8');
   let result = selectOperationType(fileData, range, type);
   return addHeader(files, fileName, result);
 };
+
+const generateHeader = function(file){
+  return '==> ' + file + ' <==\n';
+}
 
 const addHeader = function(files, fileName, result) {
   if (files.length > 1) {
