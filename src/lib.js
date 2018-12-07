@@ -16,7 +16,7 @@ const generateResult = function(fileSystem, arrangedInputs) {
 
 const formatResult = function(
   { readFileSync, existsSync, lstatSync },
-  { type, range, files },
+  arrangedInputs,
   file
 ) {
   if (!existsSync(file)) {
@@ -25,10 +25,10 @@ const formatResult = function(
   if (!lstatSync(file).isFile()) {
     return 'head: Error reading ' + file;
   }
-  return getResult(file,range,type,readFileSync,files);
+  return getResult(file,readFileSync,arrangedInputs);
 };
 
-const getResult = function(file,range,type,readFileSync,files){
+const getResult = function(file,readFileSync,{type,range,files}){
   let fileName = generateHeader(file); 
   let fileData = readFileSync(file, 'utf-8');
   let result = selectOperationType(fileData, range, type);
