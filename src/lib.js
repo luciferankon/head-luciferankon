@@ -1,30 +1,33 @@
 const { errorCheck } = require("./errorLib.js");
 
-const generateResult = function(
-  { readFileSync, existsSync, lstatSync },
-  { type, range, files }
-) {
+const generateResult = function(fileSystem, arrangedInputs) {
+  let {type,range,files} = arrangedInputs;
   let error = errorCheck(type, range, files);
   if (error) {
     return error;
   }
-  return files
-    .map(function(file) {
-      if (!existsSync(file)) {
-        return "head: " + file + ": No such file or directory";
-      }
-      if (!lstatSync(file).isFile()) {
-        return "head: Error reading " + file;
-      }
-      let fileName = "==> " + file + " <==\n";
-      let fileData = readFileSync(file, "utf-8");
-      let result = selectOperationType(fileData, range, type);
-      if (files.length > 1) {
-        return fileName + result;
-      }
-      return result;
-    })
-    .join("\n\n");
+  const validateFile = formatOutputOfFile.bind(null,fileSystem,arrangedInputs);
+  return files.map(validateFile).join("\n\n");
+};
+
+const formatOutputOfFile = function(
+  { readFileSync, existsSync, lstatSync },
+  { type, range, files},
+  file
+) {
+  if (!existsSync(file)) {
+    return "head: " + file + ": No such file or directory";
+  }
+  if (!lstatSync(file).isFile()) {
+    return "head: Error reading " + file;
+  }
+  let fileName = "==> " + file + " <==\n";
+  let fileData = readFileSync(file, "utf-8");
+  let result = selectOperationType(fileData, range, type);
+  if (files.length > 1) {
+    return fileName + result;
+  }
+  return result;
 };
 
 const filterNumOfLine = function(file, num = 10) {
