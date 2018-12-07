@@ -26,7 +26,7 @@ const isTypeDash = function(inputs) {
 };
 
 const isInputOnlyType = function(inputs) {
-  return inputs.length == 2 && /[a-z]/.test(inputs[1]);
+  return inputs.length == 2 && /^-[a-z]/.test(inputs);
 };
 
 const isInputOnlyValue = function(inputs) {
