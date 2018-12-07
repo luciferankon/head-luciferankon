@@ -1,9 +1,7 @@
 const { errorCheck } = require("./errorLib.js");
 
 const generateResult = function(
-  {readFileSync,
-  existsSync,
-  lstatSync},
+  { readFileSync, existsSync, lstatSync },
   { type, range, files }
 ) {
   let error = errorCheck(type, range, files);
