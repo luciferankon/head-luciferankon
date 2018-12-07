@@ -134,4 +134,15 @@ describe("test mock function for existsSync", function() {
     };
     assert.deepEqual(generateResult(functions, input), expectedOutput);
   });
+
+  it("should not return the specified string if return value is true", function() {
+    let expectedOutput = "utf-8";
+    let input = { type: "n", range: "3", files: [""] };
+    let functions = {
+      readFileSync: add,
+      existsSync: complimentIdentity,
+      lstatSync: isZero
+    };
+    assert.deepEqual(generateResult(functions, input), expectedOutput);
+  });
 });
