@@ -1,5 +1,11 @@
 const assert = require("assert");
-const { parser } = require("../src/head_IO.js");
+const { 
+  parser,
+  isTypeDash,
+  isInputOnlyType,
+  isInputOnlyValue,
+  isInputTypeAndValue
+} = require("../src/head_IO.js");
 
 describe("parser", function() {
   it("should return type n, range 10 and given input in files if there is no type or range specified", function() {
@@ -22,5 +28,51 @@ describe("parser", function() {
   it("should return n in type, 10 in range. files in files if -- is supplied", function() {
     let expectedOutput = { type: "n", range: 10, files: ["ankon", "chandu"] };
     assert.deepEqual(parser(["--", "ankon", "chandu"]), expectedOutput);
+  });
+});
+
+describe('isTypeDash',function(){
+  it('it Should return false if suplied argument is not --',function(){
+    assert.deepEqual(isTypeDash('aa'),false);
+  });
+  
+  it('it should return true if supplied argument is --',function(){
+    assert.deepEqual(isTypeDash('--'),true);
+  });
+});
+
+describe('isInputOnlyType',function(){
+  it('it should return false if argument is not only a type',function(){
+    assert.deepEqual(isInputOnlyType('-4'),false);
+  });
+  it('should return true if argument is only type n',function(){
+    assert.deepEqual(isInputOnlyType('-n'),true);
+  });
+  it('should return false if argument is only type w',function(){
+    assert.deepEqual(isInputOnlyType('-t'),true);
+  });
+});
+
+describe('isInputOnlyValue',function(){
+  it('should return false if the arguments are not only value',function(){
+    assert.deepEqual(isInputOnlyValue('-e'),false);
+  });
+
+  it('should retun true if the arguments are only value',function(){
+    assert.deepEqual(isInputOnlyValue('-4'),true);
+  });
+});
+
+describe('isInputTypeAndValue',function(){
+  it('should return false if arguments are only type',function(){
+    assert.deepEqual(isInputTypeAndValue('-e'),false);
+  });
+
+  it('should return false if arguments are only numbers',function(){
+    assert.deepEqual(isInputTypeAndValue('-4'),false);
+  });
+
+  it('should return true if arguments are both type and values',function(){
+    assert.deepEqual(isInputTypeAndValue('-n4'),true);
   });
 });
