@@ -28,11 +28,15 @@ const formatOutputOfFile = function(
   let fileName = "==> " + file + " <==\n";
   let fileData = readFileSync(file, "utf-8");
   let result = selectOperationType(fileData, range, type);
-  if (files.length > 1) {
+  return addHeader(files,fileName,result);
+};
+
+const addHeader = function(files,fileName,result){
+  if(files.length > 1){
     return fileName + result;
   }
   return result;
-};
+}
 
 const filterNumOfLine = function(file, num = 10) {
   return file
