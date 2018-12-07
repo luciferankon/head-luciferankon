@@ -1,18 +1,22 @@
 const { errorCheck } = require("./errorLib.js");
 
 const generateResult = function(fileSystem, arrangedInputs) {
-  let {type,range,files} = arrangedInputs;
+  let { type, range, files } = arrangedInputs;
   let error = errorCheck(type, range, files);
   if (error) {
     return error;
   }
-  const validateFile = formatOutputOfFile.bind(null,fileSystem,arrangedInputs);
+  const validateFile = formatOutputOfFile.bind(
+    null,
+    fileSystem,
+    arrangedInputs
+  );
   return files.map(validateFile).join("\n\n");
 };
 
 const formatOutputOfFile = function(
   { readFileSync, existsSync, lstatSync },
-  { type, range, files},
+  { type, range, files },
   file
 ) {
   if (!existsSync(file)) {
