@@ -1,4 +1,4 @@
-const { fs } = require("fs");
+const fs = require("fs");
 
 const { generateResult } = require("./src/lib.js");
 
