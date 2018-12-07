@@ -121,28 +121,28 @@ describe("generateResult", function() {
       assert.deepEqual(generateResult(functions, input), expectedOutput);
     });
   });
-});
 
-describe("test mock function for existsSync", function() {
-  it("should return the specified string if return value is false", function() {
-    let expectedOutput = "head: true: No such file or directory";
-    let input = { type: "n", range: "3", files: ["true"] };
-    let functions = {
-      readFileSync: add,
-      existsSync: complimentIdentity,
-      lstatSync: isZero
-    };
-    assert.deepEqual(generateResult(functions, input), expectedOutput);
-  });
+  describe("test mock function for existsSync", function() {
+    it("should return the specified string if return value is false", function() {
+      let expectedOutput = "head: true: No such file or directory";
+      let input = { type: "n", range: "3", files: ["true"] };
+      let functions = {
+        readFileSync: add,
+        existsSync: complimentIdentity,
+        lstatSync: isZero
+      };
+      assert.deepEqual(generateResult(functions, input), expectedOutput);
+    });
 
-  it("should not return the specified string if return value is true", function() {
-    let expectedOutput = "utf-8";
-    let input = { type: "n", range: "3", files: [""] };
-    let functions = {
-      readFileSync: add,
-      existsSync: complimentIdentity,
-      lstatSync: isZero
-    };
-    assert.deepEqual(generateResult(functions, input), expectedOutput);
+    it("should not return the specified string if return value is true", function() {
+      let expectedOutput = "utf-8";
+      let input = { type: "n", range: "3", files: [""] };
+      let functions = {
+        readFileSync: add,
+        existsSync: complimentIdentity,
+        lstatSync: isZero
+      };
+      assert.deepEqual(generateResult(functions, input), expectedOutput);
+    });
   });
 });
