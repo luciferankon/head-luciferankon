@@ -21,21 +21,20 @@ const parser = function(inputs) {
   return parsedInput;
 };
 
-
-const isTypeDash = function(inputs){
+const isTypeDash = function(inputs) {
   return inputs.length == 2 && inputs == "--";
-}
+};
 
-const isInputOnlyType = function(inputs){
+const isInputOnlyType = function(inputs) {
   return inputs.length == 2 && /[a-z]/.test(inputs[1]);
-}
+};
 
-const isInputOnlyValue = function(inputs){
+const isInputOnlyValue = function(inputs) {
   return inputs.length >= 2 && !isNaN(inputs[1]);
-}
-const isInputTypeAndValue = function(inputs){
+};
+const isInputTypeAndValue = function(inputs) {
   return inputs.length >= 3 && inputs[0] == "-" && isNaN(inputs[1]);
-}
+};
 
 exports.isTypeDash = isTypeDash;
 exports.isInputOnlyValue = isInputOnlyValue;

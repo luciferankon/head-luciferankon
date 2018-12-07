@@ -1,5 +1,5 @@
 const assert = require("assert");
-const { 
+const {
   parser,
   isTypeDash,
   isInputOnlyType,
@@ -31,48 +31,48 @@ describe("parser", function() {
   });
 });
 
-describe('isTypeDash',function(){
-  it('it Should return false if suplied argument is not --',function(){
-    assert.deepEqual(isTypeDash('aa'),false);
+describe("isTypeDash", function() {
+  it("it Should return false if suplied argument is not --", function() {
+    assert.deepEqual(isTypeDash("aa"), false);
   });
-  
-  it('it should return true if supplied argument is --',function(){
-    assert.deepEqual(isTypeDash('--'),true);
+
+  it("it should return true if supplied argument is --", function() {
+    assert.deepEqual(isTypeDash("--"), true);
   });
 });
 
-describe('isInputOnlyType',function(){
-  it('it should return false if argument is not only a type',function(){
-    assert.deepEqual(isInputOnlyType('-4'),false);
+describe("isInputOnlyType", function() {
+  it("it should return false if argument is not only a type", function() {
+    assert.deepEqual(isInputOnlyType("-4"), false);
   });
-  it('should return true if argument is only type n',function(){
-    assert.deepEqual(isInputOnlyType('-n'),true);
+  it("should return true if argument is only type n", function() {
+    assert.deepEqual(isInputOnlyType("-n"), true);
   });
-  it('should return false if argument is only type w',function(){
-    assert.deepEqual(isInputOnlyType('-t'),true);
-  });
-});
-
-describe('isInputOnlyValue',function(){
-  it('should return false if the arguments are not only value',function(){
-    assert.deepEqual(isInputOnlyValue('-e'),false);
-  });
-
-  it('should retun true if the arguments are only value',function(){
-    assert.deepEqual(isInputOnlyValue('-4'),true);
+  it("should return false if argument is only type w", function() {
+    assert.deepEqual(isInputOnlyType("-t"), true);
   });
 });
 
-describe('isInputTypeAndValue',function(){
-  it('should return false if arguments are only type',function(){
-    assert.deepEqual(isInputTypeAndValue('-e'),false);
+describe("isInputOnlyValue", function() {
+  it("should return false if the arguments are not only value", function() {
+    assert.deepEqual(isInputOnlyValue("-e"), false);
   });
 
-  it('should return false if arguments are only numbers',function(){
-    assert.deepEqual(isInputTypeAndValue('-4'),false);
+  it("should retun true if the arguments are only value", function() {
+    assert.deepEqual(isInputOnlyValue("-4"), true);
+  });
+});
+
+describe("isInputTypeAndValue", function() {
+  it("should return false if arguments are only type", function() {
+    assert.deepEqual(isInputTypeAndValue("-e"), false);
   });
 
-  it('should return true if arguments are both type and values',function(){
-    assert.deepEqual(isInputTypeAndValue('-n4'),true);
+  it("should return false if arguments are only numbers", function() {
+    assert.deepEqual(isInputTypeAndValue("-4"), false);
+  });
+
+  it("should return true if arguments are both type and values", function() {
+    assert.deepEqual(isInputTypeAndValue("-n4"), true);
   });
 });

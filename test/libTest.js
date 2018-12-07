@@ -7,11 +7,14 @@ const {
 } = require('../src/lib.js');
 
 const isZero = function(element){
-  return element == 0;
+  return {'isFile' : function(){
+          return element == 0;
+          }        
+  };
 }
 
-const identity = function(element){
-  return element;
+const complimentIdentity = function(element){
+  return !element;
 }
 const add = function(first,second){
   return first+ second;
@@ -109,7 +112,17 @@ describe('generateResult',function(){
     it('should return an error if anything is wrong',function(){
       let expectedOutput = 'head: illegal line count -- -1';
       let input = {type: 'n', range:'-1',files: ['ankon']};
-      assert.deepEqual(generateResult(add,identity,isZero,input),expectedOutput);
+      let functions = {readFileSync: add, existsSync: complimentIdentity, lstatSync: isZero};
+      assert.deepEqual(generateResult(functions,input),expectedOutput);
     });
+  });
+});
+
+describe('test mock function for existsSync',function(){
+  it('should return the specified string if return value is false',function(){
+    let expectedOutput = 'head: true: No such file or directory';
+    let input = {type: 'n', range:'3', files: ['true']};
+    let functions = {readFileSync: add, existsSync: complimentIdentity, lstatSync: isZero};
+    assert.deepEqual(generateResult(functions,input),expectedOutput);
   });
 });

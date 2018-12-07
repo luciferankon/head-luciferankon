@@ -1,9 +1,9 @@
 const { errorCheck } = require("./errorLib.js");
 
 const generateResult = function(
-  readFile,
-  exists,
-  getStat,
+  {readFileSync,
+  existsSync,
+  lstatSync},
   { type, range, files }
 ) {
   let error = errorCheck(type, range, files);
@@ -12,14 +12,14 @@ const generateResult = function(
   }
   return files
     .map(function(file) {
-      if (!exists(file)) {
+      if (!existsSync(file)) {
         return "head: " + file + ": No such file or directory";
       }
-      if (!getStat(file).isFile()) {
+      if (!lstatSync(file).isFile()) {
         return "head: Error reading " + file;
       }
       let fileName = "==> " + file + " <==\n";
-      let fileData = readFile(file, "utf-8");
+      let fileData = readFileSync(file, "utf-8");
       let result = selectOperationType(fileData, range, type);
       if (files.length > 1) {
         return fileName + result;
