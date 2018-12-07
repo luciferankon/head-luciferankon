@@ -78,4 +78,9 @@ describe('errorCheck', function() {
       assert.deepEqual(isTypeError('n'),false);
     });
   });
+  describe('isValueInvalid',function(){
+    it('should return true if value is invalid',function(){
+      assert.deepEqual(isValueError('-1'),true);
+    });
+  });
 });
