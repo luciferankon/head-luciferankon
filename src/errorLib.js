@@ -4,17 +4,21 @@ const errorCheck = function(type, value, files) {
     c: 'byte'
   };
   if (isTypeError(type)) {
-    return  'head: illegal option -- ' +
-              type +
-              '\nusage: head [-n lines | -c bytes] [file ...]';
+    return (
+      'head: illegal option -- ' +
+      type +
+      '\nusage: head [-n lines | -c bytes] [file ...]'
+    );
   }
   if (isValueError(value)) {
     return 'head: illegal ' + errorWord[type] + ' count -- ' + value;
   }
   if (isFileError(files)) {
-    return  'head: option requires an argument -- ' +
-            type +
-            '\nusage: head [-n lines | -c bytes] [file ...]';
+    return (
+      'head: option requires an argument -- ' +
+      type +
+      '\nusage: head [-n lines | -c bytes] [file ...]'
+    );
   }
 };
 
@@ -30,4 +34,7 @@ const isFileError = function(files) {
   return files.length == 0;
 };
 
+exports.isFileError = isFileError;
+exports.isValueError = isValueError;
+exports.isTypeError = isTypeError;
 exports.errorCheck = errorCheck;

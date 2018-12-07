@@ -1,5 +1,10 @@
 const assert = require('assert');
-const { errorCheck } = require('../src/errorLib.js');
+const { 
+  errorCheck,
+  isTypeError,
+  isValueError,
+  isFileError
+} = require('../src/errorLib.js');
 
 describe('errorCheck', function() {
   describe('type error', function() {
@@ -61,6 +66,16 @@ describe('errorCheck', function() {
   describe('no error', function() {
     it('should return undefined if no error is there', function() {
       assert.deepEqual(errorCheck('n', '10', ['ankon']), undefined);
+    });
+  });
+
+  describe('isTypeInvalid',function(){
+    it('should return true if type is invalid',function(){
+      assert.deepEqual(isTypeError('a'),true);
+    });
+
+    it('should return false if type is valid',function(){
+      assert.deepEqual(isTypeError('n'),false);
     });
   });
 });
