@@ -1,43 +1,43 @@
-const { readFileSync, existsSync, lstatSync } = require('fs');
+const fs = require('fs');
 
 const { generateResult } = require('./src/lib.js');
 
 const { parser } = require('./src/head_IO.js');
 
 let parsedInputs = parser(process.argv.slice(2));
-let result = generateResult(readFileSync, existsSync, lstatSync, parsedInputs);
+let result = generateResult(fs, parsedInputs);
 console.log(result);
 
-const { readFileSync, existsSync, lstatSync } = require('fs');
+const fs = require('fs');
 
 const { generateResult } = require('./src/lib.js');
 
 const { parser } = require('./src/head_IO.js');
-const { readFileSync, existsSync, lstatSync } = require('fs');
+const fs = require('fs');
 
 const { generateResult } = require('./src/lib.js');
 
 const { parser } = require('./src/head_IO.js');
-const { readFileSync, existsSync, lstatSync } = require('fs');
+const fs = require('fs');
 
 const { generateResult } = require('./src/lib.js');
 
 const { parser } = require('./src/head_IO.js');
 ==> head.js <==
-const { readFileSync, existsSync, lstatSync } = require('fs');
+const fs = require('fs');
 
 const { generateResult } = require('./src/lib.js');
 
 const { parser } = require('./src/head_IO.js');
 
 let parsedInputs = parser(process.argv.slice(2));
-let result = generateResult(readFileSync, existsSync, lstatSync, parsedInputs);
+let result = generateResult(fs, parsedInputs);
 console.log(result);
 
 
 head: src/libTest.js: No such file or directory
 ==> head.js <==
-const { readFileSync, existsSync, lstatSync } = require('fs');
+const fs = require('fs');
 
 const { generateResult } = require('./src/lib.js');
 
@@ -45,7 +45,7 @@ const { parser } = require('./src/head_IO.js');
 
 head: src/libTest.js: No such file or directory
 ==> head.js <==
-const { readFileSync, existsSync, lstatSync } = require('fs');
+const fs = require('fs');
 
 const { generateResult } = require('./src/lib.js');
 
@@ -53,7 +53,7 @@ const { parser } = require('./src/head_IO.js');
 
 head: src/libTest.js: No such file or directory
 ==> head.js <==
-const { readFileSync, existsSync, lstatSync } = require('fs');
+const fs = require('fs');
 
 const { generateResult } = require('./src/lib.js');
 
@@ -70,13 +70,13 @@ head: src/libTest.js: No such file or directory
 const
 
 head: src/libTest.js: No such file or directory
-const { readFileSync, existsSync, lstatSync } = require('fs');
+const fs = require('fs');
 
 const { generateResult } = require('./src/lib.js');
 
 const { parser } = require('./src/head_IO.js');
 
 let parsedInputs = parser(process.argv.slice(2));
-let result = generateResult(readFileSync, existsSync, lstatSync, parsedInputs);
+let result = generateResult(fs, parsedInputs);
 console.log(result);
 

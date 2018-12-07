@@ -1,5 +1,5 @@
 const parser = function(inputs) {
-  let parsedInput = { type: "n", range: 10, files: inputs.slice(0) };
+  let parsedInput = { type: 'n', range: 10, files: inputs.slice(0) };
 
   if (isTypeDash(inputs[0])) {
     parsedInput.files = inputs.slice(1);
@@ -22,7 +22,7 @@ const parser = function(inputs) {
 };
 
 const isTypeDash = function(inputs) {
-  return inputs.length == 2 && inputs == "--";
+  return inputs.length == 2 && inputs == '--';
 };
 
 const isInputOnlyType = function(inputs) {
@@ -33,7 +33,7 @@ const isInputOnlyValue = function(inputs) {
   return inputs.length >= 2 && !isNaN(inputs[1]);
 };
 const isInputTypeAndValue = function(inputs) {
-  return inputs.length >= 3 && inputs[0] == "-" && isNaN(inputs[1]);
+  return inputs.length >= 3 && inputs[0] == '-' && isNaN(inputs[1]);
 };
 
 exports.isTypeDash = isTypeDash;
