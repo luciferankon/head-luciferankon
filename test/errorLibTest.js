@@ -70,12 +70,16 @@ describe('errorCheck', function() {
   });
 
   describe('isTypeInvalid',function(){
-    it('should return true if type is invalid',function(){
+    it('should return true if type is neither n nor c',function(){
       assert.deepEqual(isTypeError('a'),true);
     });
 
-    it('should return false if type is valid',function(){
+    it('should return false if type is n',function(){
       assert.deepEqual(isTypeError('n'),false);
+    });
+
+    it('should return false if type is c',function(){
+      assert.deepEqual(isTypeError('c'),false);
     });
   });
   describe('isValueInvalid',function(){
