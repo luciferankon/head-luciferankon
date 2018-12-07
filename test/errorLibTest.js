@@ -79,12 +79,16 @@ describe('errorCheck', function() {
     });
   });
   describe('isValueInvalid',function(){
-    it('should return true if value is invalid',function(){
+    it('should return true if value is negative',function(){
       assert.deepEqual(isValueError('-1'),true);
     });
 
-    it('should return false if value is 0',function(){
-      assert.deepEqual(isValueError('2'),false);
+    it('should return true if value is 0',function(){
+      assert.deepEqual(isValueError('0'),true);
+    });
+
+    it('should return true if value is string',function(){
+      assert.deepEqual(isValueError('ax'),true);
     });
   });
 });
