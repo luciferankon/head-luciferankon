@@ -20,7 +20,7 @@ const generateResult = function(fileSystem, arrangedInputs, sourceCode) {
     arrangedInputs,
     context
   );
-  return files.map(validateFile).join('\n');
+  return files.map(validateFile).join('\n\n');
 };
 
 const formatResult = function(
@@ -63,13 +63,9 @@ const addHeader = function(files, fileName, result) {
 
 const filterNumOfLine = function(file, num = 10, context) {
 if (context == "tail.js") {
-  if(file.endsWith('\n')){
-    file = file.split('\n');
-    file.pop('\n');
-    file = file.join('\n');
-  }
-  let range = file.split('\n').length - num;
-  //console.log(range);
+  if(!file.endsWith('\n'))
+    file += '\n';
+  let range = file.split('\n').length - num -1;
   if(range < 0)
     range = 0;
   
