@@ -63,9 +63,12 @@ const addHeader = function(files, fileName, result) {
 
 const filterNumOfLine = function(file, num = 10, context) {
 if (context == "tail.js") {
+  if(!file.endsWith('\n'))
+    file += '\n';
   let range = file.split('\n').length - num -1;
   if(range < 0)
     range = 0;
+  
     return file
       .split("\n")
       .slice(range)

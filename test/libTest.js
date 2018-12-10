@@ -279,7 +279,7 @@ describe("generateResult", function() {
 
     describe("test mock function for readFileSync", function() {
       it("should return concated string of the arguments", function() {
-        let expectedOutput = "0utf-8";
+        let expectedOutput = "0utf-8\n";
         let input = { type: "n", range: "3", files: [0] };
         let functions = {
           readFileSync: add,
@@ -295,7 +295,7 @@ describe("generateResult", function() {
       });
 
       it("should return concated string of the arguments for multiple files", function() {
-        let expectedOutput = "==> 0 <==\n0utf-8\n\n==> 0 <==\n0utf-8";
+        let expectedOutput = "==> 0 <==\n0utf-8\n\n\n==> 0 <==\n0utf-8\n";
         let input = { type: "n", range: "3", files: [0, 0] };
         let functions = {
           readFileSync: add,
