@@ -15,11 +15,14 @@ const errorCheckHead = function(type, value, files) {
 };
 
 const errorCheckTail = function(type, value, files){
+  if(isTypeError(type)){
+    return 'tail: illegal option -- ' + type + '\nusage: tail [-F | -f | -r] [-q] [-b # | -c # | -n #] [file ...]';
+  }
   if(isValueError(value+1)){
     return 'tail: illegal offset -- ' + value;
   }
-
 }
+
 const isTypeError = function(type) {
   return type != 'n' && type != 'c';
 };
