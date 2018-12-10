@@ -1,18 +1,9 @@
-/* 
-  Usage:
-  node ./tail.js file1
-  node ./tail.js -n5 file1
-  node ./tail.js -n 5 file1
-  node ./tail.js -5 file1
-  node ./tail.js file1 file2
-  node ./tail.js -n 5 file1 file2
-  node ./tail.js -n5 file1 file2
-  node ./tail.js -5 file1 file2 
-  node ./tail.js -c5 file1
-  node ./tail.js -c 5 file1
-  node ./tail.js -c5 file1 file2
-  node ./tail.js -c 5 file1 file2
-*/
+const fs = require('fs');
 
+const { generateResult } = require('./src/lib.js');
 
+const { parser } = require('./src/head_IO.js');
 
+let parsedInputs = parser(process.argv.slice(2));
+let result = generateResult(fs, parsedInputs, process.argv[1]);
+console.log(result);

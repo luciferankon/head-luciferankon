@@ -22,11 +22,11 @@ const parser = function(inputs) {
 };
 
 const isTypeDash = function(inputs) {
-  return inputs.length == 2 && inputs == '--';
+  return inputs == '--';
 };
 
 const isInputOnlyType = function(inputs) {
-  return inputs.length == 2 && /^-[a-z]/.test(inputs);
+  return /^-[a-z]$/.test(inputs);
 };
 
 const isInputOnlyValue = function(inputs) {
