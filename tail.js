@@ -6,4 +6,4 @@ const { parser } = require('./src/head_IO.js');
 
 let parsedInputs = parser(process.argv.slice(2));
 let result = generateResult(fs, parsedInputs, process.argv[1]);
-console.log(result);
+process.stdout.write(result);

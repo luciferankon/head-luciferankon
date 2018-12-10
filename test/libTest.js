@@ -63,7 +63,7 @@ describe("filterNumOfLine", function() {
   });
 
   it('should return specified number of lines from last',function(){
-    expectedOutput = 'node ./head.js -c 5 file1 file2\n';
+    expectedOutput = 'node ./head.js -c 5 file1 file2';
     assert.deepEqual(filterNumOfLine(file, 1, 'tail.js'), expectedOutput);
   });
 });
@@ -190,7 +190,7 @@ describe("generateResult", function() {
       });
 
       it("should return concated string of the arguments for multiple files", function() {
-        let expectedOutput = "==> 0 <==\n0utf-8\n\n==> 0 <==\n0utf-8";
+        let expectedOutput = "==> 0 <==\n0utf-8\n==> 0 <==\n0utf-8";
         let input = { type: "n", range: "3", files: [0, 0] };
         let functions = {
           readFileSync: add,
@@ -279,7 +279,7 @@ describe("generateResult", function() {
 
     describe("test mock function for readFileSync", function() {
       it("should return concated string of the arguments", function() {
-        let expectedOutput = "0utf-8\n";
+        let expectedOutput = "0utf-8";
         let input = { type: "n", range: "3", files: [0] };
         let functions = {
           readFileSync: add,
@@ -295,7 +295,7 @@ describe("generateResult", function() {
       });
 
       it("should return concated string of the arguments for multiple files", function() {
-        let expectedOutput = "==> 0 <==\n0utf-8\n\n\n==> 0 <==\n0utf-8\n";
+        let expectedOutput = "==> 0 <==\n0utf-8\n==> 0 <==\n0utf-8";
         let input = { type: "n", range: "3", files: [0, 0] };
         let functions = {
           readFileSync: add,
