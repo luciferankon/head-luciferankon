@@ -1,15 +1,12 @@
-const { 
-  errorCheckHead,
-  errorCheckTail
-} = require('./errorLib.js');
+const { errorCheckHead, errorCheckTail } = require("./errorLib.js");
 
-const generateResult = function(fileSystem, arrangedInputs,sourceCode) {
-  let context = sourceCode.split('/')[sourceCode.split('/').length - 1];
+const generateResult = function(fileSystem, arrangedInputs, sourceCode) {
+  let context = sourceCode.split("/")[sourceCode.split("/").length - 1];
   let error = {
-    'head.js' : errorCheckHead,
-    'tail.js' : errorCheckTail 
+    "head.js": errorCheckHead,
+    "tail.js": errorCheckTail
   };
-  if(context == 'tail.js' && !isNaN(arrangedInputs.range)){
+  if (context == "tail.js" && !isNaN(arrangedInputs.range)) {
     arrangedInputs.range = Math.abs(arrangedInputs.range);
   }
   let { type, range, files } = arrangedInputs;
@@ -17,8 +14,13 @@ const generateResult = function(fileSystem, arrangedInputs,sourceCode) {
   if (err) {
     return err;
   }
-  let validateFile = formatResult.bind(null, fileSystem, arrangedInputs, context);
-  return files.map(validateFile).join('\n\n');
+  let validateFile = formatResult.bind(
+    null,
+    fileSystem,
+    arrangedInputs,
+    context
+  );
+  return files.map(validateFile).join("\n\n");
 };
 
 const formatResult = function(
@@ -28,23 +30,28 @@ const formatResult = function(
   file
 ) {
   if (!existsSync(file)) {
-    return 'head: ' + file + ': No such file or directory';
+    return "" + context.slice(0,4) + ": " + file + ": No such file or directory";
   }
   if (!lstatSync(file).isFile()) {
-    return 'head: Error reading ' + file;
+    return "" + context.slice(0,4) + ": Error reading " + file;
   }
   return getResult(readFileSync, arrangedInputs, context, file);
 };
 
-const getResult = function(readFileSync, { type, range, files }, context, file) {
+const getResult = function(
+  readFileSync,
+  { type, range, files },
+  context,
+  file
+) {
   let fileName = generateHeader(file);
-  let fileData = readFileSync(file, 'utf-8');
+  let fileData = readFileSync(file, "utf-8");
   let result = selectOperationType(fileData, range, type, context);
   return addHeader(files, fileName, result);
 };
 
 const generateHeader = function(file) {
-  return '==> ' + file + ' <==\n';
+  return "==> " + file + " <==\n";
 };
 
 const addHeader = function(files, fileName, result) {
@@ -55,23 +62,26 @@ const addHeader = function(files, fileName, result) {
 };
 
 const filterNumOfLine = function(file, num = 10, context) {
-  if(context == "tail.js"){
-    return file.split('\n').slice(file.split('\n').length - num -1).join('\n');
+if (context == "tail.js") {
+    return file
+      .split("\n")
+      .slice(file.split("\n").length - num - 1)
+      .join("\n");
   }
   return file
-    .split('\n')
-    .slice(0,num)
-    .join('\n');
+    .split("\n")
+    .slice(0, num)
+    .join("\n");
 };
 
 const filterNumOfChar = function(file, num, context) {
-  if(context == "tail.js"){
+  if (context == "tail.js") {
     return file.slice(file.length - num);
   }
   return file.slice(0, num);
 };
 
-const selectOperationType = function(file, num, type = 'n',context) {
+const selectOperationType = function(file, num, type = "n", context) {
   let opeartion = {
     n: filterNumOfLine,
     c: filterNumOfChar
