@@ -119,7 +119,8 @@ describe('generateResult', function() {
         existsSync: isMultipleOf3,
         lstatSync: isZero
       };
-      assert.deepEqual(generateResult(functions, input), expectedOutput);
+      let context = '/Users/ankoncha/projects/javascript/head-luciferankon/head.js'; 
+      assert.deepEqual(generateResult(functions, input, context), expectedOutput);
     });
   });
 

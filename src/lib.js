@@ -1,12 +1,15 @@
 const { errorCheck } = require('./errorLib.js');
 
 const generateResult = function(fileSystem, arrangedInputs,sourceCode) {
+  let context = sourceCode.split('/')[sourceCode.split('/').length - 1];
+  if(context == 'tail.js'){
+    arrangedInputs.range = Math.abs(arrangedInputs.range);
+  }
   let { type, range, files } = arrangedInputs;
   let error = errorCheck(type, range, files);
   if (error) {
     return error;
   }
-  let context = sourceCode.split('/')[sourceCode.split('/').length - 1];
   let validateFile = formatResult.bind(null, fileSystem, arrangedInputs, context);
   return files.map(validateFile).join('\n\n');
 };
