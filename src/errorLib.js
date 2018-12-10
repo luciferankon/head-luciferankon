@@ -1,33 +1,49 @@
 const errorCheckHead = function(type, value, files) {
   let errorWord = {
-    n: 'line',
-    c: 'byte'
+    n: "line",
+    c: "byte"
   };
   if (isTypeError(type)) {
-    return 'head: illegal option -- ' + type + '\nusage: head [-n lines | -c bytes] [file ...]';
+    return (
+      "head: illegal option -- " +
+      type +
+      "\nusage: head [-n lines | -c bytes] [file ...]"
+    );
   }
   if (isValueError(value)) {
-    return 'head: illegal ' + errorWord[type] + ' count -- ' + value;
+    return "head: illegal " + errorWord[type] + " count -- " + value;
   }
   if (isFileError(files)) {
-    return 'head: option requires an argument -- ' + type + '\nusage: head [-n lines | -c bytes] [file ...]';
+    return (
+      "head: option requires an argument -- " +
+      type +
+      "\nusage: head [-n lines | -c bytes] [file ...]"
+    );
   }
 };
 
-const errorCheckTail = function(type, value, files){
-  if(isTypeError(type)){
-    return 'tail: illegal option -- ' + type + '\nusage: tail [-F | -f | -r] [-q] [-b # | -c # | -n #] [file ...]';
+const errorCheckTail = function(type, value, files) {
+  if (isTypeError(type)) {
+    return (
+      "tail: illegal option -- " +
+      type +
+      "\nusage: tail [-F | -f | -r] [-q] [-b # | -c # | -n #] [file ...]"
+    );
   }
-  if(isFileError(files)){
-    return 'tail: option requires an argument -- ' + type + '\nusage: tail [-F | -f | -r] [-q] [-b # | -c # | -n #] [file ...]'; 
+  if (isFileError(files)) {
+    return (
+      "tail: option requires an argument -- " +
+      type +
+      "\nusage: tail [-F | -f | -r] [-q] [-b # | -c # | -n #] [file ...]"
+    );
   }
-  if(isValueError(value+1)){
-    return 'tail: illegal offset -- ' + value;
+  if (isValueError(value + 1)) {
+    return "tail: illegal offset -- " + value;
   }
-}
+};
 
 const isTypeError = function(type) {
-  return type != 'n' && type != 'c';
+  return type != "n" && type != "c";
 };
 
 const isValueError = function(value) {
