@@ -20,7 +20,7 @@ const generateResult = function(fileSystem, arrangedInputs, sourceCode) {
     arrangedInputs,
     context
   );
-  return files.map(validateFile).join("\n\n");
+  return files.map(validateFile).join('\n\n');
 };
 
 const formatResult = function(
