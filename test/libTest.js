@@ -61,6 +61,11 @@ describe("filterNumOfLine", function() {
   it("should return empty string for 0 num of line", function() {
     assert.deepEqual(filterNumOfLine(file, 0), "");
   });
+
+  it('should return specified number of lines from last',function(){
+    expectedOutput = 'node ./head.js -c 5 file1 file2\n';
+    assert.deepEqual(filterNumOfLine(file, 1, 'tail.js'), expectedOutput);
+  });
 });
 
 describe("filterNumOfChar", function() {
