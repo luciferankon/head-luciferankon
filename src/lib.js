@@ -6,11 +6,8 @@ const generateResult = function(fileSystem, arrangedInputs,sourceCode) {
   if (error) {
     return error;
   }
-  let context = sourceCode.split('/');
+  let context = sourceCode.split('/')[sourceCode.split('/').length - 1];
   let validateFile = formatResult.bind(null, fileSystem, arrangedInputs, context);
-  if(context[context.length-1] == "tail.js"){
-    validateFile = getResult.bind(null,fileSystem.readFileSync, arrangedInputs, context[context.length-1]);
-  }
   return files.map(validateFile).join('\n\n');
 };
 
@@ -20,7 +17,6 @@ const formatResult = function(
   context,
   file
 ) {
-  console.log(file);
   if (!existsSync(file)) {
     return 'head: ' + file + ': No such file or directory';
   }
