@@ -227,7 +227,7 @@ describe("generateResult", function() {
   describe('for tail.js',function(){
     describe("return error", function() {
       it("should return an error if anything is wrong", function() {
-        let expectedOutput = "head: ankon: No such file or directory";
+        let expectedOutput = "tail: ankon: No such file or directory";
         let input = { type: "n", range: "-1", files: ["ankon"] };
         let functions = {
           readFileSync: add,
@@ -245,7 +245,7 @@ describe("generateResult", function() {
 
     describe("test mock function for existsSync", function() {
       it("should return the specified string if return value is false", function() {
-        let expectedOutput = "head: 2: No such file or directory";
+        let expectedOutput = "tail: 2: No such file or directory";
         let input = { type: "n", range: "3", files: [2] };
         let functions = {
           readFileSync: add,
@@ -261,7 +261,7 @@ describe("generateResult", function() {
       });
 
       it("should not return the specified string if return value is true", function() {
-        let expectedOutput = "head: Error reading 3";
+        let expectedOutput = "tail: Error reading 3";
         let input = { type: "n", range: "3", files: [3] };
         let functions = {
           readFileSync: add,
@@ -313,7 +313,7 @@ describe("generateResult", function() {
 
     describe("test mock function for lstatSync", function() {
       it("should return specified string if the return value is false", function() {
-        let expectedOutput = "head: Error reading 3";
+        let expectedOutput = "tail: Error reading 3";
         let input = { type: "n", range: "3", files: [3] };
         let functions = {
           readFileSync: add,
