@@ -1,14 +1,21 @@
-const { errorCheck } = require('./errorLib.js');
+const { 
+  errorCheckHead,
+  errorCheckTail
+} = require('./errorLib.js');
 
 const generateResult = function(fileSystem, arrangedInputs,sourceCode) {
   let context = sourceCode.split('/')[sourceCode.split('/').length - 1];
+  let error = {
+    'head.js' : errorCheckHead,
+    'tail.js' : errorCheckTail 
+  };
   if(context == 'tail.js' && !isNaN(arrangedInputs.range)){
     arrangedInputs.range = Math.abs(arrangedInputs.range);
   }
   let { type, range, files } = arrangedInputs;
-  let error = errorCheck(type, range, files);
-  if (error) {
-    return error;
+  let err = error[context](type, range, files);
+  if (err) {
+    return err;
   }
   let validateFile = formatResult.bind(null, fileSystem, arrangedInputs, context);
   return files.map(validateFile).join('\n\n');

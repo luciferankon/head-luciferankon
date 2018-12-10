@@ -1,4 +1,4 @@
-const errorCheck = function(type, value, files) {
+const errorCheckHead = function(type, value, files) {
   let errorWord = {
     n: 'line',
     c: 'byte'
@@ -14,6 +14,12 @@ const errorCheck = function(type, value, files) {
   }
 };
 
+const errorCheckTail = function(type, value, files){
+  if(isValueError(value+1)){
+    return 'tail: illegal offset -- ' + value;
+  }
+
+}
 const isTypeError = function(type) {
   return type != 'n' && type != 'c';
 };
@@ -29,4 +35,5 @@ const isFileError = function(files) {
 exports.isFileError = isFileError;
 exports.isValueError = isValueError;
 exports.isTypeError = isTypeError;
-exports.errorCheck = errorCheck;
+exports.errorCheckHead = errorCheckHead;
+exports.errorCheckTail = errorCheckTail;
