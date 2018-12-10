@@ -64,9 +64,13 @@ describe("filterNumOfLine", function() {
 });
 
 describe("filterNumOfChar", function() {
-  let file = "node ./head.js -n5 file1\n";
   it("should give specified no of chars", function() {
+    let file = "node ./head.js -n5 file1\n";
     assert.deepEqual(filterNumOfChar(file, 5), "node ");
+  });
+  it("should give specified no of chars from last",function(){
+    let file = "node ./head.js -n5 file1\n";
+    assert.deepEqual(filterNumOfChar(file, 5, 'tail.js'),'ile1\n');
   });
 });
 
