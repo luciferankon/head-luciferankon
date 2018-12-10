@@ -2,7 +2,7 @@ const { errorCheck } = require('./errorLib.js');
 
 const generateResult = function(fileSystem, arrangedInputs,sourceCode) {
   let context = sourceCode.split('/')[sourceCode.split('/').length - 1];
-  if(context == 'tail.js'){
+  if(context == 'tail.js' && !isNaN(arrangedInputs.range)){
     arrangedInputs.range = Math.abs(arrangedInputs.range);
   }
   let { type, range, files } = arrangedInputs;
