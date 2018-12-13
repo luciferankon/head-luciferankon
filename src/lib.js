@@ -2,12 +2,9 @@ const { errorCheckHead, errorCheckTail } = require("./errorLib.js");
 
 const generateResult = function(fileSystem, arrangedInputs, sourceCode) {
   let error = {
-    "head": errorCheckHead,
-    "tail": errorCheckTail
+    head: errorCheckHead,
+    tail: errorCheckTail
   };
- /* if (context == "tail" && !isNaN(arrangedInputs.range)) {
-    arrangedInputs.range = Math.abs(arrangedInputs.range);
-  }*/
   let { type, range, files, context } = arrangedInputs;
   let err = error[context](type, range, files);
   if (err) {

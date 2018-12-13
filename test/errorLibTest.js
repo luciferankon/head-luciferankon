@@ -116,13 +116,13 @@ describe("checkErrorTail", () => {
   describe("type error", function() {
     it("should return specified error if type is a character and file is given", function() {
       let expectedOutput =
-      "tail: illegal option -- x\nusage: tail [-F | -f | -r] [-q] [-b # | -c # | -n #] [file ...]";
+        "tail: illegal option -- x\nusage: tail [-F | -f | -r] [-q] [-b # | -c # | -n #] [file ...]";
       assert.deepEqual(errorCheckTail("x", 10, ["ankon"]), expectedOutput);
     });
 
     it("should return specified error if type is a character and file is not given", function() {
       let expectedOutput =
-      "tail: illegal option -- x\nusage: tail [-F | -f | -r] [-q] [-b # | -c # | -n #] [file ...]";
+        "tail: illegal option -- x\nusage: tail [-F | -f | -r] [-q] [-b # | -c # | -n #] [file ...]";
       assert.deepEqual(errorCheckTail("x", 10, []), expectedOutput);
     });
   });
@@ -163,5 +163,5 @@ describe("checkErrorTail", () => {
     it("should return undefined if no error is there", function() {
       assert.deepEqual(errorCheckTail("n", "10", ["ankon"]), undefined);
     });
-  }); 
+  });
 });
