@@ -1,22 +1,24 @@
 const parser = function(inputs) {
-  let parsedInput = { type: 'n', range: 10, files: inputs.slice(0) };
+  let parsedInput = { type: 'n', range: 10, files: inputs.slice(1), context: ""};
+  
+  parsedInput.context = inputs[0].substr(-7,4);
 
-  if (isTypeDash(inputs[0])) {
-    parsedInput.files = inputs.slice(1);
-  }
-  if (isInputOnlyType(inputs[0])) {
-    parsedInput.type = inputs[0][1];
-    parsedInput.range = inputs[1];
+  if (isTypeDash(inputs[1])) {
     parsedInput.files = inputs.slice(2);
   }
-  if (isInputOnlyValue(inputs[0])) {
-    parsedInput.range = inputs[0].slice(1);
-    parsedInput.files = inputs.slice(1);
+  if (isInputOnlyType(inputs[1])) {
+    parsedInput.type = inputs[1][1];
+    parsedInput.range = inputs[2];
+    parsedInput.files = inputs.slice(3);
   }
-  if (isInputTypeAndValue(inputs[0])) {
-    parsedInput.type = inputs[0][1];
-    parsedInput.range = inputs[0].slice(2);
-    parsedInput.files = inputs.slice(1);
+  if (isInputOnlyValue(inputs[1])) {
+    parsedInput.range = inputs[1].slice(1);
+    parsedInput.files = inputs.slice(2);
+  }
+  if (isInputTypeAndValue(inputs[1])) {
+    parsedInput.type = inputs[1][1];
+    parsedInput.range = inputs[1].slice(2);
+    parsedInput.files = inputs.slice(2);
   }
   return parsedInput;
 };

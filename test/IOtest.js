@@ -10,24 +10,24 @@ const {
 describe('parser', function() {
   describe('should return expected type, range, files',function(){
     it('there is no type or range specified', function() {
-      let expectedOutput = { type: 'n', range: 10, files: ['ankon', 'chandu'] };
-      assert.deepEqual(parser(['ankon', 'chandu']), expectedOutput);
+      let expectedOutput = { type: 'n', range: 10, files: ['ankon', 'chandu'], context:'head'};
+      assert.deepEqual(parser(['head.js','ankon', 'chandu']), expectedOutput);
     });
     it('when there is only range is specified', function() {
-      let expectedOutput = { type: 'n', range: 5, files: ['ankon', 'chandu'] };
-      assert.deepEqual(parser(['-5', 'ankon', 'chandu']), expectedOutput);
+      let expectedOutput = { type: 'n', range: 5, files: ['ankon', 'chandu'], context:'head'};
+      assert.deepEqual(parser(['head.js','-5', 'ankon', 'chandu']), expectedOutput);
     });
     it('when both type and range are specified together', function() {
-      let expectedOutput = { type: 'c', range: 3, files: ['ankon', 'chandu'] };
-      assert.deepEqual(parser(['-c3', 'ankon', 'chandu']), expectedOutput);
+      let expectedOutput = { type: 'c', range: 3, files: ['ankon', 'chandu'], context:'head'};
+      assert.deepEqual(parser(['head.js','-c3', 'ankon', 'chandu']), expectedOutput);
     });
     it('when type and range are given separeately', function() {
-      let expectedOutput = { type: 'c', range: 3, files: ['ankon', 'chandu'] };
-      assert.deepEqual(parser(['-c', '3', 'ankon', 'chandu']), expectedOutput);
+      let expectedOutput = { type: 'c', range: 3, files: ['ankon', 'chandu'], context:'head'};
+      assert.deepEqual(parser(['head.js','-c', '3', 'ankon', 'chandu']), expectedOutput);
     });
     it('when -- is given', function() {
-      let expectedOutput = { type: 'n', range: 10, files: ['ankon', 'chandu'] };
-      assert.deepEqual(parser(['--', 'ankon', 'chandu']), expectedOutput);
+      let expectedOutput = { type: 'n', range: 10, files: ['ankon', 'chandu'], context : 'head'};
+      assert.deepEqual(parser(['head','--', 'ankon', 'chandu']), expectedOutput);
     });
   });
 });
