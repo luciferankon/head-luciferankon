@@ -1,11 +1,11 @@
 const { errorCheckHead, errorCheckTail } = require("./errorLib.js");
 
-const generateResult = function(fileSystem, arrangedInputs) {
+const generateResult = function(fileSystem, parsedInputs) {
   let error = {
     head: errorCheckHead,
     tail: errorCheckTail
   };
-  let { type, range, files, context } = arrangedInputs;
+  let { type, range, files, context } = parsedInputs;
   let err = error[context](type, range, files);
   if (err) {
     return err;
@@ -13,7 +13,7 @@ const generateResult = function(fileSystem, arrangedInputs) {
   let validateFile = formatResult.bind(
     null,
     fileSystem,
-    arrangedInputs,
+    parsedInputs,
     context
   );
   return files.map(validateFile).join("\n\n");
@@ -21,7 +21,7 @@ const generateResult = function(fileSystem, arrangedInputs) {
 
 const formatResult = function(
   { readFileSync, existsSync},
-  arrangedInputs,
+  parsedInputs,
   context,
   file
 ) {
@@ -30,7 +30,7 @@ const formatResult = function(
       "" + context + ": " + file + ": No such file or directory"
     );
   }
-  return getResult(readFileSync, arrangedInputs, context, file);
+  return getResult(readFileSync, parsedInputs, context, file);
 };
 
 const getResult = function(

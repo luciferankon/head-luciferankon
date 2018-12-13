@@ -55,11 +55,11 @@ describe("filterNumOfLine", function() {
   expectedOutput += "node ./head.js file1 file2\n";
   expectedOutput += "node ./head.js -n 5 file1 file2";
   it("should return specified no of lines if num of lines is specified", function() {
-    assert.deepEqual(filterNumOfLine(file,5), expectedOutput);
+    assert.deepEqual(filterNumOfLine(file, 5), expectedOutput);
   });
 
   it("should return empty string for 0 num of line", function() {
-    assert.deepEqual(filterNumOfLine(file,0), "");
+    assert.deepEqual(filterNumOfLine(file, 0), "");
   });
 
   it("should return specified number of lines from last", function() {
@@ -134,11 +134,7 @@ describe("generateResult", function() {
           existsSync: isMultipleOf3,
           lstatSync: isZero
         };
-        let context = "head";
-        assert.deepEqual(
-          generateResult(functions, input),
-          expectedOutput
-        );
+        assert.deepEqual(generateResult(functions, input), expectedOutput);
       });
     });
 
@@ -151,26 +147,18 @@ describe("generateResult", function() {
           existsSync: isMultipleOf3,
           lstatSync: isZero
         };
-        let context = "head";
-        assert.deepEqual(
-          generateResult(functions, input),
-          expectedOutput
-        );
+        assert.deepEqual(generateResult(functions, input), expectedOutput);
       });
 
       it("should not return the specified string if return value is true", function() {
-        let expectedOutput = "head: Error reading 3";
+        let expectedOutput = "3utf-8";
         let input = { type: "n", range: "3", files: [3], context: "head" };
         let functions = {
           readFileSync: add,
           existsSync: isMultipleOf3,
           lstatSync: isZero
         };
-        let context = "head";
-        assert.deepEqual(
-          generateResult(functions, input),
-          expectedOutput
-        );
+        assert.deepEqual(generateResult(functions, input), expectedOutput);
       });
     });
 
@@ -183,11 +171,7 @@ describe("generateResult", function() {
           existsSync: isMultipleOf3,
           lstatSync: isZero
         };
-        let context = "head";
-        assert.deepEqual(
-          generateResult(functions, input),
-          expectedOutput
-        );
+        assert.deepEqual(generateResult(functions, input), expectedOutput);
       });
 
       it("should return concated string of the arguments for multiple files", function() {
@@ -198,28 +182,7 @@ describe("generateResult", function() {
           existsSync: isMultipleOf3,
           lstatSync: isZero
         };
-        let context = "head";
-        assert.deepEqual(
-          generateResult(functions, input),
-          expectedOutput
-        );
-      });
-    });
-
-    describe("test mock function for lstatSync", function() {
-      it("should return specified string if the return value is false", function() {
-        let expectedOutput = "head: Error reading 3";
-        let input = { type: "n", range: "3", files: [3], context: "head" };
-        let functions = {
-          readFileSync: add,
-          existsSync: isMultipleOf3,
-          lstatSync: isZero
-        };
-        let context = "head";
-        assert.deepEqual(
-          generateResult(functions, input),
-          expectedOutput
-        );
+        assert.deepEqual(generateResult(functions, input), expectedOutput);
       });
     });
   });
@@ -238,11 +201,7 @@ describe("generateResult", function() {
           existsSync: isMultipleOf3,
           lstatSync: isZero
         };
-        let context = "tail";
-        assert.deepEqual(
-          generateResult(functions, input),
-          expectedOutput
-        );
+        assert.deepEqual(generateResult(functions, input), expectedOutput);
       });
     });
 
@@ -255,26 +214,18 @@ describe("generateResult", function() {
           existsSync: isMultipleOf3,
           lstatSync: isZero
         };
-        let context = "tail";
-        assert.deepEqual(
-          generateResult(functions, input),
-          expectedOutput
-        );
+        assert.deepEqual(generateResult(functions, input), expectedOutput);
       });
 
       it("should not return the specified string if return value is true", function() {
-        let expectedOutput = "tail: Error reading 3";
+        let expectedOutput = "3utf-8\n";
         let input = { type: "n", range: "3", files: [3], context: "tail" };
         let functions = {
           readFileSync: add,
           existsSync: isMultipleOf3,
           lstatSync: isZero
         };
-        let context = "tail";
-        assert.deepEqual(
-          generateResult(functions, input),
-          expectedOutput
-        );
+        assert.deepEqual(generateResult(functions, input), expectedOutput);
       });
     });
 
@@ -288,10 +239,7 @@ describe("generateResult", function() {
           lstatSync: isZero
         };
         let context = "tail";
-        assert.deepEqual(
-          generateResult(functions, input),
-          expectedOutput
-        );
+        assert.deepEqual(generateResult(functions, input), expectedOutput);
       });
 
       it("should return concated string of the arguments for multiple files", function() {
@@ -303,27 +251,7 @@ describe("generateResult", function() {
           lstatSync: isZero
         };
         let context = "tail";
-        assert.deepEqual(
-          generateResult(functions, input),
-          expectedOutput
-        );
-      });
-    });
-
-    describe("test mock function for lstatSync", function() {
-      it("should return specified string if the return value is false", function() {
-        let expectedOutput = "tail: Error reading 3";
-        let input = { type: "n", range: "3", files: [3], context: "tail" };
-        let functions = {
-          readFileSync: add,
-          existsSync: isMultipleOf3,
-          lstatSync: isZero
-        };
-        let context = "tail";
-        assert.deepEqual(
-          generateResult(functions, input),
-          expectedOutput
-        );
+        assert.deepEqual(generateResult(functions, input), expectedOutput);
       });
     });
   });
