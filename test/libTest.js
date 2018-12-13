@@ -55,11 +55,11 @@ describe("filterNumOfLine", function() {
   expectedOutput += "node ./head.js file1 file2\n";
   expectedOutput += "node ./head.js -n 5 file1 file2";
   it("should return specified no of lines if num of lines is specified", function() {
-    assert.deepEqual(filterNumOfLine(file, 5), expectedOutput);
+    assert.deepEqual(filterNumOfLine(file,5), expectedOutput);
   });
 
   it("should return empty string for 0 num of line", function() {
-    assert.deepEqual(filterNumOfLine(file, 0), "");
+    assert.deepEqual(filterNumOfLine(file,0), "");
   });
 
   it("should return specified number of lines from last", function() {
@@ -136,7 +136,7 @@ describe("generateResult", function() {
         };
         let context = "head";
         assert.deepEqual(
-          generateResult(functions, input, context),
+          generateResult(functions, input),
           expectedOutput
         );
       });
@@ -153,7 +153,7 @@ describe("generateResult", function() {
         };
         let context = "head";
         assert.deepEqual(
-          generateResult(functions, input, context),
+          generateResult(functions, input),
           expectedOutput
         );
       });
@@ -168,7 +168,7 @@ describe("generateResult", function() {
         };
         let context = "head";
         assert.deepEqual(
-          generateResult(functions, input, context),
+          generateResult(functions, input),
           expectedOutput
         );
       });
@@ -185,7 +185,7 @@ describe("generateResult", function() {
         };
         let context = "head";
         assert.deepEqual(
-          generateResult(functions, input, context),
+          generateResult(functions, input),
           expectedOutput
         );
       });
@@ -200,7 +200,7 @@ describe("generateResult", function() {
         };
         let context = "head";
         assert.deepEqual(
-          generateResult(functions, input, context),
+          generateResult(functions, input),
           expectedOutput
         );
       });
@@ -217,7 +217,7 @@ describe("generateResult", function() {
         };
         let context = "head";
         assert.deepEqual(
-          generateResult(functions, input, context),
+          generateResult(functions, input),
           expectedOutput
         );
       });
@@ -240,7 +240,7 @@ describe("generateResult", function() {
         };
         let context = "tail";
         assert.deepEqual(
-          generateResult(functions, input, context),
+          generateResult(functions, input),
           expectedOutput
         );
       });
@@ -257,7 +257,7 @@ describe("generateResult", function() {
         };
         let context = "tail";
         assert.deepEqual(
-          generateResult(functions, input, context),
+          generateResult(functions, input),
           expectedOutput
         );
       });
@@ -272,7 +272,7 @@ describe("generateResult", function() {
         };
         let context = "tail";
         assert.deepEqual(
-          generateResult(functions, input, context),
+          generateResult(functions, input),
           expectedOutput
         );
       });
@@ -289,7 +289,7 @@ describe("generateResult", function() {
         };
         let context = "tail";
         assert.deepEqual(
-          generateResult(functions, input, context),
+          generateResult(functions, input),
           expectedOutput
         );
       });
@@ -304,7 +304,7 @@ describe("generateResult", function() {
         };
         let context = "tail";
         assert.deepEqual(
-          generateResult(functions, input, context),
+          generateResult(functions, input),
           expectedOutput
         );
       });
@@ -321,7 +321,7 @@ describe("generateResult", function() {
         };
         let context = "tail";
         assert.deepEqual(
-          generateResult(functions, input, context),
+          generateResult(functions, input),
           expectedOutput
         );
       });

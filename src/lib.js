@@ -1,6 +1,6 @@
 const { errorCheckHead, errorCheckTail } = require("./errorLib.js");
 
-const generateResult = function(fileSystem, arrangedInputs, sourceCode) {
+const generateResult = function(fileSystem, arrangedInputs) {
   let error = {
     head: errorCheckHead,
     tail: errorCheckTail
