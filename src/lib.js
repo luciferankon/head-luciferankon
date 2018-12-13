@@ -27,11 +27,11 @@ const formatResult = function(
 ) {
   if (!existsSync(file)) {
     return (
-      "" + context.slice(0, 4) + ": " + file + ": No such file or directory"
+      "" + context + ": " + file + ": No such file or directory"
     );
   }
   if (!lstatSync(file).isFile()) {
-    return "" + context.slice(0, 4) + ": Error reading " + file;
+    return "" + context + ": Error reading " + file;
   }
   return getResult(readFileSync, arrangedInputs, context, file);
 };
