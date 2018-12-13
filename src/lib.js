@@ -20,7 +20,7 @@ const generateResult = function(fileSystem, arrangedInputs) {
 };
 
 const formatResult = function(
-  { readFileSync, existsSync, lstatSync },
+  { readFileSync, existsSync},
   arrangedInputs,
   context,
   file
@@ -29,9 +29,6 @@ const formatResult = function(
     return (
       "" + context + ": " + file + ": No such file or directory"
     );
-  }
-  if (!lstatSync(file).isFile()) {
-    return "" + context + ": Error reading " + file;
   }
   return getResult(readFileSync, arrangedInputs, context, file);
 };
