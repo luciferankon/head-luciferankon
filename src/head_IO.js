@@ -43,8 +43,21 @@ const isInputTypeAndValue = function(inputs) {
   return inputs.length >= 3 && inputs[0] == "-" && isNaN(inputs[1]);
 };
 
+const generateHeader = function(file) {
+  return "==> " + file + " <==\n";
+};
+
+const addHeader = function(files, fileName, result) {
+  if (files.length > 1) {
+    return fileName + result;
+  }
+  return result;
+};
+
 exports.isTypeDash = isTypeDash;
 exports.isInputOnlyValue = isInputOnlyValue;
 exports.isInputOnlyType = isInputOnlyType;
 exports.isInputTypeAndValue = isInputTypeAndValue;
 exports.parser = parser;
+exports.generateHeader = generateHeader;
+exports.addHeader = addHeader;

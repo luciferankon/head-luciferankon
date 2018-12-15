@@ -1,5 +1,7 @@
 const { errorCheckHead, errorCheckTail } = require("./errorLib.js");
 
+const { addHeader, generateHeader } = require('./head_IO.js');
+
 const generateResult = function(fileSystem, parsedInput) {
   let error = {
     head: errorCheckHead,
@@ -25,17 +27,6 @@ const getResult = function(readFileSync,{ type, range, files },context,file) {
   let fileData = readFileSync(file, "utf-8");
   let result = selectOperationType(fileData, range, type, context);
   return addHeader(files, fileName, result);
-};
-
-const generateHeader = function(file) {
-  return "==> " + file + " <==\n";
-};
-
-const addHeader = function(files, fileName, result) {
-  if (files.length > 1) {
-    return fileName + result;
-  }
-  return result;
 };
 
 const filterNumOfLine = function(file, num = 10, context) {
