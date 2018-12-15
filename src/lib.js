@@ -34,7 +34,7 @@ const filterNumOfLine = function(file, num = 10, context) {
     if (!file.endsWith("\n")){ 
       file += "\n";
     }
-    return file.split("\n").slice(-(num+1)).join("\n");
+    return file.split("\n").slice(-(+num+1)).join("\n");
   }
   return file.split("\n").slice(0, num).join("\n");
 };
