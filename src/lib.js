@@ -31,10 +31,10 @@ const getResult = function(readFileSync,{ type, range, files },context,file) {
 
 const filterNumOfLine = function(file, num = 10, context) {
   if (context == "tail") {
-    if (!file.endsWith("\n")) file += "\n";
-    let range = file.split("\n").length - num - 1;
-    range = (range + Math.abs(range))/2;
-    return file.split("\n").slice(range).join("\n");
+    if (!file.endsWith("\n")){ 
+      file += "\n";
+    }
+    return file.split("\n").slice(-(num+1)).join("\n");
   }
   return file.split("\n").slice(0, num).join("\n");
 };
