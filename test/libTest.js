@@ -3,7 +3,8 @@ const {
   generateResult,
   filterNumOfLine,
   filterNumOfChar,
-  selectOperationType
+  selectOperationType,
+  isContextTail
 } = require("../src/lib.js");
 
 const isZero = function(element) {
@@ -228,7 +229,6 @@ describe("generateResult", function() {
         assert.deepEqual(generateResult(functions, input), expectedOutput);
       });
     });
-
     describe("test mock function for readFileSync", function() {
       it("should return concated string of the arguments", function() {
         let expectedOutput = "0utf-8\n";
@@ -254,5 +254,15 @@ describe("generateResult", function() {
         assert.deepEqual(generateResult(functions, input), expectedOutput);
       });
     });
+  });
+});
+
+describe('isContextTail',() => {
+  it('should return false if the context is head',() => {
+    assert.deepEqual(isContextTail('head'),false);
+  });
+  
+  it('should return true if the context is tail',() => {
+    assert.deepEqual(isContextTail('tail'),true);
   });
 });
