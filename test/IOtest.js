@@ -5,7 +5,7 @@ const {
   isInputOnlyType,
   isInputOnlyValue,
   isInputTypeAndValue
-} = require("../src/head_IO.js");
+} = require("../src/inputOutputLib.js");
 
 describe("parser", function() {
   describe("should return expected type, range, files", function() {
