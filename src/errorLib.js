@@ -49,8 +49,4 @@ const isFileError = function(files) {
   return files.length == 0;
 };
 
-exports.isFileError = isFileError;
-exports.isValueError = isValueError;
-exports.isTypeError = isTypeError;
-exports.errorCheckHead = errorCheckHead;
-exports.errorCheckTail = errorCheckTail;
+module.exports = {isFileError, isValueError, isTypeError, errorCheckHead, errorCheckTail};
