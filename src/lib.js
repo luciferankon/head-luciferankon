@@ -10,35 +10,17 @@ const generateResult = function(fileSystem, parsedInput) {
   if (err) {
     return err;
   }
-  let formatResultForFile = formatResult.bind(
-    null,
-    fileSystem,
-    parsedInput,
-    context
-  );
+  let formatResultForFile = formatResult.bind(null, fileSystem, parsedInput, context);
   return files.map(formatResultForFile).join("\n\n");
 };
 
-const formatResult = function(
-  { readFileSync, existsSync},
-  parsedInput,
-  context,
-  file
-) {
-  if (!existsSync(file)) {
-    return (
-      "" + context + ": " + file + ": No such file or directory"
-    );
-  }
+const formatResult = function({readFileSync, existsSync}, parsedInput, context, file) {
+  if (!existsSync(file))
+    return "" + context + ": " + file + ": No such file or directory"
   return getResult(readFileSync, parsedInput, context, file);
 };
 
-const getResult = function(
-  readFileSync,
-  { type, range, files },
-  context,
-  file
-) {
+const getResult = function(readFileSync,{ type, range, files },context,file) {
   let fileName = generateHeader(file);
   let fileData = readFileSync(file, "utf-8");
   let result = selectOperationType(fileData, range, type, context);
@@ -60,17 +42,10 @@ const filterNumOfLine = function(file, num = 10, context) {
   if (context == "tail") {
     if (!file.endsWith("\n")) file += "\n";
     let range = file.split("\n").length - num - 1;
-    if (range < 0) range = 0;
-
-    return file
-      .split("\n")
-      .slice(range)
-      .join("\n");
+    range = (range + Math.abs(range))/2;
+    return file.split("\n").slice(range).join("\n");
   }
-  return file
-    .split("\n")
-    .slice(0, num)
-    .join("\n");
+  return file.split("\n").slice(0, num).join("\n");
 };
 
 const filterNumOfChar = function(file, num, context) {
