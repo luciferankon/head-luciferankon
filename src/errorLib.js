@@ -5,7 +5,7 @@ const TAIL_OPTION = 'tail: option requires an argument -- ';
 const TAIL_USAGE = 'usage: tail [-F | -f | -r] [-q] [-b # | -c # | -n #] [file ...]';
 const TAIL_ILLEGAL_OPTION = 'tail: illegal option -- ';
 
-const errorCheckHead = function(type, value, files) {
+const checkErrorOfHead = function(type, value, files) {
   let errorWord = {
     n: "line",
     c: "byte"
@@ -23,7 +23,7 @@ const errorCheckHead = function(type, value, files) {
   }
 };
 
-const errorCheckTail = function(type, value, files) {
+const checkErrorOfTail = function(type, value, files) {
   if (isTypeError(type)) {
     return TAIL_ILLEGAL_OPTION + type + '\n' + TAIL_USAGE;
   }
@@ -49,4 +49,4 @@ const isFileError = function(files) {
   return files.length == 0;
 };
 
-module.exports = {isFileError, isValueError, isTypeError, errorCheckHead, errorCheckTail};
+module.exports = {isFileError, isValueError, isTypeError, checkErrorOfHead, checkErrorOfTail};

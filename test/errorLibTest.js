@@ -1,58 +1,58 @@
 const assert = require("assert");
 const {
-  errorCheckHead,
-  errorCheckTail,
+  checkErrorOfHead,
+  checkErrorOfTail,
   isTypeError,
   isValueError,
   isFileError
 } = require("../src/errorLib.js");
 
-describe("errorCheckTail", function() {
+describe("checkErrorOfHead", function() {
   describe("type error", function() {
     it("should return specified error if type is a character and file is given", function() {
       let expectedOutput =
         "head: illegal option -- x\nusage: head [-n lines | -c bytes] [file ...]";
-      assert.deepEqual(errorCheckHead("x", 10, ["ankon"]), expectedOutput);
+      assert.deepEqual(checkErrorOfHead("x", 10, ["ankon"]), expectedOutput);
     });
 
     it("should return specified error if type is a character and file is not given", function() {
       let expectedOutput =
         "head: illegal option -- x\nusage: head [-n lines | -c bytes] [file ...]";
-      assert.deepEqual(errorCheckHead("x", 10, []), expectedOutput);
+      assert.deepEqual(checkErrorOfHead("x", 10, []), expectedOutput);
     });
   });
 
   describe("value error for type n", function() {
     it("should return specified error if value is a string", function() {
       let expectedOutput = "head: illegal line count -- dx";
-      assert.deepEqual(errorCheckHead("n", "dx", ["ankon"]), expectedOutput);
+      assert.deepEqual(checkErrorOfHead("n", "dx", ["ankon"]), expectedOutput);
     });
 
     it("should return specified error if value is 0", function() {
       let expectedOutput = "head: illegal line count -- 0";
-      assert.deepEqual(errorCheckHead("n", "0", ["ankon"]), expectedOutput);
+      assert.deepEqual(checkErrorOfHead("n", "0", ["ankon"]), expectedOutput);
     });
 
     it("should return specified error if value is negative number", function() {
       let expectedOutput = "head: illegal line count -- -1";
-      assert.deepEqual(errorCheckHead("n", "-1", ["ankon"]), expectedOutput);
+      assert.deepEqual(checkErrorOfHead("n", "-1", ["ankon"]), expectedOutput);
     });
   });
 
   describe("value error for type c", function() {
     it("should return specified error if value is a string", function() {
       let expectedOutput = "head: illegal byte count -- dx";
-      assert.deepEqual(errorCheckHead("c", "dx", ["ankon"]), expectedOutput);
+      assert.deepEqual(checkErrorOfHead("c", "dx", ["ankon"]), expectedOutput);
     });
 
     it("should return specified error if value is 0", function() {
       let expectedOutput = "head: illegal byte count -- 0";
-      assert.deepEqual(errorCheckHead("c", "0", ["ankon"]), expectedOutput);
+      assert.deepEqual(checkErrorOfHead("c", "0", ["ankon"]), expectedOutput);
     });
 
     it("should return specified error if value is negative number", function() {
       let expectedOutput = "head: illegal byte count -- -1";
-      assert.deepEqual(errorCheckHead("c", "-1", ["ankon"]), expectedOutput);
+      assert.deepEqual(checkErrorOfHead("c", "-1", ["ankon"]), expectedOutput);
     });
   });
 
@@ -60,13 +60,13 @@ describe("errorCheckTail", function() {
     it("should return specified error if type and value both are valid and no files given", function() {
       let expectedOutput =
         "head: option requires an argument -- c\nusage: head [-n lines | -c bytes] [file ...]";
-      assert.deepEqual(errorCheckHead("c", "1", []), expectedOutput);
+      assert.deepEqual(checkErrorOfHead("c", "1", []), expectedOutput);
     });
   });
 
   describe("no error", function() {
     it("should return undefined if no error is there", function() {
-      assert.deepEqual(errorCheckHead("n", "10", ["ankon"]), undefined);
+      assert.deepEqual(checkErrorOfHead("n", "10", ["ankon"]), undefined);
     });
   });
 });
@@ -112,42 +112,42 @@ describe("isFileError", () => {
   });
 });
 
-describe("checkErrorTail", () => {
+describe("checkErrorOfTail", () => {
   describe("type error", function() {
     it("should return specified error if type is a character and file is given", function() {
       let expectedOutput =
         "tail: illegal option -- x\nusage: tail [-F | -f | -r] [-q] [-b # | -c # | -n #] [file ...]";
-      assert.deepEqual(errorCheckTail("x", 10, ["ankon"]), expectedOutput);
+      assert.deepEqual(checkErrorOfTail("x", 10, ["ankon"]), expectedOutput);
     });
 
     it("should return specified error if type is a character and file is not given", function() {
       let expectedOutput =
         "tail: illegal option -- x\nusage: tail [-F | -f | -r] [-q] [-b # | -c # | -n #] [file ...]";
-      assert.deepEqual(errorCheckTail("x", 10, []), expectedOutput);
+      assert.deepEqual(checkErrorOfTail("x", 10, []), expectedOutput);
     });
   });
 
   describe("value error for type n", function() {
     it("should return specified error if value is a string", function() {
       let expectedOutput = "tail: illegal offset -- dx";
-      assert.deepEqual(errorCheckTail("n", "dx", ["ankon"]), expectedOutput);
+      assert.deepEqual(checkErrorOfTail("n", "dx", ["ankon"]), expectedOutput);
     });
 
     it("should return specified error if value is negative number", function() {
       let expectedOutput = "tail: illegal offset -- -1";
-      assert.deepEqual(errorCheckTail("n", "-1", ["ankon"]), expectedOutput);
+      assert.deepEqual(checkErrorOfTail("n", "-1", ["ankon"]), expectedOutput);
     });
   });
 
   describe("value error for type c", function() {
     it("should return specified error if value is a string", function() {
       let expectedOutput = "tail: illegal offset -- dx";
-      assert.deepEqual(errorCheckTail("c", "dx", ["ankon"]), expectedOutput);
+      assert.deepEqual(checkErrorOfTail("c", "dx", ["ankon"]), expectedOutput);
     });
 
     it("should return specified error if value is negative number", function() {
       let expectedOutput = "tail: illegal offset -- -1";
-      assert.deepEqual(errorCheckTail("c", "-1", ["ankon"]), expectedOutput);
+      assert.deepEqual(checkErrorOfTail("c", "-1", ["ankon"]), expectedOutput);
     });
   });
 
@@ -155,13 +155,13 @@ describe("checkErrorTail", () => {
     it("should return specified error if type and value both are valid and no files given", function() {
       let expectedOutput =
         "tail: option requires an argument -- c\nusage: tail [-F | -f | -r] [-q] [-b # | -c # | -n #] [file ...]";
-      assert.deepEqual(errorCheckTail("c", "1", []), expectedOutput);
+      assert.deepEqual(checkErrorOfTail("c", "1", []), expectedOutput);
     });
   });
 
   describe("no error", function() {
     it("should return undefined if no error is there", function() {
-      assert.deepEqual(errorCheckTail("n", "10", ["ankon"]), undefined);
+      assert.deepEqual(checkErrorOfTail("n", "10", ["ankon"]), undefined);
     });
   });
 });

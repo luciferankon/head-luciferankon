@@ -1,11 +1,11 @@
-const { errorCheckHead, errorCheckTail } = require("./errorLib.js");
+const { checkErrorOfHead, checkErrorOfTail } = require("./errorLib.js");
 
 const { addHeader, generateHeader } = require('./inputOutputLib.js');
 
 const generateResult = function(fileSystem, parsedInput) {
   let error = {
-    head: errorCheckHead,
-    tail: errorCheckTail
+    head: checkErrorOfHead,
+    tail: checkErrorOfTail
   };
   let { type, range, files, context } = parsedInput;
   let err = error[context](type, range, files);
