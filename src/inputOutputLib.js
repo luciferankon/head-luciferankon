@@ -54,10 +54,11 @@ const addHeader = function(files, fileName, result) {
   return result;
 };
 
-exports.isTypeDash = isTypeDash;
-exports.isInputOnlyValue = isInputOnlyValue;
-exports.isInputOnlyType = isInputOnlyType;
-exports.isInputTypeAndValue = isInputTypeAndValue;
-exports.parser = parser;
-exports.generateHeader = generateHeader;
-exports.addHeader = addHeader;
+module.exports = {isTypeDash, 
+  isInputOnlyValue, 
+  isInputOnlyType, 
+  isInputTypeAndValue, 
+  parser,
+  generateHeader,
+  addHeader
+ }
