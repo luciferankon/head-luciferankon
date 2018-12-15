@@ -1,9 +1,9 @@
-const HEADOPTION = 'head: option requires an argument -- ';
-const HEADUSAGE = 'usage: head [-n lines | -c bytes] [file ...]';
-const HEADILLEGALOPTION = 'head: illegal option -- ';
-const TAILOPTION = 'tail: option requires an argument -- ';
-const TAILUSAGE = 'usage: tail [-F | -f | -r] [-q] [-b # | -c # | -n #] [file ...]';
-const TAILILLEGALOPTION = 'tail: illegal option -- ';
+const HEAD_OPTION = 'head: option requires an argument -- ';
+const HEAD_USAGE = 'usage: head [-n lines | -c bytes] [file ...]';
+const HEAD_ILLEGAL_OPTION = 'head: illegal option -- ';
+const TAIL_OPTION = 'tail: option requires an argument -- ';
+const TAIL_USAGE = 'usage: tail [-F | -f | -r] [-q] [-b # | -c # | -n #] [file ...]';
+const TAIL_ILLEGAL_OPTION = 'tail: illegal option -- ';
 
 const errorCheckHead = function(type, value, files) {
   let errorWord = {
@@ -11,7 +11,7 @@ const errorCheckHead = function(type, value, files) {
     c: "byte"
   };
   if (isTypeError(type)) {
-    return HEADILLEGALOPTION + type + '\n' + HEADUSAGE;
+    return HEAD_ILLEGAL_OPTION + type + '\n' + HEAD_USAGE;
   }
 
   if (isValueError(value)) {
@@ -19,17 +19,17 @@ const errorCheckHead = function(type, value, files) {
   }
 
   if (isFileError(files)) {
-    return HEADOPTION + type + '\n' + HEADUSAGE;
+    return HEAD_OPTION + type + '\n' + HEAD_USAGE;
   }
 };
 
 const errorCheckTail = function(type, value, files) {
   if (isTypeError(type)) {
-    return TAILILLEGALOPTION + type + '\n' + TAILUSAGE;
+    return TAIL_ILLEGAL_OPTION + type + '\n' + TAIL_USAGE;
   }
 
   if (isFileError(files)) {
-    return TAILOPTION + type + '\n' + TAILUSAGE;
+    return TAIL_OPTION + type + '\n' + TAIL_USAGE;
   }
 
   if (isValueError(value + 1)) {
