@@ -57,8 +57,10 @@ const selectOperationType = function(file, num, type = "n", context) {
 const isContextTail = function(context){
   return context == 'tail';
 }
-exports.generateResult = generateResult;
-exports.filterNumOfLine = filterNumOfLine;
-exports.filterNumOfChar = filterNumOfChar;
-exports.selectOperationType = selectOperationType;
-exports.isContextTail = isContextTail;
+
+module.exports = {generateResult,
+  filterNumOfLine,
+  filterNumOfChar,
+  selectOperationType,
+  isContextTail
+}
