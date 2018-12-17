@@ -143,5 +143,11 @@ describe('addHeader',() => {
     let expectedOutput = '1';
     let actualOutput = addHeader(['file1'],'file1','1');
     assert.deepEqual(actualOutput, expectedOutput);
-  })
+  });
+
+  it('should return content if number of files is 0',() => {
+    let expectedOutput = '1';
+    let actualOutput = addHeader([],'file1','1');
+    assert.deepEqual(actualOutput, expectedOutput);
+  });
 });
