@@ -68,7 +68,8 @@ describe("checkErrorOfHead", function() {
     it("should return specified error if option and value both are valid and no files given", function() {
       let expectedOutput =
         "head: option requires an argument -- c\nusage: head [-n lines | -c bytes] [file ...]";
-      assert.deepEqual(checkErrorOfHead("c", "1", []), expectedOutput);
+      let actualOutput = checkErrorOfHead('c', '1', []);
+      assert.deepEqual(actualOutput, expectedOutput);
     });
   });
 
