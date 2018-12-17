@@ -1,17 +1,17 @@
 const assert = require("assert");
 const {
   parser,
-  isTypeDash,
-  isInputOnlyType,
+  isOptionDash,
+  isInputOnlyOption,
   isInputOnlyValue,
-  isInputTypeAndValue
+  isInputOptionAndValue
 } = require("../src/IO.js");
 
 describe("parser", function() {
-  describe("should return expected type, range, files", function() {
-    it("there is no type or range specified", function() {
+  describe("should return expected option, range, files", function() {
+    it("there is no option or range specified", function() {
       let expectedOutput = {
-        type: "n",
+        option: "n",
         range: 10,
         files: ["ankon", "chandu"],
         context: "head"
@@ -20,7 +20,7 @@ describe("parser", function() {
     });
     it("when there is only range is specified", function() {
       let expectedOutput = {
-        type: "n",
+        option: "n",
         range: 5,
         files: ["ankon", "chandu"],
         context: "head"
@@ -30,9 +30,9 @@ describe("parser", function() {
         expectedOutput
       );
     });
-    it("when both type and range are specified together", function() {
+    it("when both option and range are specified together", function() {
       let expectedOutput = {
-        type: "c",
+        option: "c",
         range: 3,
         files: ["ankon", "chandu"],
         context: "head"
@@ -42,9 +42,9 @@ describe("parser", function() {
         expectedOutput
       );
     });
-    it("when type and range are given separeately", function() {
+    it("when option and range are given separeately", function() {
       let expectedOutput = {
-        type: "c",
+        option: "c",
         range: 3,
         files: ["ankon", "chandu"],
         context: "head"
@@ -56,7 +56,7 @@ describe("parser", function() {
     });
     it("when -- is given", function() {
       let expectedOutput = {
-        type: "n",
+        option: "n",
         range: 10,
         files: ["ankon", "chandu"],
         context: "head"
@@ -69,25 +69,25 @@ describe("parser", function() {
   });
 });
 
-describe("isTypeDash", function() {
+describe("isOptionDash", function() {
   it("it Should return false if suplied argument is not --", function() {
-    assert.deepEqual(isTypeDash("aa"), false);
+    assert.deepEqual(isOptionDash("aa"), false);
   });
 
   it("it should return true if supplied argument is --", function() {
-    assert.deepEqual(isTypeDash("--"), true);
+    assert.deepEqual(isOptionDash("--"), true);
   });
 });
 
-describe("isInputOnlyType", function() {
-  it("it should return false if argument is not only a type", function() {
-    assert.deepEqual(isInputOnlyType("-4"), false);
+describe("isInputOnlyOption", function() {
+  it("it should return false if argument is not only a option", function() {
+    assert.deepEqual(isInputOnlyOption("-4"), false);
   });
-  it("should return true if argument is only type n", function() {
-    assert.deepEqual(isInputOnlyType("-n"), true);
+  it("should return true if argument is only option n", function() {
+    assert.deepEqual(isInputOnlyOption("-n"), true);
   });
-  it("should return false if argument is only type w", function() {
-    assert.deepEqual(isInputOnlyType("-t"), true);
+  it("should return false if argument is only option w", function() {
+    assert.deepEqual(isInputOnlyOption("-t"), true);
   });
 });
 
@@ -101,16 +101,16 @@ describe("isInputOnlyValue", function() {
   });
 });
 
-describe("isInputTypeAndValue", function() {
-  it("should return false if arguments are only type", function() {
-    assert.deepEqual(isInputTypeAndValue("-e"), false);
+describe("isInputOptionAndValue", function() {
+  it("should return false if arguments are only option", function() {
+    assert.deepEqual(isInputOptionAndValue("-e"), false);
   });
 
   it("should return false if arguments are only numbers", function() {
-    assert.deepEqual(isInputTypeAndValue("-4"), false);
+    assert.deepEqual(isInputOptionAndValue("-4"), false);
   });
 
-  it("should return true if arguments are both type and values", function() {
-    assert.deepEqual(isInputTypeAndValue("-n4"), true);
+  it("should return true if arguments are both option and values", function() {
+    assert.deepEqual(isInputOptionAndValue("-n4"), true);
   });
 });
