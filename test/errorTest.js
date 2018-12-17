@@ -98,7 +98,8 @@ describe("isOptionInvalid", function() {
   });
 
   it("should return true is option is a number", function() {
-    assert.deepEqual(isOptionError("1"), true);
+    let actualOutput = isOptionError('1');
+    assert.deepEqual(actualOutput, true);
   });
 });
 
