@@ -171,7 +171,8 @@ describe("checkErrorOfTail", () => {
 
     it("should return specified error if value is negative number", function() {
       let expectedOutput = "tail: illegal offset -- -1";
-      assert.deepEqual(checkErrorOfTail("c", "-1", ["ankon"]), expectedOutput);
+      let actualOutput = checkErrorOfTail('c', '-1', ['ankon']);
+      assert.deepEqual(actualOutput, expectedOutput);
     });
   });
 
