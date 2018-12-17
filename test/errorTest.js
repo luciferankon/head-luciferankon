@@ -110,7 +110,8 @@ describe("isValueInvalid", function() {
   });
 
   it("should return true if value is 0", function() {
-    assert.deepEqual(isValueError("0"), true);
+    let actualOutput = isValueError('0');
+    assert.deepEqual(actualOutput, true);
   });
 
   it("should return true if value is string", function() {
