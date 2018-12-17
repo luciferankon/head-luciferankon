@@ -75,7 +75,8 @@ describe("checkErrorOfHead", function() {
 
   describe("no error", function() {
     it("should return undefined if no error is there", function() {
-      assert.deepEqual(checkErrorOfHead("n", "10", ["ankon"]), undefined);
+      let actualOutput = checkErrorOfHead('n', '10', ['ankon']);
+      assert.deepEqual(actualOutput, undefined);
     });
   });
 });
