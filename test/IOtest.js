@@ -138,4 +138,10 @@ describe('addHeader',() => {
     let actualOutput = addHeader(['file1','file2'],'file1','1');
     assert.deepEqual(actualOutput, expectedOutput);
   });
+
+  it('should return only the content if number of files is 1',() => {
+    let expectedOutput = '1';
+    let actualOutput = addHeader(['file1'],'file1','1');
+    assert.deepEqual(actualOutput, expectedOutput);
+  })
 });
