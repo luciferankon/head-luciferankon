@@ -1,6 +1,6 @@
 const fs = require("fs");
 
-const { generateResult } = require("./src/lib.js");
+const { generateResult } = require("./src/textUtils.js");
 
 const { parser } = require("./src/IO.js");
 
