@@ -27,7 +27,8 @@ describe("checkErrorOfHead", function() {
   describe("value error for option n", function() {
     it("should return specified error if value is a string", function() {
       let expectedOutput = "head: illegal line count -- dx";
-      assert.deepEqual(checkErrorOfHead("n", "dx", ["ankon"]), expectedOutput);
+      let actualOutput = checkErrorOfHead('n', 'dx', ['ankon']);
+      assert.deepEqual(actualOutput, expectedOutput);
     });
 
     it("should return specified error if value is 0", function() {
