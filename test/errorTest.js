@@ -165,7 +165,8 @@ describe("checkErrorOfTail", () => {
   describe("value error for option c", function() {
     it("should return specified error if value is a string", function() {
       let expectedOutput = "tail: illegal offset -- dx";
-      assert.deepEqual(checkErrorOfTail("c", "dx", ["ankon"]), expectedOutput);
+      let actualOutput = checkErrorOfTail('c', 'dx', ['ankon']);
+      assert.deepEqual(actualOutput, expectedOutput);
     });
 
     it("should return specified error if value is negative number", function() {
