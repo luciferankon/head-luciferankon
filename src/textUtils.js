@@ -25,7 +25,7 @@ const formatResult = function({readFileSync, existsSync}, parsedInput, context, 
 const getResult = function(readFileSync,{ option, range, files },context,file) {
   let fileName = generateHeader(file);
   let fileData = readFileSync(file, "utf-8");
-  let result = selectOperationOption(fileData, range, option, context);
+  let result = selectOperationType(fileData, range, option, context);
   return addHeader(files, fileName, result);
 };
 
@@ -46,7 +46,7 @@ const filterNumOfChar = function(file, num, context) {
   return file.slice(0, num);
 };
 
-const selectOperationOption = function(file, num, option = "n", context) {
+const selectOperationType = function(file, num, option = "n", context) {
   let opeartion = {
     n: filterNumOfLine,
     c: filterNumOfChar
@@ -61,6 +61,6 @@ const isContextTail = function(context){
 module.exports = {generateResult,
   filterNumOfLine,
   filterNumOfChar,
-  selectOperationOption,
+  selectOperationType,
   isContextTail
 }

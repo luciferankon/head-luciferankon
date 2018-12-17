@@ -3,7 +3,7 @@ const {
   generateResult,
   filterNumOfLine,
   filterNumOfChar,
-  selectOperationOption,
+  selectOperationType,
   isContextTail
 } = require("../src/textUtils.js");
 
@@ -88,7 +88,7 @@ describe("filterNumOfChar", function() {
   });
 });
 
-describe("selectOperationOption", function() {
+describe("selectOperationType", function() {
   let file = "node ./head.js -n5 file1\n";
   file += "node ./head.js -n 5 file1\n";
   file += "node ./head.js -5 file1\n";
@@ -106,12 +106,12 @@ describe("selectOperationOption", function() {
     expectedOutput += "node ./head.js -5 file1\n";
     expectedOutput += "node ./head.js file1 file2\n";
     expectedOutput += "node ./head.js -n 5 file1 file2";
-    let actualOutput = selectOperationOption(file, 5, 'n');
+    let actualOutput = selectOperationType(file, 5, 'n');
     assert.deepEqual(actualOutput, expectedOutput);
   });
   it("should return specified number of characters if option is c", function() {
     let expectedOutput = "node ";
-    let actualOutput = selectOperationOption(file, 5, 'c');
+    let actualOutput = selectOperationType(file, 5, 'c');
     assert.deepEqual(actualOutput, expectedOutput);
   });
   it("should return 10 lines if option and number nothing is specified", function() {
@@ -125,7 +125,7 @@ describe("selectOperationOption", function() {
     expectedOutput += "node ./head.js -c5 file1\n";
     expectedOutput += "node ./head.js -c 5 file1\n";
     expectedOutput += "node ./head.js -c5 file1 file2";
-    let actualOutput = selectOperationOption(file);
+    let actualOutput = selectOperationType(file);
     assert.deepEqual(actualOutput, expectedOutput);
   });
 });
