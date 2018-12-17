@@ -1,7 +1,7 @@
 const parser = function(inputs) {
   let parsedInput = {
     option: "n",
-    range: 10,
+    count: 10,
     files: inputs.slice(1),
     context: ""
   };
@@ -13,16 +13,16 @@ const parser = function(inputs) {
   }
   if (isInputOnlyOption(inputs[1])) {
     parsedInput.option = inputs[1][1];
-    parsedInput.range = inputs[2];
+    parsedInput.count = inputs[2];
     parsedInput.files = inputs.slice(3);
   }
   if (isInputOnlyValue(inputs[1])) {
-    parsedInput.range = inputs[1].slice(1);
+    parsedInput.count = inputs[1].slice(1);
     parsedInput.files = inputs.slice(2);
   }
   if (isInputOptionAndValue(inputs[1])) {
     parsedInput.option = inputs[1][1];
-    parsedInput.range = inputs[1].slice(2);
+    parsedInput.count = inputs[1].slice(2);
     parsedInput.files = inputs.slice(2);
   }
   return parsedInput;

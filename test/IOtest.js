@@ -8,20 +8,20 @@ const {
 } = require("../src/IO.js");
 
 describe("parser", function() {
-  describe("should return expected option, range, files", function() {
-    it("there is no option or range specified", function() {
+  describe("should return expected option, count, files", function() {
+    it("there is no option or count specified", function() {
       let expectedOutput = {
         option: "n",
-        range: 10,
+        count: 10,
         files: ["ankon", "chandu"],
         context: "head"
       };
       assert.deepEqual(parser(["head.js", "ankon", "chandu"]), expectedOutput);
     });
-    it("when there is only range is specified", function() {
+    it("when there is only count is specified", function() {
       let expectedOutput = {
         option: "n",
-        range: 5,
+        count: 5,
         files: ["ankon", "chandu"],
         context: "head"
       };
@@ -30,10 +30,10 @@ describe("parser", function() {
         expectedOutput
       );
     });
-    it("when both option and range are specified together", function() {
+    it("when both option and count are specified together", function() {
       let expectedOutput = {
         option: "c",
-        range: 3,
+        count: 3,
         files: ["ankon", "chandu"],
         context: "head"
       };
@@ -42,10 +42,10 @@ describe("parser", function() {
         expectedOutput
       );
     });
-    it("when option and range are given separeately", function() {
+    it("when option and count are given separeately", function() {
       let expectedOutput = {
         option: "c",
-        range: 3,
+        count: 3,
         files: ["ankon", "chandu"],
         context: "head"
       };
@@ -57,7 +57,7 @@ describe("parser", function() {
     it("when -- is given", function() {
       let expectedOutput = {
         option: "n",
-        range: 10,
+        count: 10,
         files: ["ankon", "chandu"],
         context: "head"
       };
