@@ -115,7 +115,8 @@ describe("isValueInvalid", function() {
   });
 
   it("should return true if value is string", function() {
-    assert.deepEqual(isValueError("ax"), true);
+    let actualOutput = isValueError('ax');
+    assert.deepEqual(actualOutput, true);
   });
 });
 
