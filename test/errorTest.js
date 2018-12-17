@@ -122,7 +122,8 @@ describe("isValueInvalid", function() {
 
 describe("isFileError", () => {
   it("should return true if file is more than zero", () => {
-    assert.deepEqual(isFileError(["ankon"]), false);
+    let actualOutput = isFileError(['ankon']);
+    assert.deepEqual(actualOutput, false);
   });
   it("should return false if there is no file", () => {
     assert.deepEqual(isFileError([]), true);
