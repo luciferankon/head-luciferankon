@@ -111,7 +111,7 @@ describe("isInputOptionAndValue", function() {
     assert.deepEqual(actualOutput, false);
   });
 
-  it("should return false if arguments are only numbers", function() {
+  it("should return false if arguments are only value", function() {
     let actualOutput = isInputOptionAndValue('-4');
     assert.deepEqual(actualOutput, false);
   });
