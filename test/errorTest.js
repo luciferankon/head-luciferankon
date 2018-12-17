@@ -19,7 +19,8 @@ describe("checkErrorOfHead", function() {
     it("should return specified error if option is a character and file is not given", function() {
       let expectedOutput =
         "head: illegal option -- x\nusage: head [-n lines | -c bytes] [file ...]";
-      assert.deepEqual(checkErrorOfHead("x", 10, []), expectedOutput);
+      let actualOutput = checkErrorOfHead('x', 10, []);
+      assert.deepEqual(actualOutput, expectedOutput);
     });
   });
 
