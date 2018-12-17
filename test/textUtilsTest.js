@@ -76,7 +76,8 @@ describe("filterNumOfLine", function() {
 describe("filterNumOfChar", function() {
   it("should give specified no of chars", function() {
     let file = "node ./head.js -n5 file1\n";
-    assert.deepEqual(filterNumOfChar(file, 5), "node ");
+    let actualOutput = filterNumOfChar(file, 5);
+    assert.deepEqual(actualOutput, "node ");
   });
   it("should give specified no of chars from last", function() {
     let file = "node ./head.js -n5 file1\n";
