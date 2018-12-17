@@ -9,7 +9,7 @@ const {
 
 describe("parser", function() {
   describe("should return expected option, count, files", function() {
-    it("there is no option or count specified", function() {
+    it("there is no option or count and two files specified", function() {
       let expectedOutput = {
         option: "n",
         count: 10,
@@ -18,7 +18,7 @@ describe("parser", function() {
       };
       assert.deepEqual(parser(["head.js", "ankon", "chandu"]), expectedOutput);
     });
-    it("when there is only count is specified", function() {
+    it("when there is only count and two files are specified", function() {
       let expectedOutput = {
         option: "n",
         count: 5,
@@ -30,7 +30,7 @@ describe("parser", function() {
         expectedOutput
       );
     });
-    it("when both option and count are specified together", function() {
+    it("when both option and count and two files are specified together", function() {
       let expectedOutput = {
         option: "c",
         count: 3,
@@ -42,7 +42,7 @@ describe("parser", function() {
         expectedOutput
       );
     });
-    it("when option and count are given separeately", function() {
+    it("when option and count are given separeately and two files are specified", function() {
       let expectedOutput = {
         option: "c",
         count: 3,
@@ -54,7 +54,7 @@ describe("parser", function() {
         expectedOutput
       );
     });
-    it("when -- is given", function() {
+    it("when option -- and two files are specified", function() {
       let expectedOutput = {
         option: "n",
         count: 10,
