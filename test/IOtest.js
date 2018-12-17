@@ -16,8 +16,10 @@ describe("parser", function() {
         files: ["ankon", "chandu"],
         context: "head"
       };
-      assert.deepEqual(parser(["head.js", "ankon", "chandu"]), expectedOutput);
+      let actualOutput = parser(['head.js','ankon','chandu']);
+      assert.deepEqual(actualOutput, expectedOutput);
     });
+
     it("when there is only count and two files are specified", function() {
       let expectedOutput = {
         option: "n",
@@ -25,11 +27,10 @@ describe("parser", function() {
         files: ["ankon", "chandu"],
         context: "head"
       };
-      assert.deepEqual(
-        parser(["head.js", "-5", "ankon", "chandu"]),
-        expectedOutput
-      );
+      let actualOutput = parser(["head.js", "-5", "ankon", "chandu"]);
+      assert.deepEqual(actualOutput, expectedOutput);
     });
+
     it("when both option and count and two files are specified together", function() {
       let expectedOutput = {
         option: "c",
@@ -37,11 +38,10 @@ describe("parser", function() {
         files: ["ankon", "chandu"],
         context: "head"
       };
-      assert.deepEqual(
-        parser(["head.js", "-c3", "ankon", "chandu"]),
-        expectedOutput
-      );
+      let actualOutput = parser(["head.js", "-c3", "ankon", "chandu"]);
+      assert.deepEqual(actualOutput, expectedOutput);
     });
+
     it("when option and count are given separeately and two files are specified", function() {
       let expectedOutput = {
         option: "c",
@@ -49,11 +49,10 @@ describe("parser", function() {
         files: ["ankon", "chandu"],
         context: "head"
       };
-      assert.deepEqual(
-        parser(["head.js", "-c", "3", "ankon", "chandu"]),
-        expectedOutput
-      );
+      let actualOutput = parser(["head.js", "-c", "3", "ankon", "chandu"]);
+      assert.deepEqual(actualOutput, expectedOutput);
     });
+
     it("when option -- and two files are specified", function() {
       let expectedOutput = {
         option: "n",
@@ -61,56 +60,64 @@ describe("parser", function() {
         files: ["ankon", "chandu"],
         context: "head"
       };
-      assert.deepEqual(
-        parser(["head", "--", "ankon", "chandu"]),
-        expectedOutput
-      );
+      let actualOutput = parser(["head", "--", "ankon", "chandu"]);
+      assert.deepEqual(actualOutput, expectedOutput);
     });
   });
 });
 
 describe("isOptionDash", function() {
   it("it Should return false if suplied argument is not --", function() {
-    assert.deepEqual(isOptionDash("aa"), false);
+    let actualOutput = isOptionDash('aa');
+    assert.deepEqual(actualOutput, false);
   });
 
   it("it should return true if supplied argument is --", function() {
-    assert.deepEqual(isOptionDash("--"), true);
+    let actualOutput = isOptionDash('--');
+    assert.deepEqual(actualOutput, true);
   });
 });
 
 describe("isInputOnlyOption", function() {
   it("it should return false if argument is not only a option", function() {
-    assert.deepEqual(isInputOnlyOption("-4"), false);
+    let actualOutput = isInputOnlyOption('-4');
+    assert.deepEqual(actualOutput, false);
   });
   it("should return true if argument is only option n", function() {
-    assert.deepEqual(isInputOnlyOption("-n"), true);
+    let actualOutput = isInputOnlyOption('-n');
+    assert.deepEqual(actualOutput, true);
   });
   it("should return false if argument is only option w", function() {
-    assert.deepEqual(isInputOnlyOption("-t"), true);
+    let actualOutput = isInputOnlyOption('-t');
+    assert.deepEqual(actualOutput, true);
   });
 });
 
 describe("isInputOnlyValue", function() {
   it("should return false if the arguments are not only value", function() {
-    assert.deepEqual(isInputOnlyValue("-e"), false);
+    let actualOutput = isInputOnlyValue('-e');
+    assert.deepEqual(actualOutput, false);
   });
 
   it("should retun true if the arguments are only value", function() {
-    assert.deepEqual(isInputOnlyValue("-4"), true);
+    let actualOutput = isInputOnlyValue('-4');
+    assert.deepEqual(actualOutput, true);
   });
 });
 
 describe("isInputOptionAndValue", function() {
   it("should return false if arguments are only option", function() {
-    assert.deepEqual(isInputOptionAndValue("-e"), false);
+    let actualOutput = isInputOptionAndValue('-e');
+    assert.deepEqual(actualOutput, false);
   });
 
   it("should return false if arguments are only numbers", function() {
-    assert.deepEqual(isInputOptionAndValue("-4"), false);
+    let actualOutput = isInputOptionAndValue('-4');
+    assert.deepEqual(actualOutput, false);
   });
 
   it("should return true if arguments are both option and values", function() {
-    assert.deepEqual(isInputOptionAndValue("-n4"), true);
+    let actualOutput = isInputOptionAndValue('-n4');
+    assert.deepEqual(actualOutput, true);
   });
 });
