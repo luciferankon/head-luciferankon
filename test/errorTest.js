@@ -33,7 +33,8 @@ describe("checkErrorOfHead", function() {
 
     it("should return specified error if value is 0", function() {
       let expectedOutput = "head: illegal line count -- 0";
-      assert.deepEqual(checkErrorOfHead("n", "0", ["ankon"]), expectedOutput);
+      let actualOutput = checkErrorOfHead('n', '0', ['ankon']);
+      assert.deepEqual(actualOutput, expectedOutput);
     });
 
     it("should return specified error if value is negative number", function() {
