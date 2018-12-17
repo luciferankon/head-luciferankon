@@ -57,7 +57,8 @@ describe("filterNumOfLine", function() {
   expectedOutput += "node ./head.js file1 file2\n";
   expectedOutput += "node ./head.js -n 5 file1 file2";
   it("should return specified no of lines if num of lines is specified", function() {
-    assert.deepEqual(filterNumOfLine(file, 5), expectedOutput);
+    let actualOutput = filterNumOfLine(file, 5);
+    assert.deepEqual(actualOutput, expectedOutput);
   });
 
   it("should return empty string for 0 num of line", function() {
