@@ -143,7 +143,8 @@ describe("checkErrorOfTail", () => {
     it("should return specified error if option is a character and file is not given", function() {
       let expectedOutput =
         "tail: illegal option -- x\nusage: tail [-F | -f | -r] [-q] [-b # | -c # | -n #] [file ...]";
-      assert.deepEqual(checkErrorOfTail("x", 10, []), expectedOutput);
+      let actualOutput = checkErrorOfTail('x', 10, []);
+      assert.deepEqual(actualOutput, expectedOutput);
     });
   });
 
