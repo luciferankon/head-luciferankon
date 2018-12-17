@@ -7,8 +7,8 @@ const generateResult = function(fileSystem, parsedInput) {
     head: checkErrorOfHead,
     tail: checkErrorOfTail
   };
-  let { type, range, files, context } = parsedInput;
-  let err = error[context](type, range, files);
+  let { option, range, files, context } = parsedInput;
+  let err = error[context](option, range, files);
   if (err) {
     return err;
   }
@@ -22,10 +22,10 @@ const formatResult = function({readFileSync, existsSync}, parsedInput, context, 
   return getResult(readFileSync, parsedInput, context, file);
 };
 
-const getResult = function(readFileSync,{ type, range, files },context,file) {
+const getResult = function(readFileSync,{ option, range, files },context,file) {
   let fileName = generateHeader(file);
   let fileData = readFileSync(file, "utf-8");
-  let result = selectOperationType(fileData, range, type, context);
+  let result = selectOperationOption(fileData, range, option, context);
   return addHeader(files, fileName, result);
 };
 
@@ -46,12 +46,12 @@ const filterNumOfChar = function(file, num, context) {
   return file.slice(0, num);
 };
 
-const selectOperationType = function(file, num, type = "n", context) {
+const selectOperationOption = function(file, num, option = "n", context) {
   let opeartion = {
     n: filterNumOfLine,
     c: filterNumOfChar
   };
-  return opeartion[type](file, num, context);
+  return opeartion[option](file, num, context);
 };
 
 const isContextTail = function(context){
@@ -61,6 +61,6 @@ const isContextTail = function(context){
 module.exports = {generateResult,
   filterNumOfLine,
   filterNumOfChar,
-  selectOperationType,
+  selectOperationOption,
   isContextTail
 }
