@@ -62,7 +62,8 @@ describe("filterNumOfLine", function() {
   });
 
   it("should return empty string for 0 num of line", function() {
-    assert.deepEqual(filterNumOfLine(file, 0), "");
+    let actualOutput = filterNumOfLine(file, 0);
+    assert.deepEqual(actualOutput, "");
   });
 
   it("should return specified number of lines from last", function() {
