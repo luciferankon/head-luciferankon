@@ -5,7 +5,7 @@ const {
   filterNumOfChar,
   selectOperationType,
   isContextTail
-} = require("../src/lib.js");
+} = require("../src/textUtils.js");
 
 const isZero = function(element) {
   return {

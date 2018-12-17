@@ -5,7 +5,7 @@ const {
   isTypeError,
   isValueError,
   isFileError
-} = require("../src/errorLib.js");
+} = require("../src/error.js");
 
 describe("checkErrorOfHead", function() {
   describe("type error", function() {
