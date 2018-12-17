@@ -59,7 +59,8 @@ describe("checkErrorOfHead", function() {
 
     it("should return specified error if value is negative number", function() {
       let expectedOutput = "head: illegal byte count -- -1";
-      assert.deepEqual(checkErrorOfHead("c", "-1", ["ankon"]), expectedOutput);
+      let actualOutput = checkErrorOfHead('c', '-1', ['ankon']);
+      assert.deepEqual(actualOutput, expectedOutput);
     });
   });
 
