@@ -83,7 +83,8 @@ describe("checkErrorOfHead", function() {
 
 describe("isOptionInvalid", function() {
   it("should return true if option is neither n nor c", function() {
-    assert.deepEqual(isOptionError("a"), true);
+    let actualOutput = isOptionError('a');
+    assert.deepEqual(actualOutput, true);
   });
 
   it("should return false if option is n", function() {
