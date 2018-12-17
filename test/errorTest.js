@@ -88,7 +88,8 @@ describe("isOptionInvalid", function() {
   });
 
   it("should return false if option is n", function() {
-    assert.deepEqual(isOptionError("n"), false);
+    let actualOutput = isOptionError('n');
+    assert.deepEqual(actualOutput, false);
   });
 
   it("should return false if option is c", function() {
