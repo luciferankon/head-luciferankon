@@ -1,6 +1,6 @@
 const { checkErrorOfHead, checkErrorOfTail } = require("./errorLib.js");
 
-const { addHeader, generateHeader } = require('./IOLib.js');
+const { addHeader, generateHeader } = require('./IO.js');
 
 const generateResult = function(fileSystem, parsedInput) {
   let error = {
