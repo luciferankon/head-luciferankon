@@ -180,7 +180,8 @@ describe("checkErrorOfTail", () => {
     it("should return specified error if option and value both are valid and no files given", function() {
       let expectedOutput =
         "tail: option requires an argument -- c\nusage: tail [-F | -f | -r] [-q] [-b # | -c # | -n #] [file ...]";
-      assert.deepEqual(checkErrorOfTail("c", "1", []), expectedOutput);
+      let actualOutput = checkErrorOfTail('c', '1', []);
+      assert.deepEqual(actualOutput, expectedOutput);
     });
   });
 
