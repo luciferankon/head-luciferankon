@@ -106,7 +106,8 @@ describe("selectOperationOption", function() {
     expectedOutput += "node ./head.js -5 file1\n";
     expectedOutput += "node ./head.js file1 file2\n";
     expectedOutput += "node ./head.js -n 5 file1 file2";
-    assert.deepEqual(selectOperationOption(file, 5, "n"), expectedOutput);
+    let actualOutput = selectOperationOption(file, 5, 'n');
+    assert.deepEqual(actualOutput, expectedOutput);
   });
   it("should return specified number of characters if option is c", function() {
     let expectedOutput = "node ";
