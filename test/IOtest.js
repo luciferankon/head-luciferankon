@@ -131,3 +131,11 @@ describe('generateHeader',() => {
     assert.deepEqual(actualOutput, expectedOutput);
   });
 });
+
+describe('addHeader',() => {
+  it('should return header concatinated with content if number of files are more than 1',() => {
+    let expectedOutput = 'file11';
+    let actualOutput = addHeader(['file1','file2'],'file1','1');
+    assert.deepEqual(actualOutput, expectedOutput);
+  });
+});
