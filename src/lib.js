@@ -1,4 +1,4 @@
-const { checkErrorOfHead, checkErrorOfTail } = require("./errorLib.js");
+const { checkErrorOfHead, checkErrorOfTail } = require("./error.js");
 
 const { addHeader, generateHeader } = require('./IO.js');
 
