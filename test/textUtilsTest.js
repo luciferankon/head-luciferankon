@@ -67,8 +67,9 @@ describe("filterNumOfLine", function() {
   });
 
   it("should return specified number of lines from last", function() {
+    let actualOutput = filterNumOfLine(file, 1, 'tail');
     let expectedOutput = "node ./head.js -c 5 file1 file2\n";
-    assert.deepEqual(filterNumOfLine(file, 1, "tail"), expectedOutput);
+    assert.deepEqual(actualOutput, expectedOutput);
   });
 });
 
