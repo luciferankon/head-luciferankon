@@ -187,7 +187,8 @@ describe("checkErrorOfTail", () => {
 
   describe("no error", function() {
     it("should return undefined if no error is there", function() {
-      assert.deepEqual(checkErrorOfTail("n", "10", ["ankon"]), undefined);
+      let actualOutput = checkErrorOfTail('n', '10', ['ankon']);
+      assert.deepEqual(actualOutput, undefined);
     });
   });
 });
