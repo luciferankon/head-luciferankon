@@ -150,4 +150,10 @@ describe('addHeader',() => {
     let actualOutput = addHeader([],'file1','1');
     assert.deepEqual(actualOutput, expectedOutput);
   });
+
+  it('should return empty string if number of files is 0 and content is empty', () => {
+    let expectedOutput = '';
+    let actualOutput = addHeader([],'file1','');
+    assert.deepEqual(actualOutput, expectedOutput);
+  });
 });
