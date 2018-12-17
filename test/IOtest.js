@@ -87,7 +87,7 @@ describe("isInputOnlyOption", function() {
     let actualOutput = isInputOnlyOption('-n');
     assert.deepEqual(actualOutput, true);
   });
-  it("should return false if argument is only option w", function() {
+  it("should return true if argument is only option t", function() {
     let actualOutput = isInputOnlyOption('-t');
     assert.deepEqual(actualOutput, true);
   });
