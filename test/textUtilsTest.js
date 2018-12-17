@@ -125,7 +125,8 @@ describe("selectOperationOption", function() {
     expectedOutput += "node ./head.js -c5 file1\n";
     expectedOutput += "node ./head.js -c 5 file1\n";
     expectedOutput += "node ./head.js -c5 file1 file2";
-    assert.deepEqual(selectOperationOption(file), expectedOutput);
+    let actualOutput = selectOperationOption(file);
+    assert.deepEqual(actualOutput, expectedOutput);
   });
 });
 
