@@ -126,7 +126,8 @@ describe("isFileError", () => {
     assert.deepEqual(actualOutput, false);
   });
   it("should return false if there is no file", () => {
-    assert.deepEqual(isFileError([]), true);
+    let actualOutput = isFileError([]);
+    assert.deepEqual(actualOutput, true);
   });
 });
 
