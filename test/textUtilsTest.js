@@ -47,7 +47,8 @@ describe("filterNumOfLine", function() {
     expectedOutput += "node ./head.js -c5 file1\n";
     expectedOutput += "node ./head.js -c 5 file1\n";
     expectedOutput += "node ./head.js -c5 file1 file2";
-    assert.deepEqual(filterNumOfLine(file), expectedOutput);
+    let actualOutput = filterNumOfLine(file);
+    assert.deepEqual(actualOutput, expectedOutput);
   });
 
   let expectedOutput = "node ./head.js -n5 file1\n";
