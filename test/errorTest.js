@@ -105,7 +105,8 @@ describe("isOptionInvalid", function() {
 
 describe("isValueInvalid", function() {
   it("should return true if value is negative", function() {
-    assert.deepEqual(isValueError("-1"), true);
+    let actualOutput = isValueError('-1');
+    assert.deepEqual(actualOutput, true);
   });
 
   it("should return true if value is 0", function() {
