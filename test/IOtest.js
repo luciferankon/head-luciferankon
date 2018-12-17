@@ -4,7 +4,9 @@ const {
   isOptionDash,
   isInputOnlyOption,
   isInputOnlyValue,
-  isInputOptionAndValue
+  isInputOptionAndValue,
+  generateHeader,
+  addHeader
 } = require("../src/IO.js");
 
 describe("parser", function() {
@@ -119,5 +121,13 @@ describe("isInputOptionAndValue", function() {
   it("should return true if arguments are both option and values", function() {
     let actualOutput = isInputOptionAndValue('-n4');
     assert.deepEqual(actualOutput, true);
+  });
+});
+
+describe('generateHeader',() => {
+  it('should return header for the given file',() => {
+    let expectedOutput = '==> file1 <==\n';
+    let actualOutput = generateHeader('file1');
+    assert.deepEqual(actualOutput, expectedOutput);
   });
 });
