@@ -111,7 +111,8 @@ describe("selectOperationOption", function() {
   });
   it("should return specified number of characters if option is c", function() {
     let expectedOutput = "node ";
-    assert.deepEqual(selectOperationOption(file, 5, "c"), expectedOutput);
+    let actualOutput = selectOperationOption(file, 5, 'c');
+    assert.deepEqual(actualOutput, expectedOutput);
   });
   it("should return 10 lines if option and number nothing is specified", function() {
     let expectedOutput = "node ./head.js -n5 file1\n";
