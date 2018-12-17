@@ -83,7 +83,8 @@ describe("filterNumOfChar", function() {
   it("should give specified no of chars from last", function() {
     let file = "node ./head.js -n5 file1\n";
     let actualOutput = filterNumOfChar(file, 5, 'tail');
-    assert.deepEqual(filterNumOfChar(file, 5, "tail"), "ile1\n");
+    let expectedOutput = 'ile1\n';
+    assert.deepEqual(actualOutput, expectedOutput);
   });
 });
 
