@@ -2,27 +2,27 @@ const assert = require("assert");
 const {
   checkErrorOfHead,
   checkErrorOfTail,
-  isTypeError,
+  isOptionError,
   isValueError,
   isFileError
 } = require("../src/error.js");
 
 describe("checkErrorOfHead", function() {
-  describe("type error", function() {
-    it("should return specified error if type is a character and file is given", function() {
+  describe("option error", function() {
+    it("should return specified error if option is a character and file is given", function() {
       let expectedOutput =
         "head: illegal option -- x\nusage: head [-n lines | -c bytes] [file ...]";
       assert.deepEqual(checkErrorOfHead("x", 10, ["ankon"]), expectedOutput);
     });
 
-    it("should return specified error if type is a character and file is not given", function() {
+    it("should return specified error if option is a character and file is not given", function() {
       let expectedOutput =
         "head: illegal option -- x\nusage: head [-n lines | -c bytes] [file ...]";
       assert.deepEqual(checkErrorOfHead("x", 10, []), expectedOutput);
     });
   });
 
-  describe("value error for type n", function() {
+  describe("value error for option n", function() {
     it("should return specified error if value is a string", function() {
       let expectedOutput = "head: illegal line count -- dx";
       assert.deepEqual(checkErrorOfHead("n", "dx", ["ankon"]), expectedOutput);
@@ -39,7 +39,7 @@ describe("checkErrorOfHead", function() {
     });
   });
 
-  describe("value error for type c", function() {
+  describe("value error for option c", function() {
     it("should return specified error if value is a string", function() {
       let expectedOutput = "head: illegal byte count -- dx";
       assert.deepEqual(checkErrorOfHead("c", "dx", ["ankon"]), expectedOutput);
@@ -57,7 +57,7 @@ describe("checkErrorOfHead", function() {
   });
 
   describe("file error", function() {
-    it("should return specified error if type and value both are valid and no files given", function() {
+    it("should return specified error if option and value both are valid and no files given", function() {
       let expectedOutput =
         "head: option requires an argument -- c\nusage: head [-n lines | -c bytes] [file ...]";
       assert.deepEqual(checkErrorOfHead("c", "1", []), expectedOutput);
@@ -71,21 +71,21 @@ describe("checkErrorOfHead", function() {
   });
 });
 
-describe("isTypeInvalid", function() {
-  it("should return true if type is neither n nor c", function() {
-    assert.deepEqual(isTypeError("a"), true);
+describe("isOptionInvalid", function() {
+  it("should return true if option is neither n nor c", function() {
+    assert.deepEqual(isOptionError("a"), true);
   });
 
-  it("should return false if type is n", function() {
-    assert.deepEqual(isTypeError("n"), false);
+  it("should return false if option is n", function() {
+    assert.deepEqual(isOptionError("n"), false);
   });
 
-  it("should return false if type is c", function() {
-    assert.deepEqual(isTypeError("c"), false);
+  it("should return false if option is c", function() {
+    assert.deepEqual(isOptionError("c"), false);
   });
 
-  it("should return true is type is a number", function() {
-    assert.deepEqual(isTypeError("1"), true);
+  it("should return true is option is a number", function() {
+    assert.deepEqual(isOptionError("1"), true);
   });
 });
 
@@ -113,21 +113,21 @@ describe("isFileError", () => {
 });
 
 describe("checkErrorOfTail", () => {
-  describe("type error", function() {
-    it("should return specified error if type is a character and file is given", function() {
+  describe("option error", function() {
+    it("should return specified error if option is a character and file is given", function() {
       let expectedOutput =
         "tail: illegal option -- x\nusage: tail [-F | -f | -r] [-q] [-b # | -c # | -n #] [file ...]";
       assert.deepEqual(checkErrorOfTail("x", 10, ["ankon"]), expectedOutput);
     });
 
-    it("should return specified error if type is a character and file is not given", function() {
+    it("should return specified error if option is a character and file is not given", function() {
       let expectedOutput =
         "tail: illegal option -- x\nusage: tail [-F | -f | -r] [-q] [-b # | -c # | -n #] [file ...]";
       assert.deepEqual(checkErrorOfTail("x", 10, []), expectedOutput);
     });
   });
 
-  describe("value error for type n", function() {
+  describe("value error for option n", function() {
     it("should return specified error if value is a string", function() {
       let expectedOutput = "tail: illegal offset -- dx";
       assert.deepEqual(checkErrorOfTail("n", "dx", ["ankon"]), expectedOutput);
@@ -139,7 +139,7 @@ describe("checkErrorOfTail", () => {
     });
   });
 
-  describe("value error for type c", function() {
+  describe("value error for option c", function() {
     it("should return specified error if value is a string", function() {
       let expectedOutput = "tail: illegal offset -- dx";
       assert.deepEqual(checkErrorOfTail("c", "dx", ["ankon"]), expectedOutput);
@@ -152,7 +152,7 @@ describe("checkErrorOfTail", () => {
   });
 
   describe("file error", function() {
-    it("should return specified error if type and value both are valid and no files given", function() {
+    it("should return specified error if option and value both are valid and no files given", function() {
       let expectedOutput =
         "tail: option requires an argument -- c\nusage: tail [-F | -f | -r] [-q] [-b # | -c # | -n #] [file ...]";
       assert.deepEqual(checkErrorOfTail("c", "1", []), expectedOutput);

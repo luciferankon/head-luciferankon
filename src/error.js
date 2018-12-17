@@ -5,31 +5,31 @@ const TAIL_OPTION = 'tail: option requires an argument -- ';
 const TAIL_USAGE = 'usage: tail [-F | -f | -r] [-q] [-b # | -c # | -n #] [file ...]';
 const TAIL_ILLEGAL_OPTION = 'tail: illegal option -- ';
 
-const checkErrorOfHead = function(type, value, files) {
+const checkErrorOfHead = function(option, value, files) {
   let errorWord = {
     n: "line",
     c: "byte"
   };
-  if (isTypeError(type)) {
-    return HEAD_ILLEGAL_OPTION + type + '\n' + HEAD_USAGE;
+  if (isOptionError(option)) {
+    return HEAD_ILLEGAL_OPTION + option + '\n' + HEAD_USAGE;
   }
 
   if (isValueError(value)) {
-    return "head: illegal " + errorWord[type] + " count -- " + value;
+    return "head: illegal " + errorWord[option] + " count -- " + value;
   }
 
   if (isFileError(files)) {
-    return HEAD_OPTION + type + '\n' + HEAD_USAGE;
+    return HEAD_OPTION + option + '\n' + HEAD_USAGE;
   }
 };
 
-const checkErrorOfTail = function(type, value, files) {
-  if (isTypeError(type)) {
-    return TAIL_ILLEGAL_OPTION + type + '\n' + TAIL_USAGE;
+const checkErrorOfTail = function(option, value, files) {
+  if (isOptionError(option)) {
+    return TAIL_ILLEGAL_OPTION + option + '\n' + TAIL_USAGE;
   }
 
   if (isFileError(files)) {
-    return TAIL_OPTION + type + '\n' + TAIL_USAGE;
+    return TAIL_OPTION + option + '\n' + TAIL_USAGE;
   }
 
   if (isValueError(value + 1)) {
@@ -37,8 +37,8 @@ const checkErrorOfTail = function(type, value, files) {
   }
 };
 
-const isTypeError = function(type) {
-  return type != "n" && type != "c";
+const isOptionError = function(option) {
+  return option != "n" && option != "c";
 };
 
 const isValueError = function(value) {
@@ -49,4 +49,4 @@ const isFileError = function(files) {
   return files.length == 0;
 };
 
-module.exports = {isFileError, isValueError, isTypeError, checkErrorOfHead, checkErrorOfTail};
+module.exports = {isFileError, isValueError, isOptionError, checkErrorOfHead, checkErrorOfTail};
