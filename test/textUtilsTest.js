@@ -169,7 +169,7 @@ describe("generateResult", function() {
       });
     });
 
-    describe("test genearateReesult function using mock readFileSync", function() {
+    describe("test genearateResult function using mock readFileSync", function() {
       let files = {};
       files["file1"] = "expected";
       let fs = {
