@@ -196,13 +196,16 @@ describe("generateResult", function() {
 
   describe("for tail", function() {
     describe("return error", function() {
+      let files = {};
+      files["file1"] = "expected";
+      let fs = {
+        readFileSync: readFileSync(files, "utf-8"),
+        existsSync: existsSync(["file1"])
+      };
+      
       it("should return an error if offset is wrong", function() {
         let expectedOutput = "tail: illegal offset -- -1";
         let input = { option: "n", range: "-1", files: ["ankon"], context: "tail"};
-        let fs = {
-          readFileSync: readFileSync,
-          existsSync: existsSync
-        };
         let actualOutput = generateResult(fs, input);
         assert.deepEqual(actualOutput, expectedOutput);
       });
