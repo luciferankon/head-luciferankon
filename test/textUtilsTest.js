@@ -268,7 +268,8 @@ describe("generateResult", function() {
         files['file2']='expected1';
         let expectedOutput = "==> file1 <==\nexpected\n\n\n==> file2 <==\nexpected1\n";
         let input = { option: "n", range: "3", files: ['file1', 'file2'], context: "tail" };
-        assert.deepEqual(generateResult(fs, input), expectedOutput);
+        let actualOutput = generateResult(fs, input);
+        assert.deepEqual(actualOutput, expectedOutput);
       });
     });
   });
