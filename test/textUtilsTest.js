@@ -249,7 +249,6 @@ describe("generateResult", function() {
           existsSync: isMultipleOf3,
           lstatSync: isZero
         };
-        let context = "tail";
         assert.deepEqual(generateResult(functions, input), expectedOutput);
       });
 
@@ -261,7 +260,6 @@ describe("generateResult", function() {
           existsSync: isMultipleOf3,
           lstatSync: isZero
         };
-        let context = "tail";
         assert.deepEqual(generateResult(functions, input), expectedOutput);
       });
     });
