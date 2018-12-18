@@ -236,13 +236,9 @@ describe("generateResult", function() {
         assert.deepEqual(generateResult(fs, input), expectedOutput);
       });
 
-      it.skip("should not return the specified string if return value is true", function() {
-        let expectedOutput = "3utf-8\n";
-        let input = { option: "n", range: "3", files: [3], context: "tail" };
-        let fs = {
-          readFileSync: readFileSync,
-          existsSync: existsSync
-        };
+      it("should return the content of the given files object", function() {
+        let expectedOutput = "expected\n";
+        let input = { option: "n", range: "3", files: ['file1'], context: "tail" };
         assert.deepEqual(generateResult(fs, input), expectedOutput);
       });
     });
