@@ -146,7 +146,7 @@ describe("generateResult", function() {
       });
     });
 
-    describe("test mock function for existsSync", function() {
+    describe("test generateResult function using mock existsSync", function() {
       let files = {};
       files["file1"] = "expected";
       let fs = {
@@ -169,7 +169,7 @@ describe("generateResult", function() {
       });
     });
 
-    describe("test mock function for readFileSync", function() {
+    describe("test genearateReesult function using mock readFileSync", function() {
       let files = {};
       files["file1"] = "expected";
       let fs = {
@@ -211,7 +211,7 @@ describe("generateResult", function() {
       });
     });
 
-    describe("test mock function for existsSync", function() {
+    describe("test generateResult function using mock existsSync", function() {
       let files = {};
       files["file1"] = "expected";
       let fs = {
@@ -233,7 +233,7 @@ describe("generateResult", function() {
         assert.deepEqual(actualOutput, expectedOutput);
       });
     });
-    describe("test mock function for readFileSync", function() {
+    describe("test generateResult function using mock readFileSync", function() {
       let files = {};
       files["file1"] = "expected";
       let fs = {
