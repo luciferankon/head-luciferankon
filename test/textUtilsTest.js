@@ -138,7 +138,7 @@ describe("generateResult", function() {
         existsSync: existsSync(["file1"])
       };
 
-      it("should return an error if anything is wrong", function() {
+      it("should return an error message if count is invalid", function() {
         let expectedOutput = "head: illegal line count -- -1";
         let input = { option: "n", range: "-1", files: ["ankon"], context: "head" };
         let actualOutput = generateResult(fs, input);
@@ -202,8 +202,8 @@ describe("generateResult", function() {
         readFileSync: readFileSync(files, "utf-8"),
         existsSync: existsSync(["file1"])
       };
-      
-      it("should return an error if offset is wrong", function() {
+
+      it("should return an error message if offset is invalid", function() {
         let expectedOutput = "tail: illegal offset -- -1";
         let input = { option: "n", range: "-1", files: ["ankon"], context: "tail"};
         let actualOutput = generateResult(fs, input);
