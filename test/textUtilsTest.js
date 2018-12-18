@@ -167,7 +167,8 @@ describe("generateResult", function() {
           files: ["file2"],
           context: "head"
         };
-        assert.deepEqual(generateResult(fs, input), expectedOutput);
+        let actualOutput = generateResult(fs, input);
+        assert.deepEqual(actualOutput, expectedOutput);
       });
 
       it("should return the content of the given files object", function() {
