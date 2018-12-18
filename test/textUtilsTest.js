@@ -5,7 +5,7 @@ const {
   filterNumberOfChars,
   selectOperationType,
   isContextTail
-} = require("../src/textUtils.js");
+} = require("../src/fileUtils.js");
 
 const readFileSync = function(expectedFiles, expectedEncoding) {
   return function(actualFilePath, actualEncoding) {

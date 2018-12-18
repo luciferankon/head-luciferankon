@@ -29,7 +29,7 @@ const getContents = function(readFileSync,{ option, count, files },context,file)
   return addHeader(files, fileName, result);
 };
 
-const filterNumberOfLines = function(file, count = 10, context) {
+const filterNumberOfLines = function(file, count, context) {
   if (isContextTail(context)) {
     if (!file.endsWith("\n")){ 
       file += "\n";
