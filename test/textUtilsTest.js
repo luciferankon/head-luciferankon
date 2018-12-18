@@ -19,7 +19,7 @@ const existsSync = function(fileNames) {
   return function(fileName) {
     return fileNames.includes(fileName);
   };
-};
+}
 
 describe("filterNumOfLine", function() {
   let file = "node ./head.js -n5 file1\n";
@@ -187,7 +187,7 @@ describe("generateResult", function() {
       files["file1"] = "expected";
       let fs = {
         readFileSync: readFileSync(files, "utf-8"),
-        existsSync: existsSync(["file1"])
+        existsSync: existsSync(["file1",'file2'])
       };
 
       it("should return contents of the file given", function() {
@@ -196,13 +196,10 @@ describe("generateResult", function() {
         assert.deepEqual(generateResult(fs, input), expectedOutput);
       });
 
-      it.skip("should return concated string of the arguments for multiple files", function() {
-        let expectedOutput = "==> 0 <==\n0utf-8\n\n==> 0 <==\n0utf-8";
-        let input = { option: "n", range: "3", files: [0, 0], context: "head" };
-        let fs = {
-          readFileSync: readFileSync,
-          existsSync: existsSync
-        };
+      it("should return contents in formatted way for multiple files", function() {
+        files["file2"] = 'expected1';
+        let expectedOutput = "==> file1 <==\nexpected\n\n==> file2 <==\nexpected1";
+        let input = { option: "n", range: "3", files: ['file1','file2'], context: "head" };
         assert.deepEqual(generateResult(fs, input), expectedOutput);
       });
     });
