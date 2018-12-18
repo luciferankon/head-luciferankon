@@ -206,7 +206,7 @@ describe("generateResult", function() {
   });
   describe("for tail.js", function() {
     describe("return error", function() {
-      it("should return an error if anything is wrong", function() {
+      it("should return an error if offset is wrong", function() {
         let expectedOutput = "tail: illegal offset -- -1";
         let input = {
           option: "n",
