@@ -242,18 +242,21 @@ describe("generateResult", function() {
         assert.deepEqual(generateResult(fs, input), expectedOutput);
       });
     });
-    describe.skip("test mock function for readFileSync", function() {
-      it("should return concated string of the arguments", function() {
-        let expectedOutput = "0utf-8\n";
-        let input = { option: "n", range: "3", files: [0], context: "tail" };
-        let fs = {
-          readFileSync: readFileSync,
-          existsSync: existsSync
-        };
+    describe("test mock function for readFileSync", function() {
+      let files = {};
+      files["file1"] = "expected";
+      let fs = {
+        readFileSync: readFileSync(files, "utf-8"),
+        existsSync: existsSync(["file1"])
+      };
+
+      it("should return contents of the file given", function() {
+        let expectedOutput = "expected\n";
+        let input = { option: "n", range: "3", files: ['file1'], context: "tail" };
         assert.deepEqual(generateResult(fs, input), expectedOutput);
       });
 
-      it("should return concated string of the arguments for multiple files", function() {
+      it.skip("should return concated string of the arguments for multiple files", function() {
         let expectedOutput = "==> 0 <==\n0utf-8\n\n\n==> 0 <==\n0utf-8\n";
         let input = { option: "n", range: "3", files: [0, 0], context: "tail" };
         let fs = {
