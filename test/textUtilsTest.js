@@ -148,22 +148,24 @@ describe("generateResult", function() {
     });
 
     describe("test mock function for existsSync", function() {
+    let files = {};
+    files['file1'] = 'expected';
     it("should return error message if the file doesn't exists", function() {
         let expectedOutput = "head: file2: No such file or directory";
         let input = { option: "n", range: "3", files: ['file2'], context: "head" };
         let fs = {
-          readFileSync: readFileSync,
+          readFileSync: readFileSync(files,'utf-8'),
           existsSync: existsSync(['file1'])
         };
         assert.deepEqual(generateResult(fs, input), expectedOutput);
       });
 
-      it.skip("should not return the specified string if return value is true", function() {
-        let expectedOutput = "3utf-8";
-        let input = { option: "n", range: "3", files: [3], context: "head" };
+      it("should return the content of the given files object", function() {
+        let expectedOutput = "expected";
+        let input = { option: "n", range: "3", files: ['file1'], context: "head" };
         let fs = {
-          readFileSync: readFileSync,
-          existsSync: existsSync
+          readFileSync: readFileSync(files,'utf-8'),
+          existsSync: existsSync(['file1'])
         };
         assert.deepEqual(generateResult(fs, input), expectedOutput);
       });
