@@ -245,7 +245,8 @@ describe("generateResult", function() {
       it("should return the content of the given files object", function() {
         let expectedOutput = "expected\n";
         let input = { option: "n", range: "3", files: ['file1'], context: "tail" };
-        assert.deepEqual(generateResult(fs, input), expectedOutput);
+        let actualOutput = generateResult(fs, input);
+        assert.deepEqual(actualOutput, expectedOutput);
       });
     });
     describe("test mock function for readFileSync", function() {
