@@ -146,8 +146,8 @@ describe("generateResult", function() {
           files: ["ankon"],
           context: "head"
         };
-
-        assert.deepEqual(generateResult(fs, input), expectedOutput);
+        let actualOutput = generateResult(fs, input);
+        assert.deepEqual(actualOutput, expectedOutput);
       });
     });
 
