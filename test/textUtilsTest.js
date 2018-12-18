@@ -65,7 +65,7 @@ describe("filterNumOfLine", function() {
   });
 
   it("should return specified number of lines from last", function() {
-    let actualOutput = filterNumOfLine(file, 1, 'tail');
+    let actualOutput = filterNumOfLine(file, 1, "tail");
     let expectedOutput = "node ./head.js -c 5 file1 file2\n";
     assert.deepEqual(actualOutput, expectedOutput);
   });
@@ -75,13 +75,13 @@ describe("filterNumOfChar", function() {
   it("should give specified no of chars", function() {
     let file = "node ./head.js -n5 file1\n";
     let actualOutput = filterNumOfChar(file, 5);
-    let expectedOutput = 'node ';
+    let expectedOutput = "node ";
     assert.deepEqual(actualOutput, expectedOutput);
   });
   it("should give specified no of chars from last", function() {
     let file = "node ./head.js -n5 file1\n";
-    let actualOutput = filterNumOfChar(file, 5, 'tail');
-    let expectedOutput = 'ile1\n';
+    let actualOutput = filterNumOfChar(file, 5, "tail");
+    let expectedOutput = "ile1\n";
     assert.deepEqual(actualOutput, expectedOutput);
   });
 });
@@ -104,12 +104,12 @@ describe("selectOperationType", function() {
     expectedOutput += "node ./head.js -5 file1\n";
     expectedOutput += "node ./head.js file1 file2\n";
     expectedOutput += "node ./head.js -n 5 file1 file2";
-    let actualOutput = selectOperationType(file, 5, 'n');
+    let actualOutput = selectOperationType(file, 5, "n");
     assert.deepEqual(actualOutput, expectedOutput);
   });
   it("should return specified number of characters if option is c", function() {
     let expectedOutput = "node ";
-    let actualOutput = selectOperationType(file, 5, 'c');
+    let actualOutput = selectOperationType(file, 5, "c");
     assert.deepEqual(actualOutput, expectedOutput);
   });
   it("should return 10 lines if option and number nothing is specified", function() {
@@ -131,6 +131,13 @@ describe("selectOperationType", function() {
 describe("generateResult", function() {
   describe("for head.js", function() {
     describe("return error", function() {
+      let files = {};
+      files["file1"] = "expected";
+      let fs = {
+        readFileSync: readFileSync(files, "utf-8"),
+        existsSync: existsSync(["file1"])
+      };
+
       it("should return an error if anything is wrong", function() {
         let expectedOutput = "head: illegal line count -- -1";
         let input = {
@@ -139,33 +146,37 @@ describe("generateResult", function() {
           files: ["ankon"],
           context: "head"
         };
-        let fs = {
-          readFileSync: readFileSync,
-          existsSync: existsSync
-        };
+
         assert.deepEqual(generateResult(fs, input), expectedOutput);
       });
     });
 
     describe("test mock function for existsSync", function() {
-    let files = {};
-    files['file1'] = 'expected';
-    it("should return error message if the file doesn't exists", function() {
+      let files = {};
+      files["file1"] = "expected";
+      let fs = {
+        readFileSync: readFileSync(files, "utf-8"),
+        existsSync: existsSync(["file1"])
+      };
+
+      it("should return error message if the file doesn't exists", function() {
         let expectedOutput = "head: file2: No such file or directory";
-        let input = { option: "n", range: "3", files: ['file2'], context: "head" };
-        let fs = {
-          readFileSync: readFileSync(files,'utf-8'),
-          existsSync: existsSync(['file1'])
+        let input = {
+          option: "n",
+          range: "3",
+          files: ["file2"],
+          context: "head"
         };
         assert.deepEqual(generateResult(fs, input), expectedOutput);
       });
 
       it("should return the content of the given files object", function() {
         let expectedOutput = "expected";
-        let input = { option: "n", range: "3", files: ['file1'], context: "head" };
-        let fs = {
-          readFileSync: readFileSync(files,'utf-8'),
-          existsSync: existsSync(['file1'])
+        let input = {
+          option: "n",
+          range: "3",
+          files: ["file1"],
+          context: "head"
         };
         assert.deepEqual(generateResult(fs, input), expectedOutput);
       });
@@ -256,12 +267,12 @@ describe("generateResult", function() {
   });
 });
 
-describe('isContextTail',() => {
-  it('should return false if the context is head',() => {
-    assert.deepEqual(isContextTail('head'),false);
+describe("isContextTail", () => {
+  it("should return false if the context is head", () => {
+    assert.deepEqual(isContextTail("head"), false);
   });
-  
-  it('should return true if the context is tail',() => {
-    assert.deepEqual(isContextTail('tail'),true);
+
+  it("should return true if the context is tail", () => {
+    assert.deepEqual(isContextTail("tail"), true);
   });
-}); 
+});
