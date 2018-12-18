@@ -29,29 +29,29 @@ const getContents = function(readFileSync,{ option, count, files },context,file)
   return addHeader(files, fileName, result);
 };
 
-const filterNumberOfLines = function(file, count, context) {
+const filterNumberOfLines = function(contents, count, context) {
   if (isContextTail(context)) {
-    if (!file.endsWith("\n")){ 
-      file += "\n";
+    if (!contents.endsWith("\n")){ 
+      contents += "\n";
     }
-    return file.split("\n").slice(-(+count+1)).join("\n");
+    return contents.split("\n").slice(-(+count+1)).join("\n");
   }
-  return file.split("\n").slice(0, count).join("\n");
+  return contents.split("\n").slice(0, count).join("\n");
 };
 
-const filterNumberOfChars = function(file, count, context) {
+const filterNumberOfChars = function(contents, count, context) {
   if (isContextTail(context)) {
-    return file.slice(file.length - count);
+    return contents.slice(contents.length - count);
   }
-  return file.slice(0, count);
+  return contents.slice(0, count);
 };
 
-const selectOperationType = function(file, count, option = "n", context) {
+const selectOperationType = function(contents, count, option = "n", context) {
   let opeartion = {
     n: filterNumberOfLines,
     c: filterNumberOfChars
   };
-  return opeartion[option](file, count, context);
+  return opeartion[option](contents, count, context);
 };
 
 const isContextTail = function(context){
