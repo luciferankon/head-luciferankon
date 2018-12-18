@@ -222,7 +222,8 @@ describe("generateResult", function() {
           readFileSync: readFileSync,
           existsSync: existsSync
         };
-        assert.deepEqual(generateResult(fs, input), expectedOutput);
+        let actualOutput = generateResult(fs, input);
+        assert.deepEqual(actualOutput, expectedOutput);
       });
     });
 
