@@ -1,8 +1,8 @@
 const assert = require("assert");
 const {
   generateResult,
-  filterNumOfLine,
-  filterNumOfChar,
+  filterNumberOfLines,
+  filterNumberOfChars,
   selectOperationType,
   isContextTail
 } = require("../src/textUtils.js");
@@ -21,7 +21,7 @@ const existsSync = function(fileNames) {
   };
 }
 
-describe("filterNumOfLine", function() {
+describe("filterNumberOfLines", function() {
   let file = "node ./head.js -n5 file1\n";
   file += "node ./head.js -n 5 file1\n";
   file += "node ./head.js -5 file1\n";
@@ -45,7 +45,7 @@ describe("filterNumOfLine", function() {
     expectedOutput += "node ./head.js -c5 file1\n";
     expectedOutput += "node ./head.js -c 5 file1\n";
     expectedOutput += "node ./head.js -c5 file1 file2";
-    let actualOutput = filterNumOfLine(file);
+    let actualOutput = filterNumberOfLines(file);
     assert.deepEqual(actualOutput, expectedOutput);
   });
 
@@ -55,32 +55,32 @@ describe("filterNumOfLine", function() {
   expectedOutput += "node ./head.js file1 file2\n";
   expectedOutput += "node ./head.js -n 5 file1 file2";
   it("should return specified no of lines if num of lines is specified", function() {
-    let actualOutput = filterNumOfLine(file, 5);
+    let actualOutput = filterNumberOfLines(file, 5);
     assert.deepEqual(actualOutput, expectedOutput);
   });
 
   it("should return empty string for 0 num of line", function() {
-    let actualOutput = filterNumOfLine(file, 0);
+    let actualOutput = filterNumberOfLines(file, 0);
     assert.deepEqual(actualOutput, "");
   });
 
   it("should return specified number of lines from last", function() {
-    let actualOutput = filterNumOfLine(file, 1, "tail");
+    let actualOutput = filterNumberOfLines(file, 1, "tail");
     let expectedOutput = "node ./head.js -c 5 file1 file2\n";
     assert.deepEqual(actualOutput, expectedOutput);
   });
 });
 
-describe("filterNumOfChar", function() {
+describe("filterNumberOfChars", function() {
   it("should give specified no of chars", function() {
     let file = "node ./head.js -n5 file1\n";
-    let actualOutput = filterNumOfChar(file, 5);
+    let actualOutput = filterNumberOfChars(file, 5);
     let expectedOutput = "node ";
     assert.deepEqual(actualOutput, expectedOutput);
   });
   it("should give specified no of chars from last", function() {
     let file = "node ./head.js -n5 file1\n";
-    let actualOutput = filterNumOfChar(file, 5, "tail");
+    let actualOutput = filterNumberOfChars(file, 5, "tail");
     let expectedOutput = "ile1\n";
     assert.deepEqual(actualOutput, expectedOutput);
   });
