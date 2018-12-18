@@ -238,7 +238,8 @@ describe("generateResult", function() {
       it("should return error message if the file doesn't exists", function() {
         let expectedOutput = "tail: file2: No such file or directory";
         let input = { option: "n", range: "3", files: ['file2'], context: "tail" };
-        assert.deepEqual(generateResult(fs, input), expectedOutput);
+        let actualOutput = generateResult(fs, input);
+        assert.deepEqual(actualOutput, expectedOutput);
       });
 
       it("should return the content of the given files object", function() {
