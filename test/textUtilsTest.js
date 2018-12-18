@@ -140,7 +140,7 @@ describe("generateResult", function() {
 
       it("should return an error message if count is invalid", function() {
         let expectedOutput = "head: illegal line count -- -1";
-        let input = { option: "n", range: "-1", files: ["ankon"], context: "head" };
+        let input = { option: "n", count: "-1", files: ["ankon"], context: "head" };
         let actualOutput = generateResult(fs, input);
         assert.deepEqual(actualOutput, expectedOutput);
       });
@@ -156,14 +156,14 @@ describe("generateResult", function() {
 
       it("should return error message if the file doesn't exists", function() {
         let expectedOutput = "head: file2: No such file or directory";
-        let input = { option: "n", range: "3", files: ["file2"], context: "head" };
+        let input = { option: "n", count: "3", files: ["file2"], context: "head" };
         let actualOutput = generateResult(fs, input);
         assert.deepEqual(actualOutput, expectedOutput);
       });
 
       it("should return the content of the given files object", function() {
         let expectedOutput = "expected";
-        let input = { option: "n", range: "3", files: ["file1"], context: "head" };
+        let input = { option: "n", count: "3", files: ["file1"], context: "head" };
         let actualOutput = generateResult(fs, input);
         assert.deepEqual(actualOutput, expectedOutput);
       });
@@ -179,7 +179,7 @@ describe("generateResult", function() {
 
       it("should return contents of the file given", function() {
         let expectedOutput = "expected";
-        let input = { option: "n", range: "3", files: ['file1'], context: "head" };
+        let input = { option: "n", count: "3", files: ['file1'], context: "head" };
         let actualOutput = generateResult(fs, input);
         assert.deepEqual(actualOutput, expectedOutput);
       });
@@ -187,7 +187,7 @@ describe("generateResult", function() {
       it("should return contents in formatted way for multiple files", function() {
         files["file2"] = 'expected1';
         let expectedOutput = "==> file1 <==\nexpected\n\n==> file2 <==\nexpected1";
-        let input = { option: "n", range: "3", files: ['file1','file2'], context: "head" };
+        let input = { option: "n", count: "3", files: ['file1','file2'], context: "head" };
         let actualOutput = generateResult(fs, input);
         assert.deepEqual(actualOutput, expectedOutput);
       });
@@ -205,7 +205,7 @@ describe("generateResult", function() {
 
       it("should return an error message if offset is invalid", function() {
         let expectedOutput = "tail: illegal offset -- -1";
-        let input = { option: "n", range: "-1", files: ["ankon"], context: "tail"};
+        let input = { option: "n", count: "-1", files: ["ankon"], context: "tail"};
         let actualOutput = generateResult(fs, input);
         assert.deepEqual(actualOutput, expectedOutput);
       });
@@ -221,14 +221,14 @@ describe("generateResult", function() {
 
       it("should return error message if the file doesn't exists", function() {
         let expectedOutput = "tail: file2: No such file or directory";
-        let input = { option: "n", range: "3", files: ['file2'], context: "tail" };
+        let input = { option: "n", count: "3", files: ['file2'], context: "tail" };
         let actualOutput = generateResult(fs, input);
         assert.deepEqual(actualOutput, expectedOutput);
       });
 
       it("should return the content of the given files object", function() {
         let expectedOutput = "expected\n";
-        let input = { option: "n", range: "3", files: ['file1'], context: "tail" };
+        let input = { option: "n", count: "3", files: ['file1'], context: "tail" };
         let actualOutput = generateResult(fs, input);
         assert.deepEqual(actualOutput, expectedOutput);
       });
@@ -243,7 +243,7 @@ describe("generateResult", function() {
 
       it("should return contents of the file given", function() {
         let expectedOutput = "expected\n";
-        let input = { option: "n", range: "3", files: ['file1'], context: "tail" };
+        let input = { option: "n", count: "3", files: ['file1'], context: "tail" };
         let actualOutput = generateResult(fs, input);
         assert.deepEqual(actualOutput, expectedOutput);
       });
@@ -251,7 +251,7 @@ describe("generateResult", function() {
       it("should return contents in formatted way for multiple files", function() {
         files['file2']='expected1';
         let expectedOutput = "==> file1 <==\nexpected\n\n\n==> file2 <==\nexpected1\n";
-        let input = { option: "n", range: "3", files: ['file1', 'file2'], context: "tail" };
+        let input = { option: "n", count: "3", files: ['file1', 'file2'], context: "tail" };
         let actualOutput = generateResult(fs, input);
         assert.deepEqual(actualOutput, expectedOutput);
       });

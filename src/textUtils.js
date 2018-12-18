@@ -7,8 +7,8 @@ const generateResult = function(fileSystem, parsedInput) {
     head: checkErrorOfHead,
     tail: checkErrorOfTail
   };
-  let { option, range, files, context } = parsedInput;
-  let err = error[context](option, range, files);
+  let { option, count, files, context } = parsedInput;
+  let err = error[context](option, count, files);
   if (err) {
     return err;
   }
@@ -22,10 +22,10 @@ const formatResult = function({readFileSync, existsSync}, parsedInput, context, 
   return getResult(readFileSync, parsedInput, context, file);
 };
 
-const getResult = function(readFileSync,{ option, range, files },context,file) {
+const getResult = function(readFileSync,{ option, count, files },context,file) {
   let fileName = generateHeader(file);
   let fileData = readFileSync(file, "utf-8");
-  let result = selectOperationType(fileData, range, option, context);
+  let result = selectOperationType(fileData, count, option, context);
   return addHeader(files, fileName, result);
 };
 

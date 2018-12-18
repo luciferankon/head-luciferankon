@@ -15,7 +15,7 @@ const checkErrorOfHead = function(option, value, files) {
   }
 
   if (isValueError(value)) {
-    return "head: illegal " + errorWord[option] + " count -- " + value;
+    return "head: illegal " + errorWord[option] + " count -- " + value;``
   }
 
   if (isFileError(files)) {
