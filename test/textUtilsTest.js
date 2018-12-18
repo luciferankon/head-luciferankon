@@ -195,7 +195,8 @@ describe("generateResult", function() {
       it("should return contents of the file given", function() {
         let expectedOutput = "expected";
         let input = { option: "n", range: "3", files: ['file1'], context: "head" };
-        assert.deepEqual(generateResult(fs, input), expectedOutput);
+        let actualOutput = generateResult(fs, input);
+        assert.deepEqual(actualOutput, expectedOutput);
       });
 
       it("should return contents in formatted way for multiple files", function() {
