@@ -179,7 +179,8 @@ describe("generateResult", function() {
           files: ["file1"],
           context: "head"
         };
-        assert.deepEqual(generateResult(fs, input), expectedOutput);
+        let actualOutput = generateResult(fs, input);
+        assert.deepEqual(actualOutput, expectedOutput);
       });
     });
 
