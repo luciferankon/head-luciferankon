@@ -19,10 +19,10 @@ const generateResult = function(fileSystem, parsedInput) {
 const formatResult = function({readFileSync, existsSync}, parsedInput, context, file) {
   if (!existsSync(file))
     return "" + context + ": " + file + ": No such file or directory"
-  return getResult(readFileSync, parsedInput, context, file);
+  return getContents(readFileSync, parsedInput, context, file);
 };
 
-const getResult = function(readFileSync,{ option, count, files },context,file) {
+const getContents = function(readFileSync,{ option, count, files },context,file) {
   let fileName = generateHeader(file);
   let fileData = readFileSync(file, "utf-8");
   let result = selectOperationType(fileData, count, option, context);
