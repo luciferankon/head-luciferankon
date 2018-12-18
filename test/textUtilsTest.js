@@ -129,7 +129,7 @@ describe("selectOperationType", function() {
 });
 
 describe("generateResult", function() {
-  describe("for head.js", function() {
+  describe("for head", function() {
     describe("return error", function() {
       let files = {};
       files["file1"] = "expected";
@@ -193,7 +193,8 @@ describe("generateResult", function() {
       });
     });
   });
-  describe("for tail.js", function() {
+
+  describe("for tail", function() {
     describe("return error", function() {
       it("should return an error if offset is wrong", function() {
         let expectedOutput = "tail: illegal offset -- -1";
