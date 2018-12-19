@@ -2,7 +2,7 @@ const { checkError } = require("./error.js");
 
 const { addHeader } = require('./IO.js');
 
-const generateResult = function(fileSystem, parsedInput) {
+const readAndFilter = function(fileSystem, parsedInput) {
   const err = checkError(parsedInput);
   if (err) {
     return err;
@@ -53,7 +53,7 @@ const isContextTail = function(context){
   return context == 'tail';
 }
 
-module.exports = {generateResult,
+module.exports = {readAndFilter,
   filterNumberOfLines,
   filterNumberOfChars,
   selectOperationType,
