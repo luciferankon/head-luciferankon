@@ -1,17 +1,13 @@
-const { checkErrorOfHead, checkErrorOfTail } = require("./error.js");
+const { checkError } = require("./error.js");
 
 const { addHeader } = require('./IO.js');
 
 const generateResult = function(fileSystem, parsedInput) {
-  const error = {
-    head: checkErrorOfHead,
-    tail: checkErrorOfTail
-  };
-  const { option, count, files, context } = parsedInput;
-  const err = error[context](option, count, files);
+  const err = checkError(parsedInput);
   if (err) {
     return err;
   }
+  const { option, count, files, context } = parsedInput;
   const formatResultForFile = formatResult.bind(null, fileSystem, parsedInput, context);
   return files.map(formatResultForFile).join("\n\n");
 };
