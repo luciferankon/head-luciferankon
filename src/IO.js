@@ -43,13 +43,13 @@ const isInputOptionAndValue = function(args) {
   return args.length >= 3 && args[0] == "-" && isNaN(args[1]);
 };
 
-const generateHeader = function(fileName) {
-  return "==> " + fileName + " <==\n";
+const generateHeader = function(filePath) {
+  return "==> " + filePath + " <==\n";
 };
 
-const addHeader = function(files, fileName, result) {
+const addHeader = function(files, filePath, result) {
   if (files.length > 1) {
-    return generateHeader(fileName) + result;
+    return generateHeader(filePath) + result;
   }
   return result;
 };

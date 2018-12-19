@@ -12,17 +12,17 @@ const readAndFilter = function(fileSystem, parsedInput) {
   return files.map(formatResultForFile).join("\n\n");
 };  
 
-const formatResult = function({readFileSync, existsSync}, parsedInput, file) {
+const formatResult = function({readFileSync, existsSync}, parsedInput, filePath) {
   const { headOrTail } = parsedInput;
-  if (!existsSync(file))
-    return "" + headOrTail + ": " + file + ": No such file or directory";
-  return getContents(readFileSync, parsedInput, file);
+  if (!existsSync(filePath))
+    return "" + headOrTail + ": " + filePath + ": No such file or directory";
+  return getContents(readFileSync, parsedInput, filePath);
 };
 
-const getContents = function(readFileSync,{ option, count, files , headOrTail}, file) {
-  let fileData = readFileSync(file, "utf-8");
+const getContents = function(readFileSync,{ option, count, files , headOrTail}, filePath) {
+  let fileData = readFileSync(filePath, "utf-8");
   let result = selectOperationType(fileData, count, option, headOrTail);
-  return addHeader(files, file, result);
+  return addHeader(files, filePath, result);
 };
 
 const filterNumberOfLines = function(content, count, headOrTail) {
