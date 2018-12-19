@@ -3,16 +3,16 @@ const { checkErrorOfHead, checkErrorOfTail } = require("./error.js");
 const { addHeader } = require('./IO.js');
 
 const generateResult = function(fileSystem, parsedInput) {
-  let error = {
+  const error = {
     head: checkErrorOfHead,
     tail: checkErrorOfTail
   };
-  let { option, count, files, context } = parsedInput;
-  let err = error[context](option, count, files);
+  const { option, count, files, context } = parsedInput;
+  const err = error[context](option, count, files);
   if (err) {
     return err;
   }
-  let formatResultForFile = formatResult.bind(null, fileSystem, parsedInput, context);
+  const formatResultForFile = formatResult.bind(null, fileSystem, parsedInput, context);
   return files.map(formatResultForFile).join("\n\n");
 };
 
