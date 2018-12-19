@@ -7,18 +7,19 @@ const readAndFilter = function(fileSystem, parsedInput) {
   if (err) {
     return err;
   }
-  const { files, context } = parsedInput;
-  const formatResultForFile = formatResult.bind(null, fileSystem, parsedInput, context);
+  const { files } = parsedInput;
+  const formatResultForFile = formatResult.bind(null, fileSystem, parsedInput);
   return files.map(formatResultForFile).join("\n\n");
 };
 
-const formatResult = function({readFileSync, existsSync}, parsedInput, context, file) {
+const formatResult = function({readFileSync, existsSync}, parsedInput, file) {
+  const { context } = parsedInput;
   if (!existsSync(file))
-    return "" + context + ": " + file + ": No such file or directory"
-  return getContents(readFileSync, parsedInput, context, file);
+    return "" + context + ": " + file + ": No such file or directory";
+  return getContents(readFileSync, parsedInput, file);
 };
 
-const getContents = function(readFileSync,{ option, count, files },context,file) {
+const getContents = function(readFileSync,{ option, count, files , context}, file) {
   let fileData = readFileSync(file, "utf-8");
   let result = selectOperationType(fileData, count, option, context);
   return addHeader(files, file, result);
