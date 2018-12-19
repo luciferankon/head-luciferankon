@@ -1,46 +1,46 @@
-const parser = function(inputs) {
+const parser = function(args) {
   let parsedInput = {
     option: "n",
     count: 10,
-    files: inputs.slice(1),
+    files: args.slice(1),
     context: ""
   };
 
-  parsedInput.context = inputs[0].substr(-7, 4);
+  parsedInput.context = args[0].substr(-7, 4);
 
-  if (isOptionDash(inputs[1])) {
-    parsedInput.files = inputs.slice(2);
+  if (isOptionDash(args[1])) {
+    parsedInput.files = args.slice(2);
   }
-  if (isInputOnlyOption(inputs[1])) {
-    parsedInput.option = inputs[1][1];
-    parsedInput.count = inputs[2];
-    parsedInput.files = inputs.slice(3);
+  if (isInputOnlyOption(args[1])) {
+    parsedInput.option = args[1][1];
+    parsedInput.count = args[2];
+    parsedInput.files = args.slice(3);
   }
-  if (isInputOnlyValue(inputs[1])) {
-    parsedInput.count = inputs[1].slice(1);
-    parsedInput.files = inputs.slice(2);
+  if (isInputOnlyValue(args[1])) {
+    parsedInput.count = args[1].slice(1);
+    parsedInput.files = args.slice(2);
   }
-  if (isInputOptionAndValue(inputs[1])) {
-    parsedInput.option = inputs[1][1];
-    parsedInput.count = inputs[1].slice(2);
-    parsedInput.files = inputs.slice(2);
+  if (isInputOptionAndValue(args[1])) {
+    parsedInput.option = args[1][1];
+    parsedInput.count = args[1].slice(2);
+    parsedInput.files = args.slice(2);
   }
   return parsedInput;
 };
 
-const isOptionDash = function(inputs) {
-  return inputs == "--";
+const isOptionDash = function(option) {
+  return option == "--";
 };
 
-const isInputOnlyOption = function(inputs) {
-  return /^-[a-z]$/.test(inputs);
+const isInputOnlyOption = function(args) {
+  return /^-[a-z]$/.test(args);
 };
 
-const isInputOnlyValue = function(inputs) {
-  return inputs.length >= 2 && !isNaN(inputs[1]);
+const isInputOnlyValue = function(args) {
+  return args.length >= 2 && !isNaN(args[1]);
 };
-const isInputOptionAndValue = function(inputs) {
-  return inputs.length >= 3 && inputs[0] == "-" && isNaN(inputs[1]);
+const isInputOptionAndValue = function(args) {
+  return args.length >= 3 && args[0] == "-" && isNaN(args[1]);
 };
 
 const generateHeader = function(file) {
