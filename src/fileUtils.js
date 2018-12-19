@@ -1,6 +1,6 @@
 const { checkErrorOfHead, checkErrorOfTail } = require("./error.js");
 
-const { addHeader, generateHeader } = require('./IO.js');
+const { addHeader } = require('./IO.js');
 
 const generateResult = function(fileSystem, parsedInput) {
   let error = {
@@ -23,10 +23,9 @@ const formatResult = function({readFileSync, existsSync}, parsedInput, context, 
 };
 
 const getContents = function(readFileSync,{ option, count, files },context,file) {
-  let fileName = generateHeader(file);
   let fileData = readFileSync(file, "utf-8");
   let result = selectOperationType(fileData, count, option, context);
-  return addHeader(files, fileName, result);
+  return addHeader(files, file, result);
 };
 
 const filterNumberOfLines = function(content, count, context) {
