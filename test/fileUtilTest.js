@@ -45,7 +45,7 @@ describe("filterNumberOfLines", function() {
     expectedOutput += "node ./head.js -c5 file1\n";
     expectedOutput += "node ./head.js -c 5 file1\n";
     expectedOutput += "node ./head.js -c5 file1 file2";
-    let actualOutput = filterNumberOfLines(file,10);
+    let actualOutput = filterNumberOfLines(file,10,'head');
     assert.deepEqual(actualOutput, expectedOutput);
   });
 
@@ -55,12 +55,12 @@ describe("filterNumberOfLines", function() {
   expectedOutput += "node ./head.js file1 file2\n";
   expectedOutput += "node ./head.js -n 5 file1 file2";
   it("should return specified no of lines if num of lines is specified", function() {
-    let actualOutput = filterNumberOfLines(file, 5);
+    let actualOutput = filterNumberOfLines(file, 5, 'head');
     assert.deepEqual(actualOutput, expectedOutput);
   });
 
   it("should return empty string for 0 num of line", function() {
-    let actualOutput = filterNumberOfLines(file, 0);
+    let actualOutput = filterNumberOfLines(file, 0, 'tail');
     assert.deepEqual(actualOutput, "");
   });
 
@@ -73,8 +73,8 @@ describe("filterNumberOfLines", function() {
 
 describe("filterNumberOfChars", function() {
   it("should give specified no of chars", function() {
-    let file = "node ./head.js -n5 file1\n";
-    let actualOutput = filterNumberOfChars(file, 5);
+    let file = "node ";
+    let actualOutput = filterNumberOfChars(file, 5, 'head');
     let expectedOutput = "node ";
     assert.deepEqual(actualOutput, expectedOutput);
   });
@@ -104,12 +104,12 @@ describe("selectOperationType", function() {
     expectedOutput += "node ./head.js -5 file1\n";
     expectedOutput += "node ./head.js file1 file2\n";
     expectedOutput += "node ./head.js -n 5 file1 file2";
-    let actualOutput = selectOperationType(file, 5, "n");
+    let actualOutput = selectOperationType(file, 5, "n", 'head');
     assert.deepEqual(actualOutput, expectedOutput);
   });
   it("should return specified number of characters if option is c", function() {
     let expectedOutput = "node ";
-    let actualOutput = selectOperationType(file, 5, "c");
+    let actualOutput = selectOperationType(file, 5, "c", 'head');
     assert.deepEqual(actualOutput, expectedOutput);
   });
   it("should return 10 lines if option and number nothing is specified", function() {
@@ -123,7 +123,7 @@ describe("selectOperationType", function() {
     expectedOutput += "node ./head.js -c5 file1\n";
     expectedOutput += "node ./head.js -c 5 file1\n";
     expectedOutput += "node ./head.js -c5 file1 file2";
-    let actualOutput = selectOperationType(file,10);
+    let actualOutput = selectOperationType(file,10,'n','head');
     assert.deepEqual(actualOutput, expectedOutput);
   });
 });

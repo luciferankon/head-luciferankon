@@ -25,22 +25,30 @@ const getContents = function(readFileSync,{ option, count, filePaths , headOrTai
   return addHeader(filePaths, filePath, result);
 };
 
+const sliceContents = function(content, count, delimiter, headOrTail){
+  const sliceCount = {
+    head : content.split(delimiter).slice(0, count).join(delimiter),
+    tail : content.split(delimiter).slice(-count).join(delimiter)
+  };
+  return sliceCount[headOrTail];
+}
+
 const filterNumberOfLines = function(content, count, headOrTail) {
   if (isTail(headOrTail)) {
     if (!content.endsWith("\n")){ 
       content += "\n";
     }
     count += 1;
-    return content.split("\n").slice(-count).join("\n");
+    return sliceContents(content, count, '\n', headOrTail);
   }
-  return content.split("\n").slice(0, count).join("\n");
+  return sliceContents(content, count, '\n', headOrTail);
 };
 
 const filterNumberOfChars = function(content, count, headOrTail) {
   if (isTail(headOrTail)) {
-    return content.split("").slice(-count).join('');
+    return sliceContents(content, count, '', headOrTail);
   }
-  return content.split("").slice(0, count).join('');
+  return sliceContents(content, count, '', headOrTail);
 };
 
 const selectOperationType = function(content, count, option = "n", headOrTail) {
