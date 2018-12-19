@@ -10,23 +10,23 @@ const readAndFilter = function(fileSystem, parsedInput) {
   const { files } = parsedInput;
   const formatResultForFile = formatResult.bind(null, fileSystem, parsedInput);
   return files.map(formatResultForFile).join("\n\n");
-};
+};  
 
 const formatResult = function({readFileSync, existsSync}, parsedInput, file) {
-  const { context } = parsedInput;
+  const { headOrTail } = parsedInput;
   if (!existsSync(file))
-    return "" + context + ": " + file + ": No such file or directory";
+    return "" + headOrTail + ": " + file + ": No such file or directory";
   return getContents(readFileSync, parsedInput, file);
 };
 
-const getContents = function(readFileSync,{ option, count, files , context}, file) {
+const getContents = function(readFileSync,{ option, count, files , headOrTail}, file) {
   let fileData = readFileSync(file, "utf-8");
-  let result = selectOperationType(fileData, count, option, context);
+  let result = selectOperationType(fileData, count, option, headOrTail);
   return addHeader(files, file, result);
 };
 
-const filterNumberOfLines = function(content, count, context) {
-  if (isContextTail(context)) {
+const filterNumberOfLines = function(content, count, headOrTail) {
+  if (isTail(headOrTail)) {
     if (!content.endsWith("\n")){ 
       content += "\n";
     }
@@ -36,28 +36,28 @@ const filterNumberOfLines = function(content, count, context) {
   return content.split("\n").slice(0, count).join("\n");
 };
 
-const filterNumberOfChars = function(content, count, context) {
-  if (isContextTail(context)) {
+const filterNumberOfChars = function(content, count, headOrTail) {
+  if (isTail(headOrTail)) {
     return content.split("").slice(-count).join('');
   }
   return content.split("").slice(0, count).join('');
 };
 
-const selectOperationType = function(content, count, option = "n", context) {
+const selectOperationType = function(content, count, option = "n", headOrTail) {
   let opeartion = {
     n: filterNumberOfLines,
     c: filterNumberOfChars
   };
-  return opeartion[option](content, count, context);
+  return opeartion[option](content, count, headOrTail);
 };
 
-const isContextTail = function(context){
-  return context == 'tail';
+const isTail = function(headOrTail){
+  return headOrTail == 'tail';
 }
 
 module.exports = {readAndFilter,
   filterNumberOfLines,
   filterNumberOfChars,
   selectOperationType,
-  isContextTail
+  isTail
 }

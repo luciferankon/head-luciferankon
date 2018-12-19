@@ -4,7 +4,7 @@ const {
   filterNumberOfLines,
   filterNumberOfChars,
   selectOperationType,
-  isContextTail
+  isTail
 } = require("../src/fileUtils.js");
 
 const readFileSync = function(expectedFiles, expectedEncoding) {
@@ -140,7 +140,7 @@ describe("readAndFilter", function() {
 
       it("should return an error message if count is invalid", function() {
         let expectedOutput = "head: illegal line count -- -1";
-        let input = { option: "n", count: "-1", files: ["ankon"], context: "head" };
+        let input = { option: "n", count: "-1", files: ["ankon"], headOrTail: "head" };
         let actualOutput = readAndFilter(fs, input);
         assert.deepEqual(actualOutput, expectedOutput);
       });
@@ -156,14 +156,14 @@ describe("readAndFilter", function() {
 
       it("should return error message if the file doesn't exists", function() {
         let expectedOutput = "head: file2: No such file or directory";
-        let input = { option: "n", count: "3", files: ["file2"], context: "head" };
+        let input = { option: "n", count: "3", files: ["file2"], headOrTail: "head" };
         let actualOutput = readAndFilter(fs, input);
         assert.deepEqual(actualOutput, expectedOutput);
       });
 
       it("should return the content of the given files object", function() {
         let expectedOutput = "expected";
-        let input = { option: "n", count: "3", files: ["file1"], context: "head" };
+        let input = { option: "n", count: "3", files: ["file1"], headOrTail: "head" };
         let actualOutput = readAndFilter(fs, input);
         assert.deepEqual(actualOutput, expectedOutput);
       });
@@ -179,7 +179,7 @@ describe("readAndFilter", function() {
 
       it("should return contents of the file given", function() {
         let expectedOutput = "expected";
-        let input = { option: "n", count: "3", files: ['file1'], context: "head" };
+        let input = { option: "n", count: "3", files: ['file1'], headOrTail: "head" };
         let actualOutput = readAndFilter(fs, input);
         assert.deepEqual(actualOutput, expectedOutput);
       });
@@ -187,7 +187,7 @@ describe("readAndFilter", function() {
       it("should return contents in formatted way for multiple files", function() {
         files["file2"] = 'expected1';
         let expectedOutput = "==> file1 <==\nexpected\n\n==> file2 <==\nexpected1";
-        let input = { option: "n", count: "3", files: ['file1','file2'], context: "head" };
+        let input = { option: "n", count: "3", files: ['file1','file2'], headOrTail: "head" };
         let actualOutput = readAndFilter(fs, input);
         assert.deepEqual(actualOutput, expectedOutput);
       });
@@ -205,7 +205,7 @@ describe("readAndFilter", function() {
 
       it("should return an error message if offset is invalid", function() {
         let expectedOutput = "tail: illegal offset -- -1";
-        let input = { option: "n", count: "-1", files: ["ankon"], context: "tail"};
+        let input = { option: "n", count: "-1", files: ["ankon"], headOrTail: "tail"};
         let actualOutput = readAndFilter(fs, input);
         assert.deepEqual(actualOutput, expectedOutput);
       });
@@ -221,14 +221,14 @@ describe("readAndFilter", function() {
 
       it("should return error message if the file doesn't exists", function() {
         let expectedOutput = "tail: file2: No such file or directory";
-        let input = { option: "n", count: "3", files: ['file2'], context: "tail" };
+        let input = { option: "n", count: "3", files: ['file2'], headOrTail: "tail" };
         let actualOutput = readAndFilter(fs, input);
         assert.deepEqual(actualOutput, expectedOutput);
       });
 
       it("should return the content of the given files object", function() {
         let expectedOutput = "expected\n";
-        let input = { option: "n", count: "3", files: ['file1'], context: "tail" };
+        let input = { option: "n", count: "3", files: ['file1'], headOrTail: "tail" };
         let actualOutput = readAndFilter(fs, input);
         assert.deepEqual(actualOutput, expectedOutput);
       });
@@ -243,7 +243,7 @@ describe("readAndFilter", function() {
 
       it("should return contents of the file given", function() {
         let expectedOutput = "expected\n";
-        let input = { option: "n", count: "3", files: ['file1'], context: "tail" };
+        let input = { option: "n", count: "3", files: ['file1'], headOrTail: "tail" };
         let actualOutput = readAndFilter(fs, input);
         assert.deepEqual(actualOutput, expectedOutput);
       });
@@ -251,7 +251,7 @@ describe("readAndFilter", function() {
       it("should return contents in formatted way for multiple files", function() {
         files['file2']='expected1';
         let expectedOutput = "==> file1 <==\nexpected\n\n\n==> file2 <==\nexpected1\n";
-        let input = { option: "n", count: "3", files: ['file1', 'file2'], context: "tail" };
+        let input = { option: "n", count: "3", files: ['file1', 'file2'], headOrTail: "tail" };
         let actualOutput = readAndFilter(fs, input);
         assert.deepEqual(actualOutput, expectedOutput);
       });
@@ -259,12 +259,12 @@ describe("readAndFilter", function() {
   });
 });
 
-describe("isContextTail", () => {
-  it("should return false if the context is head", () => {
-    assert.deepEqual(isContextTail("head"), false);
+describe("isTail", () => {
+  it("should return false if the headOrTail is head", () => {
+    assert.deepEqual(isTail("head"), false);
   });
 
-  it("should return true if the context is tail", () => {
-    assert.deepEqual(isContextTail("tail"), true);
+  it("should return true if the headOrTail is tail", () => {
+    assert.deepEqual(isTail("tail"), true);
   });
 });

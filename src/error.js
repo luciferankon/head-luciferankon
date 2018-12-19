@@ -6,13 +6,14 @@ const TAIL_USAGE =
   "usage: tail [-F | -f | -r] [-q] [-b # | -c # | -n #] [file ...]";
 const TAIL_ILLEGAL_OPTION = "tail: illegal option -- ";
 
-const checkError = function({ option, count, files, context }) {
+const checkError = function({ option, count, files, headOrTail }) {
   const error = {
     head: checkErrorOfHead,
     tail: checkErrorOfTail
   };
-  return error[context](option, count, files);
+  return error[headOrTail](option, count, files);
 };
+
 const checkErrorOfHead = function(option, value, files) {
   let errorWord = {
     n: "line",

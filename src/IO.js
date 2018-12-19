@@ -3,10 +3,10 @@ const parser = function(args) {
     option: "n",
     count: 10,
     files: args.slice(1),
-    context: ""
+    headOrTail: ""
   };
 
-  parsedInput.context = args[0].substr(-7, 4);
+  parsedInput.headOrTail = args[0].substr(-7, 4);
 
   if (isOptionDash(args[1])) {
     parsedInput.files = args.slice(2);

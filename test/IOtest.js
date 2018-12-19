@@ -16,7 +16,7 @@ describe("parser", function() {
         option: "n",
         count: 10,
         files: ["ankon", "chandu"],
-        context: "head"
+        headOrTail: "head"
       };
       let actualOutput = parser(['head.js','ankon','chandu']);
       assert.deepEqual(actualOutput, expectedOutput);
@@ -27,7 +27,7 @@ describe("parser", function() {
         option: "n",
         count: 5,
         files: ["ankon", "chandu"],
-        context: "head"
+        headOrTail: "head"
       };
       let actualOutput = parser(["head.js", "-5", "ankon", "chandu"]);
       assert.deepEqual(actualOutput, expectedOutput);
@@ -38,7 +38,7 @@ describe("parser", function() {
         option: "c",
         count: 3,
         files: ["ankon", "chandu"],
-        context: "head"
+        headOrTail: "head"
       };
       let actualOutput = parser(["head.js", "-c3", "ankon", "chandu"]);
       assert.deepEqual(actualOutput, expectedOutput);
@@ -49,7 +49,7 @@ describe("parser", function() {
         option: "c",
         count: 3,
         files: ["ankon", "chandu"],
-        context: "head"
+        headOrTail: "head"
       };
       let actualOutput = parser(["head.js", "-c", "3", "ankon", "chandu"]);
       assert.deepEqual(actualOutput, expectedOutput);
@@ -60,7 +60,7 @@ describe("parser", function() {
         option: "n",
         count: 10,
         files: ["ankon", "chandu"],
-        context: "head"
+        headOrTail: "head"
       };
       let actualOutput = parser(["head", "--", "ankon", "chandu"]);
       assert.deepEqual(actualOutput, expectedOutput);
