@@ -131,63 +131,63 @@ describe("selectOperationType", function() {
 describe("readAndFilter", function() {
   describe("for head", function() {
     describe("return error", function() {
-      let files = {};
-      files["file1"] = "expected";
+      let filePaths = {};
+      filePaths["file1"] = "expected";
       let fs = {
-        readFileSync: readFileSync(files, "utf-8"),
+        readFileSync: readFileSync(filePaths, "utf-8"),
         existsSync: existsSync(["file1"])
       };
 
       it("should return an error message if count is invalid", function() {
         let expectedOutput = "head: illegal line count -- -1";
-        let input = { option: "n", count: "-1", files: ["ankon"], headOrTail: "head" };
+        let input = { option: "n", count: "-1", filePaths: ["ankon"], headOrTail: "head" };
         let actualOutput = readAndFilter(fs, input);
         assert.deepEqual(actualOutput, expectedOutput);
       });
     });
 
     describe("test readAndFilter function using mock existsSync", function() {
-      let files = {};
-      files["file1"] = "expected";
+      let filePaths = {};
+      filePaths["file1"] = "expected";
       let fs = {
-        readFileSync: readFileSync(files, "utf-8"),
+        readFileSync: readFileSync(filePaths, "utf-8"),
         existsSync: existsSync(["file1"])
       };
 
       it("should return error message if the file doesn't exists", function() {
         let expectedOutput = "head: file2: No such file or directory";
-        let input = { option: "n", count: "3", files: ["file2"], headOrTail: "head" };
+        let input = { option: "n", count: "3", filePaths: ["file2"], headOrTail: "head" };
         let actualOutput = readAndFilter(fs, input);
         assert.deepEqual(actualOutput, expectedOutput);
       });
 
-      it("should return the content of the given files object", function() {
+      it("should return the content of the given filePaths object", function() {
         let expectedOutput = "expected";
-        let input = { option: "n", count: "3", files: ["file1"], headOrTail: "head" };
+        let input = { option: "n", count: "3", filePaths: ["file1"], headOrTail: "head" };
         let actualOutput = readAndFilter(fs, input);
         assert.deepEqual(actualOutput, expectedOutput);
       });
     });
 
     describe("test genearateResult function using mock readFileSync", function() {
-      let files = {};
-      files["file1"] = "expected";
+      let filePaths = {};
+      filePaths["file1"] = "expected";
       let fs = {
-        readFileSync: readFileSync(files, "utf-8"),
+        readFileSync: readFileSync(filePaths, "utf-8"),
         existsSync: existsSync(["file1",'file2'])
       };
 
       it("should return contents of the file given", function() {
         let expectedOutput = "expected";
-        let input = { option: "n", count: "3", files: ['file1'], headOrTail: "head" };
+        let input = { option: "n", count: "3", filePaths: ['file1'], headOrTail: "head" };
         let actualOutput = readAndFilter(fs, input);
         assert.deepEqual(actualOutput, expectedOutput);
       });
 
-      it("should return contents in formatted way for multiple files", function() {
-        files["file2"] = 'expected1';
+      it("should return contents in formatted way for multiple filePaths", function() {
+        filePaths["file2"] = 'expected1';
         let expectedOutput = "==> file1 <==\nexpected\n\n==> file2 <==\nexpected1";
-        let input = { option: "n", count: "3", files: ['file1','file2'], headOrTail: "head" };
+        let input = { option: "n", count: "3", filePaths: ['file1','file2'], headOrTail: "head" };
         let actualOutput = readAndFilter(fs, input);
         assert.deepEqual(actualOutput, expectedOutput);
       });
@@ -196,62 +196,62 @@ describe("readAndFilter", function() {
 
   describe("for tail", function() {
     describe("return error", function() {
-      let files = {};
-      files["file1"] = "expected";
+      let filePaths = {};
+      filePaths["file1"] = "expected";
       let fs = {
-        readFileSync: readFileSync(files, "utf-8"),
+        readFileSync: readFileSync(filePaths, "utf-8"),
         existsSync: existsSync(["file1"])
       };
 
       it("should return an error message if offset is invalid", function() {
         let expectedOutput = "tail: illegal offset -- -1";
-        let input = { option: "n", count: "-1", files: ["ankon"], headOrTail: "tail"};
+        let input = { option: "n", count: "-1", filePaths: ["ankon"], headOrTail: "tail"};
         let actualOutput = readAndFilter(fs, input);
         assert.deepEqual(actualOutput, expectedOutput);
       });
     });
 
     describe("test readAndFilter function using mock existsSync", function() {
-      let files = {};
-      files["file1"] = "expected";
+      let filePaths = {};
+      filePaths["file1"] = "expected";
       let fs = {
-        readFileSync: readFileSync(files, "utf-8"),
+        readFileSync: readFileSync(filePaths, "utf-8"),
         existsSync: existsSync(["file1"])
       };
 
       it("should return error message if the file doesn't exists", function() {
         let expectedOutput = "tail: file2: No such file or directory";
-        let input = { option: "n", count: "3", files: ['file2'], headOrTail: "tail" };
+        let input = { option: "n", count: "3", filePaths: ['file2'], headOrTail: "tail" };
         let actualOutput = readAndFilter(fs, input);
         assert.deepEqual(actualOutput, expectedOutput);
       });
 
-      it("should return the content of the given files object", function() {
+      it("should return the content of the given filePaths object", function() {
         let expectedOutput = "expected\n";
-        let input = { option: "n", count: "3", files: ['file1'], headOrTail: "tail" };
+        let input = { option: "n", count: "3", filePaths: ['file1'], headOrTail: "tail" };
         let actualOutput = readAndFilter(fs, input);
         assert.deepEqual(actualOutput, expectedOutput);
       });
     });
     describe("test readAndFilter function using mock readFileSync", function() {
-      let files = {};
-      files["file1"] = "expected";
+      let filePaths = {};
+      filePaths["file1"] = "expected";
       let fs = {
-        readFileSync: readFileSync(files, "utf-8"),
+        readFileSync: readFileSync(filePaths, "utf-8"),
         existsSync: existsSync(["file1",'file2'])
       };
 
       it("should return contents of the file given", function() {
         let expectedOutput = "expected\n";
-        let input = { option: "n", count: "3", files: ['file1'], headOrTail: "tail" };
+        let input = { option: "n", count: "3", filePaths: ['file1'], headOrTail: "tail" };
         let actualOutput = readAndFilter(fs, input);
         assert.deepEqual(actualOutput, expectedOutput);
       });
 
-      it("should return contents in formatted way for multiple files", function() {
-        files['file2']='expected1';
+      it("should return contents in formatted way for multiple filePaths", function() {
+        filePaths['file2']='expected1';
         let expectedOutput = "==> file1 <==\nexpected\n\n\n==> file2 <==\nexpected1\n";
-        let input = { option: "n", count: "3", files: ['file1', 'file2'], headOrTail: "tail" };
+        let input = { option: "n", count: "3", filePaths: ['file1', 'file2'], headOrTail: "tail" };
         let actualOutput = readAndFilter(fs, input);
         assert.deepEqual(actualOutput, expectedOutput);
       });

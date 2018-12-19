@@ -6,15 +6,15 @@ const TAIL_USAGE =
   "usage: tail [-F | -f | -r] [-q] [-b # | -c # | -n #] [file ...]";
 const TAIL_ILLEGAL_OPTION = "tail: illegal option -- ";
 
-const checkError = function({ option, count, files, headOrTail }) {
+const checkError = function({ option, count, filePaths, headOrTail }) {
   const error = {
     head: checkErrorOfHead,
     tail: checkErrorOfTail
   };
-  return error[headOrTail](option, count, files);
+  return error[headOrTail](option, count, filePaths);
 };
 
-const checkErrorOfHead = function(option, value, files) {
+const checkErrorOfHead = function(option, value, filePaths) {
   let errorWord = {
     n: "line",
     c: "byte"
@@ -27,17 +27,17 @@ const checkErrorOfHead = function(option, value, files) {
     return "head: illegal " + errorWord[option] + " count -- " + value;
   }
 
-  if (isFileError(files)) {
+  if (isFileError(filePaths)) {
     return HEAD_OPTION + option + "\n" + HEAD_USAGE;
   }
 };
 
-const checkErrorOfTail = function(option, value, files) {
+const checkErrorOfTail = function(option, value, filePaths) {
   if (isOptionError(option)) {
     return TAIL_ILLEGAL_OPTION + option + "\n" + TAIL_USAGE;
   }
 
-  if (isFileError(files)) {
+  if (isFileError(filePaths)) {
     return TAIL_OPTION + option + "\n" + TAIL_USAGE;
   }
 
@@ -54,8 +54,8 @@ const isValueError = function(value) {
   return value < 1 || (isNaN(value) && value != undefined);
 };
 
-const isFileError = function(files) {
-  return files.length == 0;
+const isFileError = function(filePaths) {
+  return filePaths.length == 0;
 };
 
 module.exports = {

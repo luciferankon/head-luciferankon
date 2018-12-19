@@ -2,28 +2,28 @@ const parser = function(args) {
   let parsedInput = {
     option: "n",
     count: 10,
-    files: args.slice(1),
+    filePaths: args.slice(1),
     headOrTail: ""
   };
 
   parsedInput.headOrTail = args[0].substr(-7, 4);
 
   if (isOptionDash(args[1])) {
-    parsedInput.files = args.slice(2);
+    parsedInput.filePaths = args.slice(2);
   }
   if (isInputOnlyOption(args[1])) {
     parsedInput.option = args[1][1];
     parsedInput.count = +args[2];
-    parsedInput.files = args.slice(3);
+    parsedInput.filePaths = args.slice(3);
   }
   if (isInputOnlyValue(args[1])) {
     parsedInput.count = +args[1].slice(1);
-    parsedInput.files = args.slice(2);
+    parsedInput.filePaths = args.slice(2);
   }
   if (isInputOptionAndValue(args[1])) {
     parsedInput.option = args[1][1];
     parsedInput.count = +args[1].slice(2);
-    parsedInput.files = args.slice(2);
+    parsedInput.filePaths = args.slice(2);
   }
   return parsedInput;
 };
@@ -47,8 +47,8 @@ const generateHeader = function(filePath) {
   return "==> " + filePath + " <==\n";
 };
 
-const addHeader = function(files, filePath, result) {
-  if (files.length > 1) {
+const addHeader = function(filePaths, filePath, result) {
+  if (filePaths.length > 1) {
     return generateHeader(filePath) + result;
   }
   return result;

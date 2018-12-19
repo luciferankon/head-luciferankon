@@ -10,56 +10,56 @@ const {
 } = require("../src/IO.js");
 
 describe("parser", function() {
-  describe("should return expected option, count, files", function() {
-    it("there is no option or count and two files specified", function() {
+  describe("should return expected option, count, filePaths", function() {
+    it("there is no option or count and two filePaths specified", function() {
       let expectedOutput = {
         option: "n",
         count: 10,
-        files: ["ankon", "chandu"],
+        filePaths: ["ankon", "chandu"],
         headOrTail: "head"
       };
       let actualOutput = parser(['head.js','ankon','chandu']);
       assert.deepEqual(actualOutput, expectedOutput);
     });
 
-    it("when there is only count and two files are specified", function() {
+    it("when there is only count and two filePaths are specified", function() {
       let expectedOutput = {
         option: "n",
         count: 5,
-        files: ["ankon", "chandu"],
+        filePaths: ["ankon", "chandu"],
         headOrTail: "head"
       };
       let actualOutput = parser(["head.js", "-5", "ankon", "chandu"]);
       assert.deepEqual(actualOutput, expectedOutput);
     });
 
-    it("when both option and count and two files are specified together", function() {
+    it("when both option and count and two filePaths are specified together", function() {
       let expectedOutput = {
         option: "c",
         count: 3,
-        files: ["ankon", "chandu"],
+        filePaths: ["ankon", "chandu"],
         headOrTail: "head"
       };
       let actualOutput = parser(["head.js", "-c3", "ankon", "chandu"]);
       assert.deepEqual(actualOutput, expectedOutput);
     });
 
-    it("when option and count are given separeately and two files are specified", function() {
+    it("when option and count are given separeately and two filePaths are specified", function() {
       let expectedOutput = {
         option: "c",
         count: 3,
-        files: ["ankon", "chandu"],
+        filePaths: ["ankon", "chandu"],
         headOrTail: "head"
       };
       let actualOutput = parser(["head.js", "-c", "3", "ankon", "chandu"]);
       assert.deepEqual(actualOutput, expectedOutput);
     });
 
-    it("when option -- and two files are specified", function() {
+    it("when option -- and two filePaths are specified", function() {
       let expectedOutput = {
         option: "n",
         count: 10,
-        files: ["ankon", "chandu"],
+        filePaths: ["ankon", "chandu"],
         headOrTail: "head"
       };
       let actualOutput = parser(["head", "--", "ankon", "chandu"]);
@@ -133,25 +133,25 @@ describe('generateHeader',() => {
 });
 
 describe('addHeader',() => {
-  it('should return header concatinated with content if number of files are more than 1',() => {
+  it('should return header concatinated with content if number of filePaths are more than 1',() => {
     let expectedOutput = '==> file1 <==\n1';
     let actualOutput = addHeader(['file1','file2'],'file1','1');
     assert.deepEqual(actualOutput, expectedOutput);
   });
 
-  it('should return only the content if number of files is 1',() => {
+  it('should return only the content if number of filePaths is 1',() => {
     let expectedOutput = '1';
     let actualOutput = addHeader(['file1'],'file1','1');
     assert.deepEqual(actualOutput, expectedOutput);
   });
 
-  it('should return content if number of files is 0',() => {
+  it('should return content if number of filePaths is 0',() => {
     let expectedOutput = '1';
     let actualOutput = addHeader([],'file1','1');
     assert.deepEqual(actualOutput, expectedOutput);
   });
 
-  it('should return empty string if number of files is 0 and content is empty', () => {
+  it('should return empty string if number of filePaths is 0 and content is empty', () => {
     let expectedOutput = '';
     let actualOutput = addHeader([],'file1','');
     assert.deepEqual(actualOutput, expectedOutput);

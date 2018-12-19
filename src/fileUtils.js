@@ -7,9 +7,9 @@ const readAndFilter = function(fileSystem, parsedInput) {
   if (err) {
     return err;
   }
-  const { files } = parsedInput;
+  const { filePaths } = parsedInput;
   const formatResultForFile = formatResult.bind(null, fileSystem, parsedInput);
-  return files.map(formatResultForFile).join("\n\n");
+  return filePaths.map(formatResultForFile).join("\n\n");
 };  
 
 const formatResult = function({readFileSync, existsSync}, parsedInput, filePath) {
@@ -19,10 +19,10 @@ const formatResult = function({readFileSync, existsSync}, parsedInput, filePath)
   return getContents(readFileSync, parsedInput, filePath);
 };
 
-const getContents = function(readFileSync,{ option, count, files , headOrTail}, filePath) {
+const getContents = function(readFileSync,{ option, count, filePaths , headOrTail}, filePath) {
   let fileData = readFileSync(filePath, "utf-8");
   let result = selectOperationType(fileData, count, option, headOrTail);
-  return addHeader(files, filePath, result);
+  return addHeader(filePaths, filePath, result);
 };
 
 const filterNumberOfLines = function(content, count, headOrTail) {
