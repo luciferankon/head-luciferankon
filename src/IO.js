@@ -13,16 +13,16 @@ const parser = function(args) {
   }
   if (isInputOnlyOption(args[1])) {
     parsedInput.option = args[1][1];
-    parsedInput.count = args[2];
+    parsedInput.count = +args[2];
     parsedInput.files = args.slice(3);
   }
   if (isInputOnlyValue(args[1])) {
-    parsedInput.count = args[1].slice(1);
+    parsedInput.count = +args[1].slice(1);
     parsedInput.files = args.slice(2);
   }
   if (isInputOptionAndValue(args[1])) {
     parsedInput.option = args[1][1];
-    parsedInput.count = args[1].slice(2);
+    parsedInput.count = +args[1].slice(2);
     parsedInput.files = args.slice(2);
   }
   return parsedInput;

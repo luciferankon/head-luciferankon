@@ -29,14 +29,15 @@ const filterNumberOfLines = function(content, count, context) {
     if (!content.endsWith("\n")){ 
       content += "\n";
     }
-    return content.split("\n").slice(-(+count+1)).join("\n");
+    count += 1;
+    return content.split("\n").slice(-count).join("\n");
   }
   return content.split("\n").slice(0, count).join("\n");
 };
 
 const filterNumberOfChars = function(content, count, context) {
   if (isContextTail(context)) {
-    return content.split("").slice(content.length - count).join('');
+    return content.split("").slice(-count).join('');
   }
   return content.split("").slice(0, count).join('');
 };
