@@ -45,7 +45,7 @@ describe("filterNumberOfLines", function() {
     expectedOutput += "node ./head.js -c5 file1\n";
     expectedOutput += "node ./head.js -c 5 file1\n";
     expectedOutput += "node ./head.js -c5 file1 file2";
-    let actualOutput = filterNumberOfLines(file);
+    let actualOutput = filterNumberOfLines(file,10);
     assert.deepEqual(actualOutput, expectedOutput);
   });
 
@@ -123,7 +123,7 @@ describe("selectOperationType", function() {
     expectedOutput += "node ./head.js -c5 file1\n";
     expectedOutput += "node ./head.js -c 5 file1\n";
     expectedOutput += "node ./head.js -c5 file1 file2";
-    let actualOutput = selectOperationType(file);
+    let actualOutput = selectOperationType(file,10);
     assert.deepEqual(actualOutput, expectedOutput);
   });
 });

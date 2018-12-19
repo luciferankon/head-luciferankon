@@ -41,9 +41,9 @@ const filterNumberOfLines = function(content, count, context) {
 
 const filterNumberOfChars = function(content, count, context) {
   if (isContextTail(context)) {
-    return content.slice(content.length - count);
+    return content.split("").slice(content.length - count).join('');
   }
-  return content.slice(0, count);
+  return content.split("").slice(0, count).join('');
 };
 
 const selectOperationType = function(content, count, option = "n", context) {
