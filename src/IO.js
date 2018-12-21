@@ -49,7 +49,7 @@ const isOnlyOption = function(args) {
   return /^-[a-z]$/.test(args);
 };
 
-const isOnlyValue = function(args) {
+const isOnlyValue = args => {
   return isFinite(args[1]);
 };
 const isOptionAndValue = function(args) {
