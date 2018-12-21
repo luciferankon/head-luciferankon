@@ -2,9 +2,9 @@ const assert = require("assert");
 const {
   parser,
   isOptionDash,
-  isInputOnlyOption,
-  isInputOnlyValue,
-  isInputOptionAndValue,
+  isOnlyOption,
+  isOnlyValue,
+  isOptionAndValue,
   generateHeader,
   addHeader
 } = require("../src/IO.js");
@@ -80,46 +80,46 @@ describe("isOptionDash", function() {
   });
 });
 
-describe("isInputOnlyOption", function() {
+describe("isOnlyOption", function() {
   it("it should return false if argument is not only a option", function() {
-    let actualOutput = isInputOnlyOption('-4');
+    let actualOutput = isOnlyOption('-4');
     assert.deepEqual(actualOutput, false);
   });
   it("should return true if argument is only option n", function() {
-    let actualOutput = isInputOnlyOption('-n');
+    let actualOutput = isOnlyOption('-n');
     assert.deepEqual(actualOutput, true);
   });
   it("should return true if argument is only option t", function() {
-    let actualOutput = isInputOnlyOption('-t');
+    let actualOutput = isOnlyOption('-t');
     assert.deepEqual(actualOutput, true);
   });
 });
 
-describe("isInputOnlyValue", function() {
+describe("isOnlyValue", function() {
   it("should return false if the arguments are not only value", function() {
-    let actualOutput = isInputOnlyValue('-e');
+    let actualOutput = isOnlyValue('-e');
     assert.deepEqual(actualOutput, false);
   });
 
   it("should retun true if the arguments are only value", function() {
-    let actualOutput = isInputOnlyValue('-4');
+    let actualOutput = isOnlyValue('-4');
     assert.deepEqual(actualOutput, true);
   });
 });
 
-describe("isInputOptionAndValue", function() {
+describe("isOptionAndValue", function() {
   it("should return false if arguments are only option", function() {
-    let actualOutput = isInputOptionAndValue('-e');
+    let actualOutput = isOptionAndValue('-e');
     assert.deepEqual(actualOutput, false);
   });
 
   it("should return false if arguments are only value", function() {
-    let actualOutput = isInputOptionAndValue('-4');
+    let actualOutput = isOptionAndValue('-4');
     assert.deepEqual(actualOutput, false);
   });
 
   it("should return true if arguments are both option and values", function() {
-    let actualOutput = isInputOptionAndValue('-n4');
+    let actualOutput = isOptionAndValue('-n4');
     assert.deepEqual(actualOutput, true);
   });
 });

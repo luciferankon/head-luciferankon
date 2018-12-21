@@ -11,16 +11,16 @@ const parser = function(args) {
   if (isOptionDash(args[1])) {
     parsedInput.filePaths = args.slice(2);
   }
-  if (isInputOnlyOption(args[1])) {
+  if (isOnlyOption(args[1])) {
     parsedInput.option = args[1][1];
     parsedInput.count = +args[2];
     parsedInput.filePaths = args.slice(3);
   }
-  if (isInputOnlyValue(args[1])) {
+  if (isOnlyValue(args[1])) {
     parsedInput.count = +args[1].slice(1);
     parsedInput.filePaths = args.slice(2);
   }
-  if (isInputOptionAndValue(args[1])) {
+  if (isOptionAndValue(args[1])) {
     parsedInput.option = args[1][1];
     parsedInput.count = +args[1].slice(2);
     parsedInput.filePaths = args.slice(2);
@@ -32,14 +32,14 @@ const isOptionDash = function(option) {
   return option == "--";
 };
 
-const isInputOnlyOption = function(args) {
+const isOnlyOption = function(args) {
   return /^-[a-z]$/.test(args);
 };
 
-const isInputOnlyValue = function(args) {
+const isOnlyValue = function(args) {
   return args.length >= 2 && !isNaN(args[1]);
 };
-const isInputOptionAndValue = function(args) {
+const isOptionAndValue = function(args) {
   return args.length >= 3 && args[0] == "-" && isNaN(args[1]);
 };
 
@@ -55,9 +55,9 @@ const addHeader = function(filePaths, filePath, result) {
 };
 
 module.exports = {isOptionDash, 
-  isInputOnlyValue, 
-  isInputOnlyOption, 
-  isInputOptionAndValue, 
+  isOnlyValue, 
+  isOnlyOption, 
+  isOptionAndValue, 
   parser,
   generateHeader,
   addHeader
