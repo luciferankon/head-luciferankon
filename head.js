@@ -4,6 +4,6 @@ const { readAndFilter } = require("./src/fileUtils.js");
 
 const { parser } = require("./src/IO.js");
 
-let parsedInputs = parser(process.argv.slice(1));
+let parsedInputs = parser(process.argv.slice(2),'head');
 let result = readAndFilter(fs, parsedInputs);
 console.log(result);

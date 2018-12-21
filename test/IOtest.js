@@ -18,7 +18,7 @@ describe("parser", function() {
         filePaths: ["ankon", "chandu"],
         headOrTail: "head"
       };
-      let actualOutput = parser(['head.js','ankon','chandu']);
+      let actualOutput = parser(['ankon','chandu'],'head');
       assert.deepEqual(actualOutput, expectedOutput);
     });
 
@@ -29,7 +29,7 @@ describe("parser", function() {
         filePaths: ["ankon", "chandu"],
         headOrTail: "head"
       };
-      let actualOutput = parser(["head.js", "-5", "ankon", "chandu"]);
+      let actualOutput = parser(["-5", "ankon", "chandu"],'head');
       assert.deepEqual(actualOutput, expectedOutput);
     });
 
@@ -40,7 +40,7 @@ describe("parser", function() {
         filePaths: ["ankon", "chandu"],
         headOrTail: "head"
       };
-      let actualOutput = parser(["head.js", "-c3", "ankon", "chandu"]);
+      let actualOutput = parser(["-c3", "ankon", "chandu"],'head');
       assert.deepEqual(actualOutput, expectedOutput);
     });
 
@@ -51,7 +51,7 @@ describe("parser", function() {
         filePaths: ["ankon", "chandu"],
         headOrTail: "head"
       };
-      let actualOutput = parser(["head.js", "-c", "3", "ankon", "chandu"]);
+      let actualOutput = parser(["-c", "3", "ankon", "chandu"],'head');
       assert.deepEqual(actualOutput, expectedOutput);
     });
 
@@ -62,7 +62,7 @@ describe("parser", function() {
         filePaths: ["ankon", "chandu"],
         headOrTail: "head"
       };
-      let actualOutput = parser(["head", "--", "ankon", "chandu"]);
+      let actualOutput = parser(["--", "ankon", "chandu"],'head');
       assert.deepEqual(actualOutput, expectedOutput);
     });
   });

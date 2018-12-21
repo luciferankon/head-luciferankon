@@ -1,29 +1,29 @@
-const parser = function(args) {
+const parser = function(args,headOrTail) {
   let parsedInput = {
     option: "n",
     count: 10,
-    filePaths: args.slice(1),
+    filePaths: args.slice(0),
     headOrTail: ""
   };
 
-  parsedInput.headOrTail = args[0].substr(-7, 4);
+  parsedInput.headOrTail = headOrTail;
 
-  if (isOptionDash(args[1])) {
+  if (isOptionDash(args[0])) {
+    parsedInput.filePaths = args.slice(1);
+  }
+  if (isOnlyOption(args[0])) {
+    parsedInput.option = args[0][1];
+    parsedInput.count = +args[1];
     parsedInput.filePaths = args.slice(2);
   }
-  if (isOnlyOption(args[1])) {
-    parsedInput.option = args[1][1];
-    parsedInput.count = +args[2];
-    parsedInput.filePaths = args.slice(3);
+  if (isOnlyValue(args[0])) {
+    parsedInput.count = +args[0].slice(1);
+    parsedInput.filePaths = args.slice(1);
   }
-  if (isOnlyValue(args[1])) {
-    parsedInput.count = +args[1].slice(1);
-    parsedInput.filePaths = args.slice(2);
-  }
-  if (isOptionAndValue(args[1])) {
-    parsedInput.option = args[1][1];
-    parsedInput.count = +args[1].slice(2);
-    parsedInput.filePaths = args.slice(2);
+  if (isOptionAndValue(args[0])) {
+    parsedInput.option = args[0][1];
+    parsedInput.count = +args[0].slice(2);
+    parsedInput.filePaths = args.slice(1);
   }
   return parsedInput;
 };
