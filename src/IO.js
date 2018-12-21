@@ -7,22 +7,23 @@ const parser = function(args,headOrTail) {
   };
 
   parsedInput.headOrTail = headOrTail;
+  const optionCandidate = args[0];
 
-  if (isOptionDash(args[0])) {
+  if (isOptionDash(optionCandidate)) {
     parsedInput.filePaths = args.slice(1);
   }
-  if (isOnlyOption(args[0])) {
-    parsedInput.option = args[0][1];
+  if (isOnlyOption(optionCandidate)) {
+    parsedInput.option = optionCandidate[1];
     parsedInput.count = args[1];
     parsedInput.filePaths = args.slice(2);
   }
-  if (isOnlyValue(args[0])) {
-    parsedInput.count = args[0].slice(1);
+  if (isOnlyValue(optionCandidate)) {
+    parsedInput.count = optionCandidate.slice(1);
     parsedInput.filePaths = args.slice(1);
   }
-  if (isOptionAndValue(args[0])) {
-    parsedInput.option = args[0][1];
-    parsedInput.count = args[0].slice(2);
+  if (isOptionAndValue(optionCandidate)) {
+    parsedInput.option = optionCandidate[1];
+    parsedInput.count = optionCandidate.slice(2);
     parsedInput.filePaths = args.slice(1);
   }
   return parsedInput;
