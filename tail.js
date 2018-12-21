@@ -1,6 +1,6 @@
 const fs = require("fs");
 
-const { readAndFilter } = require("./src/textUtils.js");
+const { readAndFilter } = require("./src/fileUtils.js");
 
 const { parser } = require("./src/IO.js");
 
