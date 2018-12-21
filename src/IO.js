@@ -8,23 +8,25 @@ const parser = function(args,headOrTail) {
 
   parsedInput.headOrTail = headOrTail;
   const optionCandidate = args[0];
+  const filePaths = args.slice(1);
 
   if (isOptionDash(optionCandidate)) {
-    parsedInput.filePaths = args.slice(1);
+    parsedInput.filePaths = filePaths;
   }
   if (isOnlyOption(optionCandidate)) {
+    let filePaths = args.slice(2);
     parsedInput.option = optionCandidate[1];
     parsedInput.count = args[1];
-    parsedInput.filePaths = args.slice(2);
+    parsedInput.filePaths = filePaths;
   }
   if (isOnlyValue(optionCandidate)) {
     parsedInput.count = optionCandidate.slice(1);
-    parsedInput.filePaths = args.slice(1);
+    parsedInput.filePaths = filePaths;
   }
   if (isOptionAndValue(optionCandidate)) {
     parsedInput.option = optionCandidate[1];
     parsedInput.count = optionCandidate.slice(2);
-    parsedInput.filePaths = args.slice(1);
+    parsedInput.filePaths = filePaths;
   }
   return parsedInput;
 };
