@@ -6,9 +6,14 @@ const parser = function(args,headOrTail) {
     headOrTail: ""
   };
 
+ 
   parsedInput.headOrTail = headOrTail;
   const optionCandidate = args[0];
   const filePaths = args.slice(1);
+
+  if(!isOptionSpecified(optionCandidate)){
+    return parsedInput;
+  }
 
   if (isOnlyOption(optionCandidate)) {
     let filePaths = args.slice(2);
@@ -27,6 +32,10 @@ const parser = function(args,headOrTail) {
   }
   return parsedInput;
 };
+
+const isOptionSpecified = optionCandidate => {
+  return optionCandidate.startsWith('-') && optionCandidate.length > 1;
+}
 
 const isOnlyOption = function(args) {
   return /^-[a-z]$/.test(args);
