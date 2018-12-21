@@ -54,31 +54,9 @@ describe("parser", function() {
       let actualOutput = parser(["-c", "3", "ankon", "chandu"],'head');
       assert.deepEqual(actualOutput, expectedOutput);
     });
-
-    it("when option -- and two filePaths are specified", function() {
-      let expectedOutput = {
-        option: "n",
-        count: 10,
-        filePaths: ["ankon", "chandu"],
-        headOrTail: "head"
-      };
-      let actualOutput = parser(["--", "ankon", "chandu"],'head');
-      assert.deepEqual(actualOutput, expectedOutput);
-    });
   });
 });
 
-describe("isOptionDash", function() {
-  it("it Should return false if suplied argument is not --", function() {
-    let actualOutput = isOptionDash('aa');
-    assert.deepEqual(actualOutput, false);
-  });
-
-  it("it should return true if supplied argument is --", function() {
-    let actualOutput = isOptionDash('--');
-    assert.deepEqual(actualOutput, true);
-  });
-});
 
 describe("isOnlyOption", function() {
   it("it should return false if argument is not only a option", function() {

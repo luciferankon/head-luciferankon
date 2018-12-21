@@ -10,9 +10,6 @@ const parser = function(args,headOrTail) {
   const optionCandidate = args[0];
   const filePaths = args.slice(1);
 
-  if (isOptionDash(optionCandidate)) {
-    parsedInput.filePaths = filePaths;
-  }
   if (isOnlyOption(optionCandidate)) {
     let filePaths = args.slice(2);
     parsedInput.option = optionCandidate[1];
@@ -29,10 +26,6 @@ const parser = function(args,headOrTail) {
     parsedInput.filePaths = filePaths;
   }
   return parsedInput;
-};
-
-const isOptionDash = function(option) {
-  return option == "--";
 };
 
 const isOnlyOption = function(args) {
@@ -57,7 +50,7 @@ const addHeader = function(filePaths, filePath, result) {
   return result;
 };
 
-module.exports = {isOptionDash, 
+module.exports = { 
   isOnlyValue, 
   isOnlyOption, 
   isOptionAndValue, 
