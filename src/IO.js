@@ -12,7 +12,7 @@ const parser = function(args,headOrTail) {
   const filePaths = args.slice(1);
 
   if(!isOptionSpecified(optionCandidate)){
-    return parsedInput;
+    return getDefaultArgs(args);
   }
 
   if (isOnlyOption(optionCandidate)) {
@@ -33,6 +33,14 @@ const parser = function(args,headOrTail) {
   return parsedInput;
 };
 
+const getDefaultArgs = args => {
+  return {
+    option: "n",
+    count: 10,
+    filePaths: args.slice(0),
+    headOrTail: "head"
+  };
+}
 const isOptionSpecified = optionCandidate => {
   return optionCandidate.startsWith('-') && optionCandidate.length > 1;
 }
