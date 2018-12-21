@@ -21,7 +21,7 @@ const formatResult = function({readFileSync, existsSync}, parsedInput, filePath)
 
 const getContents = function(readFileSync,{ option, count, filePaths , headOrTail}, filePath) {
   let fileData = readFileSync(filePath, "utf-8");
-  let result = selectOperationType(fileData, count, option, headOrTail);
+  let result = selectOperationType(fileData, +count, option, headOrTail);
   return addHeader(filePaths, filePath, result);
 };
 
