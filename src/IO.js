@@ -52,8 +52,8 @@ const isOnlyOption = function(args) {
 const isOnlyValue = args => {
   return isFinite(args[1]);
 };
-const isOptionAndValue = function(args) {
-  return args.length >= 3 && args[0] == "-" && isNaN(args[1]);
+const isOptionAndValue = args => {
+  return args.length > 2;
 };
 
 const generateHeader = function(filePath) {
